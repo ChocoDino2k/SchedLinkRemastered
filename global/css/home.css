@@ -31,6 +31,10 @@ body {
   margin: 1vw 0 2vw;
 }
 
+#period__gallery {
+  min-height: 8.4vw;
+}
+
 .gallery-dot {
   width: 4.2vw;
   padding: 4.2vw 0 0;
@@ -478,6 +482,10 @@ body {
   #period__time {
     font-size: 40px;
     margin: 5px 0 10px;
+  }
+
+  #period__gallery {
+    min-height: 42px;
   }
 
   .gallery-dot {

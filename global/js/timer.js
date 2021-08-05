@@ -1,10 +1,11 @@
 function newDateAdjusted() {
   return new Date(
       Date.now() // user's clock
-    - 1000 // because it's easier to do this than fix the off-by-one error
+    - 30000000 // because it's easier to do this than fix the off-by-one error
   );
 }
 
+var disPeriodI = null;
 var curPeriodI = null;
 var curLunchI = null;
 var curTotalMin;
@@ -43,8 +44,8 @@ var gallery = {
   dots: [],
   create: function() {
     for (var i = 0; i < schedule.length / 2; i++) {
-      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:skipToPeriod(' + i + ')');
-      findElements(document.body, false, "#period__box").appendChild(this.dots[i]);
+      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:changeDisPeriod(' + (i*2+1) + ')');
+      findElements(document.body, false, "#period__gallery").appendChild(this.dots[i]);
     }
   },
   switchActive: function(curDot) {
@@ -104,8 +105,6 @@ function updateClock() {
     var secLeft = 60 * minsLeft + (59 - now.getSeconds());
     var percentProgress = ((1 - (secLeft / (60 * periodTotalMin + 59))) * 100) + '%';
     displayData.progressBar = percentProgress
-
-    console.log(periodTotalMin);
   }
 
   displayData.paint();
@@ -115,6 +114,10 @@ function updateClock() {
 
 function checkCurPeriod() {
   curPeriodI = checkTimeFrame(schedule);
+  if(curPeriodI == null) {
+    return;
+  }
+  disPeriodI = curPeriodI;
   curLunchI = null;
 
   if (curPeriodI !== null && 'lunches' in schedule[curPeriodI]) {
@@ -138,30 +141,42 @@ function checkTimeFrame(sched) {
 // Display the period name and start/end times
 function displayPeriod() {
   var periodToDisplay;
-  if (curPeriodI === null) {
+  if (disPeriodI === null) {
     // no period
     if (schedName === 'No School') {
       displayData.periodTime = 'No School Today';
       displayData.periodName = newDateAdjusted().toLocaleDateString();
     } else {
       displayData.periodTime = 'Not School Hours';
-      displayData.periodName = '';
+      displayData.periodName = 'No Period';
     }
     displayData.paint();
     return;
-  } else if (curLunchI !== null) {
-    // lunch period
-    periodToDisplay = schedule[curPeriodI].lunches[curLunchI];
+  // } else if (curLunchI !== null) {
+  //   // lunch period
+  //   periodToDisplay = schedule[disPeriodI].lunches[curLunchI];
   } else {
     // normal period
-    periodToDisplay = schedule[curPeriodI];
+    periodToDisplay = schedule[disPeriodI];
+    console.log(periodToDisplay);
   }
   var periodStart = (periodToDisplay.SHours % 24) + ':' + periodToDisplay.SMin.toString().padStart(2, '0');
   var periodEnd = (periodToDisplay.EHours % 24) + ':' + periodToDisplay.EMin.toString().padStart(2, '0');
   displayData.periodTime = periodStart + ' - ' + periodEnd;
   displayData.periodName = periodToDisplay.name;
   displayData.paint();
-  gallery.switchActive((curPeriodI - 1) / 2);
+  gallery.switchActive((disPeriodI - 1) / 2);
+}
+
+function changeDisPeriod(periodI, additive = false) {
+  if(additive) {
+    disPeriodI = (disPeriodI % 2 == 0) ? disPeriodI + periodI : disPeriodI + periodI*2;
+    disPeriodI = (disPeriodI < 0) ? disPeriodI + schedule.length : disPeriodI %= schedule.length;
+  }
+  else {
+    disPeriodI = periodI;
+  }
+  displayPeriod();
 }
 
 function init() {
