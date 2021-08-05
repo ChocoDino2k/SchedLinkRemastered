@@ -11,7 +11,7 @@
 
     <script src="/global/js/DOM.js" charset="utf-8"></script>
     <script src="/global/js/timer.js" charset="utf-8"></script>
-    
+
     <link rel="stylesheet" href="/global/css/global.css?v=1">
     <link rel="stylesheet" href="/global/css/home.css?v=1">
   </head>
@@ -37,9 +37,9 @@
       ?>
     </div>
   </body>
-  <script type="text/javascript">
-    let parent = findElements(document.body, false, ".block");
-    parent.appendChild(createElement("div", "id:timer_head"));
-    parent.appendChild(createElement("div", "id:timer"));
-  </script>
+  <!-- <script type="text/javascript">
+    // let parent = findElements(document.body, false, ".block");
+    // parent.appendChild(createElement("div", "id:timer_head"));
+    // parent.appendChild(createElement("div", "id:timer"));
+  </script> -->
 </html>

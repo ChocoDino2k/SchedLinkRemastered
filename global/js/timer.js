@@ -19,14 +19,14 @@ var updateClockFrame = 0;
 var displayData = {
   items: {
     timer: {value: '--:--', elementId: 'countdown__timer'},
-    periodName: {value: '\u00a0', elementId: 'period__name'},
+    periodName: {value: '\u00a0', elementId: 'period__header'},
     periodTime: {value: 'Loading', elementId: 'period__time'}
   },
   paint: function() {
     var pList = Object.keys(displayData.items);
     for (var p of pList) {
       if (typeof(displayData[p]) != 'undefined' && this.items[p].value != displayData[p]) {
-        document.getElementById(this.items[p].elementId).textContent = displayData[p];
+        findElements(document.body, false, "#" + this.items[p].elementId).textContent = displayData[p];
         this.items[p].value = displayData[p];
       }
     }
@@ -37,7 +37,7 @@ function updateClock() {
   var minsLeft;
   now = newDateAdjusted();
   curTotalMin = (now.getHours() * 60) + now.getMinutes();
-  
+
   if (pageLoadDate != now.toISOString().split('T')[0]) {
     // new day
     window.location.reload();
@@ -58,7 +58,7 @@ function updateClock() {
     // period over
     checkCurPeriod();
   }
-  
+
   if (curPeriodI === null) {
     displayData.timer = '--:--';
   } else {
@@ -69,7 +69,7 @@ function updateClock() {
     // minutes = hours ? (minutes.padStart(2, '0') + ':') : minutes == '0' ? '' : (minutes + ':');
     minutes = hours ? (minutes.padStart(2, '0') + ':') : (minutes + ':');
     seconds = hours || minutes ? seconds.padStart(2, '0') : seconds;
-    
+
     displayData.timer = hours + minutes + seconds;
   }
   displayData.paint();
@@ -80,7 +80,7 @@ function updateClock() {
 function checkCurPeriod() {
   curPeriodI = checkTimeFrame(schedule);
   curLunchI = null;
-  
+
   if (curPeriodI !== null && 'lunches' in schedule[curPeriodI]) {
     curLunchI = checkTimeFrame(schedule[curPeriodI].lunches);
   }
