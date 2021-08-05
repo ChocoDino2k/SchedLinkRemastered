@@ -8,29 +8,26 @@
     <script src="/global/js/DOM.js" charset="utf-8"></script>
   </head>
   <body>
-   <div class="wrapper">
-    <?php
-    $r = $_SERVER['DOCUMENT_ROOT'];
-    include_once($r . "/global/modules/noscript.html");
-    include_once( $r . "/global/modules/header.html");
-   ?>
-   <article id = "main_body">
-     <section class = "block">
-       <!-- <div id = "timer_head">
+    <div class="wrapper">
+      <?php
+        $r = $_SERVER['DOCUMENT_ROOT'];
+        include_once($r . "/global/modules/noscript.html");
+        include_once( $r . "/global/modules/header.html");
+      ?>
+      <article id = "main_body">
+        <section class = "block">
+          <?php
+            include_once($r . "/global/modules/timer.html");
+          ?>
+        </section>
+        <section class = "block">
 
-       </div>
-       <div id = "timer">
-
-       </div> -->
-     </section>
-     <section class = "block">
-
-     </section>
-   </article>
-    <?php
-      include_once($r . "/global/modules/navigation.html");
-    ?>
-   </div>
+        </section>
+      </article>
+      <?php
+        include_once($r . "/global/modules/navigation.html");
+      ?>
+    </div>
   </body>
   <script type="text/javascript">
     let parent = findElements(document.body, false, ".block");
