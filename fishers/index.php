@@ -14,8 +14,13 @@
     include_once($r . "/global/modules/noscript.html");
     include_once( $r . "/global/modules/header.html");
    ?>
-   <article class="">
+   <article id = "main_body">
+     <section class = "block">
+       
+     </section>
+     <section class = "block">
 
+     </section>
    </article>
     <?php
       include_once($r . "/global/modules/navigation.html");
