@@ -1,7 +1,7 @@
 function newDateAdjusted() {
   return new Date(
       Date.now() // user's clock
-    - 30000000 // because it's easier to do this than fix the off-by-one error
+    - 1000 // because it's easier to do this than fix the off-by-one error
   );
 }
 
@@ -158,7 +158,6 @@ function displayPeriod() {
   } else {
     // normal period
     periodToDisplay = schedule[disPeriodI];
-    console.log(periodToDisplay);
   }
   var periodStart = (periodToDisplay.SHours % 24) + ':' + periodToDisplay.SMin.toString().padStart(2, '0');
   var periodEnd = (periodToDisplay.EHours % 24) + ':' + periodToDisplay.EMin.toString().padStart(2, '0');
