@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="HandheldFriendly" content="true">
     <title></title>
+
+    <script src="json/bell-schedules.js" charset="utf-8"></script>
+    <script src="json/schedule-calendar.js" charset="utf-8"></script>
+
     <script src="/global/js/DOM.js" charset="utf-8"></script>
+    <script src="/global/js/timer.js" charset="utf-8"></script>
+    
+    <link rel="stylesheet" href="/global/css/global.css?v=1">
+    <link rel="stylesheet" href="/global/css/home.css?v=1">
   </head>
-  <body>
+  <body onload="updateClock();">
     <div class="wrapper">
       <?php
         $r = $_SERVER['DOCUMENT_ROOT'];

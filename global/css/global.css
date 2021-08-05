@@ -1,0 +1,345 @@
+@font-face {
+    font-family: 'robotobold';
+    src: url('/global/fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('/global/fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+  --norm-font: "robotoregular";
+  --light-font: "robotolight";
+  --bold-font: "robotobold";
+
+  --highlight-header: rgb(255,0,0);
+  --highlight-header-text-color: rgb(255,255,255);
+  --highlight-fill: rgb(255,0,0);
+  --highlight-text-color: rgb(255,0,0);
+
+  --background-fill: rgb(228,228,228);
+
+  --container-color: rgb(255,255,255);
+  --container-color-transparent: rgba(255,255,255,0);
+  --container-hover: rgb(170,170,170);
+  --container-hover-text-color: var(--container-text-color);
+  --container-text-color: rgb(0,0,0);
+  --container-icon-color: rgb(0,0,0);
+  --secondary-text-color: rgb(170,170,170);
+  --secondary-background: rgb(210,210,210);
+
+  --button-color: rgb(255,0,0);
+  --button-hover: rgb(200,0,0);
+  --button-text-color: rgb(255,255,255);
+  --button-hover-text-color: rgb(255,255,255);
+
+  --outline-color: rgb(255,0,0);
+
+  --anchor-color: rgb(255,0,0);
+  --anchor-hover: rgb(200,0,0);
+
+  --nav-icons: rgb(100,100,100);
+
+  --background-color: rgb(228,228,228);
+}
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: var(--background-color);
+  overflow-y: scroll;
+  margin: 0;
+  font-family: var(--norm-font);
+  color: var(--container-text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a:link {
+  color: var(--anchor-color);
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:visited {
+  color: var(--anchor-color);
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:hover {
+  color: var(--anchor-hover);
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: var(--anchor-hover);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a.a--no-underline {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--norm-font);
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -15vw;
+}
+
+.block {
+  position: relative;
+  height: auto;
+  text-align: center;
+  margin-bottom: 5vw;
+}
+
+.row {
+  position: relative;
+  height: auto;
+  text-align: center;
+  margin-bottom: 1vw;
+}
+.container {
+  background: var(--container-color);
+  color: var(--container-text-color);
+  text-align:center;
+}
+
+.l-margin {
+  margin-left: 1vw;
+}
+.r-margin {
+  margin-right: 1vw;
+}
+
+.hover:hover {
+  background: var(--container-hover);
+  color: var(--container-hover-text-color);
+}
+
+#main-content {
+  margin:auto;
+  padding: 2vw;
+  padding-bottom: 14vw;
+}
+
+body.fullsize-content {
+  overflow: auto;
+}
+body.fullsize-content #main-content {
+  height: calc(100vh - 14.25vw - 12vw - 2px);
+  height: var(--mobile-fullsize-body-height, calc(100vh - 14.25vw - 12vw - 2px));
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: relative;
+  height: 12vw;
+  width: 100%;
+  padding-top: 2.25vw;
+  padding-bottom: 0;
+  margin: auto;
+  text-align:center;
+  background-color: var(--highlight-header);
+}
+#header__anchor {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  font-family: var(--bold-font);
+  text-decoration: none;
+  font-size: 7.5vw;
+  line-height: 7.5vw;
+  font-weight: bold;
+  color: var(--highlight-header-text-color);
+  background-color: transparent;
+  transform: translate(-50%,-50%);
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: solid 2px var(--nav-icons);
+  z-index: 10;
+}
+#nav-tabs {
+  height: 12vw;
+  background: var(--container-color);
+  color: var(--container-text-color);
+  text-align:center;
+}
+body.fullsize-content #nav-tabs {
+  background-color: var(--highlight-header);
+}
+
+#nav-tabs a {
+  text-decoration: none;
+  font-size: 0;
+}
+#nav-tabs a div {
+  display: inline-block;
+  width: calc(100% / 4);
+  height: auto;
+}
+#nav-tabs a div:hover{
+  background-color: var(--container-hover);
+}
+#nav-tabs a div svg {
+  margin: 2vw;
+  width: auto;
+  height: 8vw;
+  fill: var(--nav-icons);
+}
+#nav-tabs a.selected div svg {
+  fill: var(--highlight-fill);
+}
+
+.modal-polygon {
+  fill:var(--highlight-fill);
+}
+
+footer {
+  background-color: var(--highlight-header);
+  border-top: solid 5px white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px 0;
+}
+footer img {
+  width: 200px;
+  margin: 0 auto 10px;
+}
+
+img.svg-mask-only {
+    position: relative;
+    box-sizing: border-box;
+}
+img.svg-mask-only:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: "\u00a0";
+    background: currentColor;
+}
+
+
+@media screen and (min-width: 500px) {
+  .wrapper {
+    margin-bottom: -75px;
+  }
+
+  #main-content {
+    padding: 15px;
+    padding-bottom: 75px;
+  }
+  body.fullsize-content #main-content {
+    height: calc(100vh - 71.25px - 60px - 2px);
+    height: var(--desktop-fullsize-body-height, calc(100vh - 71.25px - 60px - 2px));
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    height: 60px;
+    padding-top: 11.25px;
+  }
+  header p {
+    top: -3.75px;
+    font-size: 12.5px;
+  }
+  #header__anchor{
+    font-size: 37.5px;
+    line-height: 37.5px;
+  }
+  .text, .shadow
+  {
+    top: 5px;
+    font-size: 50px;
+  }
+
+  nav {
+    width: 100%;
+  }
+  #nav-tabs {
+    height: 60px;
+  }
+  #nav-tabs a div svg {
+    margin: 10px;
+    height: 40px;
+  }
+
+  .block {
+    margin: auto;
+    margin-bottom: 25px;
+    width: calc(50% + 240px);
+  }
+
+  .row {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+  }
+
+  .l-margin
+  {
+    margin-left: 5px;
+  }
+  .r-margin
+  {
+    margin-right: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wrapper:before {
+    content: '';
+    height: 0;
+    width: 100%;
+    display: block;
+    background: rgba(200,200,200,1);
+    background: linear-gradient(90deg, transparent 25%, rgba(200,200,200,1) 25%, rgba(200,200,200,1) 37.5%, transparent 37.5%, transparent 62.5%, rgba(200,200,200,1) 62.5%, rgba(200,200,200,1) 75%, transparent 75%);
+    transition: height 0.5s ease-out;
+    animation: loading 2.5s infinite linear;
+    background-size: 400% 100%;
+  }
+
+  .wrapper.loading:before {
+    height: 6px;
+  }
+
+  @keyframes loading {
+    0% {
+        background-position: 100% 0%;
+    }
+    35% {
+        background-position: 50% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+  }
+}
+
+svg {
+    fill: currentColor;
+}

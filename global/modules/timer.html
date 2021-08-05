@@ -1,10 +1,20 @@
 <section class="row" id="period">
+  <button class="container arrow hover" onclick="changePeriod(-1)">
+    &#8249;
+  </button>
   <div id="period__box" class="container">
-    <p id="period__name"></p>
-    <p id="period__time">Error</p>
+    <p id="period__header">No Period</p>
+    <p id="period__time">Not School Hours</p>
   </div>
+  <button class="container arrow hover" onclick="changePeriod(1)">
+    &#8250;
+  </button>
 </section>
 
 <section class="row container" id="countdown">
   <p id="countdown__timer">--:--</p>
+
+  <div id="countdown__bar">
+    <div id="countdown__progress"></div>
+  </div>
 </section>
