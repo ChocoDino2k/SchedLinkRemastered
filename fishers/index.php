@@ -16,7 +16,12 @@
    ?>
    <article id = "main_body">
      <section class = "block">
-       
+       <!-- <div id = "timer_head">
+
+       </div>
+       <div id = "timer">
+
+       </div> -->
      </section>
      <section class = "block">
 
@@ -27,4 +32,9 @@
     ?>
    </div>
   </body>
+  <script type="text/javascript">
+    let parent = findElements(document.body, false, ".block");
+    parent.appendChild(createElement("div", "id:timer_head"));
+    parent.appendChild(createElement("div", "id:timer"));
+  </script>
 </html>
