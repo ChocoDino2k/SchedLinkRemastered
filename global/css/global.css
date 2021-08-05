@@ -106,6 +106,12 @@ button {
   margin-bottom: 5vw;
 }
 
+#main-content {
+  margin: auto;
+  padding: 2vw;
+  padding-bottom: 14vw;
+}
+
 .row {
   position: relative;
   height: auto;
@@ -128,12 +134,6 @@ button {
 .hover:hover {
   background: var(--container-hover);
   color: var(--container-hover-text-color);
-}
-
-#main-content {
-  margin:auto;
-  padding: 2vw;
-  padding-bottom: 14vw;
 }
 
 body.fullsize-content {
@@ -251,12 +251,6 @@ img.svg-mask-only:after {
   #main-content {
     padding: 15px;
     padding-bottom: 75px;
-  }
-  body.fullsize-content #main-content {
-    height: calc(100vh - 71.25px - 60px - 2px);
-    height: var(--desktop-fullsize-body-height, calc(100vh - 71.25px - 60px - 2px));
-    margin: 0;
-    padding: 0;
   }
 
   header {

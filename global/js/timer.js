@@ -18,23 +18,48 @@ var updateClockFrame = 0;
 
 var displayData = {
   items: {
-    timer: {value: '--:--', elementId: 'countdown__timer'},
-    periodName: {value: '\u00a0', elementId: 'period__header'},
-    periodTime: {value: 'Loading', elementId: 'period__time'}
+    timer: {value: '--:--', elementId: 'countdown__timer', property: 'textContent'},
+    periodName: {value: '\u00a0', elementId: 'period__header', property: 'textContent'},
+    periodTime: {value: 'Loading', elementId: 'period__time', property: 'textContent'},
+    progressBar: {value: '0%', elementId: 'countdown__progress', property: 'width'}
   },
   paint: function() {
     var pList = Object.keys(displayData.items);
     for (var p of pList) {
       if (typeof(displayData[p]) != 'undefined' && this.items[p].value != displayData[p]) {
-        findElements(document.body, false, "#" + this.items[p].elementId).textContent = displayData[p];
+        if (this.items[p].property == 'textContent') {
+          findElements(document.body, false, "#" + this.items[p].elementId).textContent = displayData[p];
+        }
+        else if (this.items[p].property == 'width') {
+          findElements(document.body, false, "#" + this.items[p].elementId).style.width = displayData[p];
+        }
         this.items[p].value = displayData[p];
       }
     }
   }
 };
 
+var gallery = {
+  dots: [],
+  create: function() {
+    for (var i = 0; i < schedule.length / 2; i++) {
+      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:skipToPeriod(' + i + ')');
+      findElements(document.body, false, "#period__box").appendChild(this.dots[i]);
+    }
+  },
+  switchActive: function(curDot) {
+    for (var i = 0; i < this.dots.length; i++)
+    {
+      this.dots[i].setAttribute("class", "gallery-dot");
+    }
+    if (curDot != -1 && curDot % 1 == 0)
+      this.dots[curDot].setAttribute("class", "gallery-dot active");
+    }
+};
+
 function updateClock() {
   var minsLeft;
+  var periodTotalMin;
   now = newDateAdjusted();
   curTotalMin = (now.getHours() * 60) + now.getMinutes();
 
@@ -46,10 +71,12 @@ function updateClock() {
     // period with lunches
     minsLeft = (schedule[curPeriodI].lunches[curLunchI].EHours * 60)
         + schedule[curPeriodI].lunches[curLunchI].EMin - curTotalMin - 1;
+    periodTotalMin = ((schedule[curPeriodI].lunches[curLunchI].EHours * 60) + schedule[curPeriodI].lunches[curLunchI].EMin) - ((schedule[curPeriodI].lunches[curLunchI].SHours * 60) + schedule[curPeriodI].lunches[curLunchI].SMin);
   } else if (curPeriodI !== null) {
     // normal period
     minsLeft = (schedule[curPeriodI].EHours * 60)
         + schedule[curPeriodI].EMin - curTotalMin - 1;
+    periodTotalMin = ((schedule[curPeriodI].EHours * 60) + schedule[curPeriodI].EMin) - ((schedule[curPeriodI].SHours * 60) + schedule[curPeriodI].SMin);
   } else {
     minsLeft = 0;
     checkCurPeriod();
@@ -61,6 +88,7 @@ function updateClock() {
 
   if (curPeriodI === null) {
     displayData.timer = '--:--';
+    displayData.progressBar = '0%';
   } else {
     var hours = Math.floor(minsLeft / 60).toString();
     var minutes = (minsLeft % 60).toString();
@@ -71,7 +99,15 @@ function updateClock() {
     seconds = hours || minutes ? seconds.padStart(2, '0') : seconds;
 
     displayData.timer = hours + minutes + seconds;
+
+    //Progress Bar
+    var secLeft = 60 * minsLeft + (59 - now.getSeconds());
+    var percentProgress = ((1 - (secLeft / (60 * periodTotalMin + 59))) * 100) + '%';
+    displayData.progressBar = percentProgress
+
+    console.log(periodTotalMin);
   }
+
   displayData.paint();
   window.cancelAnimationFrame(updateClockFrame);
   updateClockFrame = window.requestAnimationFrame(updateClock);
@@ -125,4 +161,10 @@ function displayPeriod() {
   displayData.periodTime = periodStart + ' - ' + periodEnd;
   displayData.periodName = periodToDisplay.name;
   displayData.paint();
+  gallery.switchActive((curPeriodI - 1) / 2);
+}
+
+function init() {
+  gallery.create();
+  updateClock();
 }

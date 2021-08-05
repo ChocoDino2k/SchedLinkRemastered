@@ -147,7 +147,7 @@ var JSON_schedule = {
       },
       {
         "SHours": 13,
-        "SMin": 28,
+        "SMin": 38,
         "EHours": 15,
         "EMin": 0,
         "name": "Red Period 4 (R4)"
@@ -265,7 +265,7 @@ var JSON_schedule = {
       },
       {
         "SHours": 13,
-        "SMin": 28,
+        "SMin": 38,
         "EHours": 15,
         "EMin": 0,
         "name": "Silver Period 8 (S8)"

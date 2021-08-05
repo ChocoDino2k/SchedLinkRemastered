@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="/global/css/global.css?v=1">
     <link rel="stylesheet" href="/global/css/home.css?v=1">
   </head>
-  <body onload="updateClock();">
+  <body onload="init();">
     <div class="wrapper">
       <?php
         $r = $_SERVER['DOCUMENT_ROOT'];
         include_once($r . "/global/modules/noscript.html");
         include_once( $r . "/global/modules/header.html");
       ?>
-      <article id = "main_body">
+      <article id = "main-content">
         <section class = "block">
           <?php
             include_once($r . "/global/modules/timer.html");
