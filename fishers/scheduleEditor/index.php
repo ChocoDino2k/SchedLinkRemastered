@@ -21,6 +21,7 @@
       include_once($r . "/global/modules/noscript.html");
       include_once( $r . "/global/modules/header.html");
     ?>
+    <article id = "main_body">
       <section class = "block">
         <div class="calendar_container">
           <div class="calendar_head">
