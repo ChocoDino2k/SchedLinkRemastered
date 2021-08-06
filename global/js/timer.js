@@ -48,7 +48,7 @@ var gallery = {
   dots: [],
   create: function() {
     for (var i = 0; i < schedule.length / 2; i++) {
-      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:changeDisPeriod(' + (i*2+1) + ')');
+      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick::changeDisPeriod(' + (i*2+1) + ')');
       findElements(document.body, false, "#period__gallery").appendChild(this.dots[i]);
     }
   },
