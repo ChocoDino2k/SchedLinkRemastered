@@ -4,7 +4,16 @@ function createElement(type){
     a;
     for(let i = 1; i < arguments.length; i++){
       a = arguments[i].split(":");
-      elm.setAttribute(a[0], a[1]);
+      switch (a[0]) {
+        case "text":
+          elm.innerHTML = a[1];
+          break;
+        case 'onclick':
+          elm.onclick = a[1];
+          break;
+        default:
+        elm.setAttribute(a[0], a[1]);
+      }
     }
     return elm;
 }
