@@ -260,7 +260,7 @@ var JSON_calendar = [
     "Silver Day",
     "Red Day",
     "Silver Day",
-    "Re Dayd"
+    "Red Day"
   ],
   [
     "Unscheduled",

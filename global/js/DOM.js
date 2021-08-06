@@ -8,9 +8,6 @@ function createElement(type){
         case "text":
           elm.innerHTML = a[1];
           break;
-        case 'onclick':
-          elm.onclick = a[1];
-          break;
         default:
         elm.setAttribute(a[0], a[1]);
       }

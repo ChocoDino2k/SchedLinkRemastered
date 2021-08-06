@@ -1,12 +1,17 @@
 function newDateAdjusted() {
   return new Date(
       Date.now() // user's clock
-    - 1000 // because it's easier to do this than fix the off-by-one error
+    + (1000*secOffset) + (60000*minOffset) + (3600000*hourOffset) // because it's easier to do this than fix the off-by-one error
   );
 }
 
+var secOffset = -1;
+var minOffset = 0;
+var hourOffset = -6;
+
 var disPeriodI = null;
 var curPeriodI = null;
+var disLunchI = null;
 var curLunchI = null;
 var curTotalMin;
 
@@ -17,6 +22,7 @@ var schedule = JSON_schedule[schedName];
 
 var updateClockFrame = 0;
 var periodNames = {};
+var lunchPeriods = {};
 
 var displayData = {
   items: {
@@ -48,7 +54,7 @@ var gallery = {
   dots: [],
   create: function() {
     for (var i = 0; i < schedule.length / 2; i++) {
-      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:changeDisPeriod(' + (i*2+1) + ')');
+      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:changeDisPeriod(' + (i*2+1) + ');');
       findElements(document.body, false, "#period__gallery").appendChild(this.dots[i]);
     }
   },
@@ -81,9 +87,10 @@ function updateClock() {
     return;
   } else if (curPeriodI !== null && curLunchI !== null) {
     // period with lunches
-    minsLeft = (schedule[curPeriodI].lunches[curLunchI].EHours * 60)
-        + schedule[curPeriodI].lunches[curLunchI].EMin - curTotalMin - 1;
-    periodTotalMin = ((schedule[curPeriodI].lunches[curLunchI].EHours * 60) + schedule[curPeriodI].lunches[curLunchI].EMin) - ((schedule[curPeriodI].lunches[curLunchI].SHours * 60) + schedule[curPeriodI].lunches[curLunchI].SMin);
+    var lunchPeriod = schedule[curPeriodI].lunches[lunchPeriods[schedule[curPeriodI].lunches.type]][curLunchI];
+    minsLeft = (lunchPeriod.EHours * 60)
+        + lunchPeriod.EMin - curTotalMin - 1;
+    periodTotalMin = ((lunchPeriod.EHours * 60) + lunchPeriod.EMin) - ((lunchPeriod.SHours * 60) + lunchPeriod.SMin);
   } else if (curPeriodI !== null) {
     // normal period
     minsLeft = (schedule[curPeriodI].EHours * 60)
@@ -114,7 +121,8 @@ function updateClock() {
 
     //Progress Bar
     var secLeft = 60 * minsLeft + (59 - now.getSeconds());
-    var percentProgress = ((1 - (secLeft / (60 * periodTotalMin + 59))) * 100) + '%';
+    console.log(periodTotalMin)
+    var percentProgress = ((1 - (secLeft / (60 * periodTotalMin))) * 100) + '%';
     displayData.progressBar = percentProgress
   }
 
@@ -130,9 +138,13 @@ function checkCurPeriod() {
   }
   disPeriodI = curPeriodI;
   curLunchI = null;
+  disLunchI = null;
 
-  if (curPeriodI !== null && 'lunches' in schedule[curPeriodI]) {
-    curLunchI = checkTimeFrame(schedule[curPeriodI].lunches);
+  if ('lunches' in schedule[curPeriodI]) {
+    if (schedule[curPeriodI].lunches.type in lunchPeriods) {
+      curLunchI = checkTimeFrame(schedule[curPeriodI].lunches[lunchPeriods[schedule[curPeriodI].lunches.type]]);
+      disLunchI = curLunchI;
+    }
   }
 
   displayPeriod();
@@ -165,11 +177,18 @@ function displayPeriod() {
     }
     displayData.paint();
     return;
-  // } else if (curLunchI !== null) {
-  //   // lunch period
-  //   periodToDisplay = schedule[disPeriodI].lunches[curLunchI];
+  } else if ("lunches" in schedule[disPeriodI]) {
+    // lunch period
+    findElements(document.body, false, "#lunch").classList.remove('hidden');
+    if (schedule[disPeriodI].lunches.type in lunchPeriods && disLunchI !== null) {
+      periodToDisplay = schedule[disPeriodI].lunches[lunchPeriods[schedule[disPeriodI].lunches.type]][disLunchI];
+    }
+    else {
+      periodToDisplay = schedule[disPeriodI];
+    }
   } else {
     // normal period
+    findElements(document.body, false, "#lunch").classList.add('hidden');
     periodToDisplay = schedule[disPeriodI];
   }
 
@@ -192,6 +211,13 @@ function changeDisPeriod(periodI, additive = false) {
   displayPeriod();
 }
 
+function chooseLunch(lunchType) {
+  lunchPeriods[schedule[disPeriodI].lunches.type] = lunchType;
+  localStorage.setItem("lunchPeriods", JSON.stringify(lunchPeriods));
+  checkCurPeriod();
+  displayPeriod();
+}
+
 function savePeriodName() {
   if(disPeriodI != null) {
     var input = findElements(document.body, false, "#period__header").value;
@@ -202,7 +228,6 @@ function savePeriodName() {
 
 function init() {
   gallery.create();
-  updateClock();
 
   findElements(document.body, false, "#period__header").addEventListener("keyup", ({key}) => {
     if (key === "Enter") {
@@ -217,4 +242,14 @@ function init() {
   else {
     periodNames = JSON.parse(periodNames);
   }
+
+  lunchPeriods = localStorage.getItem("lunchPeriods");
+  if(lunchPeriods == '' || lunchPeriods == null) {
+    lunchPeriods = {};
+  }
+  else {
+    lunchPeriods = JSON.parse(lunchPeriods);
+  }
+
+  updateClock();
 }

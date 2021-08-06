@@ -113,6 +113,22 @@ body {
   transition: width 1s linear;
 }
 
+#lunch.hidden {
+  display: none;
+}
+#lunch div {
+  display: flex;
+}
+#lunch div button {
+  vertical-align: middle;
+  flex: 1;
+  padding: 1vw;
+  font-size: 5vw;
+  display: inline-block;
+  top: 0px;
+  font-family: var(--bold-font);
+}
+
 #extra-features {
   display: flex;
 }
