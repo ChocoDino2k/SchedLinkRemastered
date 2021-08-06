@@ -42,7 +42,7 @@ var JSON_schedule = {
         "EHours": 8,
         "EMin": 30,
         "name": "Passing Period",
-        "color": "rgb(0,230,0)",
+        "color": "rgb(230,0,0)",
         "important": true
       },
       {
@@ -209,7 +209,7 @@ var JSON_schedule = {
         "EHours": 8,
         "EMin": 30,
         "name": "Passing Period",
-        "color": "rgb(0,230,0)",
+        "color": "rgb(100,100,100)",
         "important": true
       },
       {

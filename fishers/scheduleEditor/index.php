@@ -22,20 +22,27 @@
       include_once( $r . "/global/modules/header.html");
     ?>
     <article id = "main_body">
-      <section class = "block">
+      <section class = "inline">
         <div class="calendar_container">
           <div class="calendar_head">
-            <button type="button" name="button" class = "calendar_head_btn"><p></p></button>
-            <p id = "calendar_date"></p>
-            <button type="button" name="button" class = "calendar_head_btn"><p></p></button>
+            <button type="button" name="button" class = "calendar_head_btn" value = '-1'><p></p></button>
+            <div id = "calendar_date"></div>
+            <button type="button" name="button" class = "calendar_head_btn" value = '1'><p></p></button>
           </div>
           <div class="calendar_body">
             <div class="weekday_container"></div>
             <div id = "dates"></div>
           </div>
         </div>
+        <!-- <select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedesdddddddddddddddddddddd</option>
+  <option value="audi">Audi</option>
+</select> -->
+
       </section>
-      <section class = "block">
+      <section class= "inline">
 
       </section>
     </article>
@@ -46,9 +53,8 @@
 </body>
 <style media="screen">
 :root{
-  --font-size: 3vw;
   --mod: 1;
-  font-size: 4vw;
+  font-size: 3vw;
 }
 p{
   margin:0;
@@ -62,6 +68,14 @@ p,button{
   line-height: 1.5;
   background: transparent;
 }
+
+.inline{
+  width: 50%;
+  line-height: 0;
+  display: inline-block;
+}
+
+
 .cal_itm{
   display: inline-block;
   width:calc(100%/7);
@@ -69,13 +83,17 @@ p,button{
   font-size: 0.75rem;
   padding:0;
   box-sizing: border-box;
+  cursor: default;
+  border: 0.001rem solid transparent;
 }
 .day{
-  /* border: 0.1rem solid transparent; */
   cursor: pointer;
+  border-color: black;
 }
 .calendar_head{
   display: flex;
+  align-items: center;
+  background: var(--container-color);
 }
 .calendar_head button{
   flex:1;
@@ -109,17 +127,35 @@ p,button{
 #calendar_date{
   display: flex;
   align-items: center;
+  background: var(--container-color);
 }
 .calendar_body{
   width:100%;
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  background: var(--container-color);
 }
 .calendar_body > div{
   width: 100%;
+  line-height: 0;
+}
+
+
+.drop{
+  background-color: #eee;
+  padding: 0.5rem;
+}
+.dropcontainer{
+  background-color: #ddd;
+}
+.dropcontainer::-webkit-scrollbar {
+    display: none;
 }
 </style>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" async></script> -->
+<script src="../JSON/bell-schedules.js" charset="utf-8"></script>
+<script src="../JSON/schedule-calendar.js" charset="utf-8"></script>
 <script src="js/calendar.js" charset="utf-8"></script>
 <script src="js/calendar_html.js" charset="utf-8"></script>
 </html>

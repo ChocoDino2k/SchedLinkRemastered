@@ -45,11 +45,12 @@ function Year(year){
   }
 }
 
-function Calendar(){
+function Calendar(loopYear = false){
   this.now = new Date();
   this.currentYear = this.now.getFullYear();
   this.currentMonth = this.now.getMonth() +1;
   this.years =[];
+  this.loopCurrentYear = loopYear;
   for(let i = -1; i < 2; i++){
     this.years.push(new Year(this.currentYear +i));
   }
@@ -64,7 +65,7 @@ Calendar.prototype = {
     for(let i =0; i < 42; i++){
       if(i < numPrev){
         if(month == 1){
-          arr.push(this.years[0].months[11].days[31 - numPrev +i]);
+          arr.push(this.years[(this.loopCurrentYear)? 1 : 0].months[11].days[31 - numPrev +i]);
         }else{
           arr.push(this.years[1].months[month-2].days[this.years[1].months[month-2].daysInMonth - numPrev + i]);
         }
@@ -72,7 +73,7 @@ Calendar.prototype = {
           arr.push(this.years[1].months[month-1].days[i - numPrev]);
       }else{
         if(month == 12){
-          arr.push(this.years[2].months[0].days[i - (numPrev + this.years[1].months[month-1].daysInMonth)]);
+          arr.push(this.years[(this.loopCurrentYear)? 1 : 2].months[0].days[i - (numPrev + this.years[1].months[month-1].daysInMonth)]);
         }else{
           arr.push(this.years[1].months[month].days[i - (numPrev + this.years[1].months[month-1].daysInMonth)]);
         }
@@ -99,10 +100,14 @@ Calendar.prototype = {
     if(factor === 0){return false;}
     this.currentMonth += factor;
     if(this.currentMonth == 13){
-      this.updateYear(factor);
-      this.currentMonth = 0;
+      if(!this.loopCurrentYear){
+        this.updateYear(factor);
+      }
+      this.currentMonth = 1;
     }else if(this.currentMonth === 0){
-      this.updateYear(factor);
+      if(!this.loopCurrentYear){
+        this.updateYear(factor);
+      }
       this.currentMonth = 12;
     }
     return true;
