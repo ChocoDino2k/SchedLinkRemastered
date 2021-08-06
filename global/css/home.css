@@ -22,13 +22,26 @@ body {
   border-radius: 0;
 }
 #period__header {
+  width: 60vw;
   font-size: 4vw;
-  margin: 2vw 0 0;
+  margin: 2vw 0 0.5vw;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  font-family: var(--bold-font);
+  letter-spacing: 0.2vw;
 }
+#period__header:focus-visible {
+  outline: 0;
+}
+#period__header.active:focus-visible {
+  border-bottom: 0.5vw solid var(--secondary-background);
+  margin-bottom: 0;
+} 
 #period__time {
   letter-spacing: 0;
   font-size: 8vw;
-  margin: 1vw 0 2vw;
+  margin: 0.5vw 0 2vw;
 }
 
 #period__gallery {
@@ -476,12 +489,17 @@ body {
     border-radius: 0;
   }
   #period__header {
+    width: 300px;
     font-size: 20px;
-    margin: 10px 0 0;
+    margin: 10px 0 2.5px;
+    letter-spacing: 1px;
+  }
+  #period__header.active:focus-visible {
+    border-bottom: 2.5px solid var(--secondary-background);
   }
   #period__time {
     font-size: 40px;
-    margin: 5px 0 10px;
+    margin: 2.5px 0 10px;
   }
 
   #period__gallery {

@@ -43,7 +43,30 @@ var JSON_schedule = {
         "EMin": 30,
         "name": "Passing Period",
         "color": "rgb(0,230,0)",
-        "important": true
+        "important": true,
+        "lunches": [
+          {
+            "SHours": 11,
+            "SMin": 35,
+            "EHours": 11,
+            "EMin": 55,
+            "name": "Lunch A"
+          },
+          {
+            "SHours": 12,
+            "SMin": 00,
+            "EHours": 12,
+            "EMin": 30,
+            "name": "Lunch B"
+          },
+          {
+            "SHours": 12,
+            "SMin": 58,
+            "EHours": 13,
+            "EMin": 28,
+            "name": "Lunch C"
+          }
+        ]
       },
       {
         "SHours": 8,
@@ -70,73 +93,15 @@ var JSON_schedule = {
         "SHours": 11,
         "SMin": 25,
         "EHours": 11,
-        "EMin": 25,
+        "EMin": 35,
         "name": "Passing Period"
       },
       {
         "SHours": 11,
-        "SMin": 25,
+        "SMin": 35,
         "EHours": 13,
         "EMin": 28,
-        "name": "Red Period 3 (R3) & Lunch",
-        "lunches": [
-          {
-            "SHours": 11,
-            "SMin": 25,
-            "EHours": 11,
-            "EMin": 35,
-            "name": "Lunch A"
-          },
-          {
-            "SHours": 11,
-            "SMin": 35,
-            "EHours": 11,
-            "EMin": 55,
-            "name": "Lunch A; Class B/C"
-          },
-          {
-            "SHours": 11,
-            "SMin": 55,
-            "EHours": 12,
-            "EMin": 0,
-            "name": "Class B/C"
-          },
-          {
-            "SHours": 12,
-            "SMin": 0,
-            "EHours": 12,
-            "EMin": 5,
-            "name": "Lunch B; Class C"
-          },
-          {
-            "SHours": 12,
-            "SMin": 05,
-            "EHours": 12,
-            "EMin": 30,
-            "name": "Lunch B; Class A/C"
-          },
-          {
-            "SHours": 12,
-            "SMin": 30,
-            "EHours": 12,
-            "EMin": 35,
-            "name": "Class A/C"
-          },
-          {
-            "SHours": 12,
-            "SMin": 35,
-            "EHours": 12,
-            "EMin": 58,
-            "name": "Class A/B/C"
-          },
-          {
-            "SHours": 12,
-            "SMin": 58,
-            "EHours": 13,
-            "EMin": 28,
-            "name": "Lunch C; Class A/B"
-          }
-        ]
+        "name": "Red Period 3 (R3) & Lunch"
       },
       {
         "SHours": 13,

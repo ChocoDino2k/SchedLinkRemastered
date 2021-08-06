@@ -16,11 +16,12 @@ var schedName = JSON_calendar[now.getMonth()][now.getDate() - 1];
 var schedule = JSON_schedule[schedName];
 
 var updateClockFrame = 0;
+var periodNames = {};
 
 var displayData = {
   items: {
     timer: {value: '--:--', elementId: 'countdown__timer', property: 'textContent'},
-    periodName: {value: '\u00a0', elementId: 'period__header', property: 'textContent'},
+    periodName: {value: '\u00a0', elementId: 'period__header', property: 'value'},
     periodTime: {value: 'Loading', elementId: 'period__time', property: 'textContent'},
     progressBar: {value: '0%', elementId: 'countdown__progress', property: 'width'}
   },
@@ -30,6 +31,9 @@ var displayData = {
       if (typeof(displayData[p]) != 'undefined' && this.items[p].value != displayData[p]) {
         if (this.items[p].property == 'textContent') {
           findElements(document.body, false, "#" + this.items[p].elementId).textContent = displayData[p];
+        }
+        else if (this.items[p].property == 'value') {
+          findElements(document.body, false, "#" + this.items[p].elementId).value = displayData[p];
         }
         else if (this.items[p].property == 'width') {
           findElements(document.body, false, "#" + this.items[p].elementId).style.width = displayData[p];
@@ -53,9 +57,16 @@ var gallery = {
     {
       this.dots[i].setAttribute("class", "gallery-dot");
     }
-    if (curDot != -1 && curDot % 1 == 0)
+    if (curDot != -1 && curDot % 1 == 0) {
       this.dots[curDot].setAttribute("class", "gallery-dot active");
+      findElements(document.body, false, "#period__header").classList.add('active');
+      findElements(document.body, false, "#period__header").removeAttribute('readonly');
     }
+    else {
+      findElements(document.body, false, "#period__header").classList.remove('active');
+      findElements(document.body, false, "#period__header").setAttribute('readonly','');
+    }
+  }
 };
 
 function updateClock() {
@@ -149,6 +160,8 @@ function displayPeriod() {
     } else {
       displayData.periodTime = 'Not School Hours';
       displayData.periodName = 'No Period';
+      findElements(document.body, false, "#period__header").classList.remove('active');
+      findElements(document.body, false, "#period__header").setAttribute('readonly','');
     }
     displayData.paint();
     return;
@@ -159,10 +172,11 @@ function displayPeriod() {
     // normal period
     periodToDisplay = schedule[disPeriodI];
   }
+
   var periodStart = (periodToDisplay.SHours % 24) + ':' + periodToDisplay.SMin.toString().padStart(2, '0');
   var periodEnd = (periodToDisplay.EHours % 24) + ':' + periodToDisplay.EMin.toString().padStart(2, '0');
   displayData.periodTime = periodStart + ' - ' + periodEnd;
-  displayData.periodName = periodToDisplay.name;
+  displayData.periodName = (periodToDisplay.name in periodNames) ? periodNames[periodToDisplay.name] : periodToDisplay.name;
   displayData.paint();
   gallery.switchActive((disPeriodI - 1) / 2);
 }
@@ -178,7 +192,29 @@ function changeDisPeriod(periodI, additive = false) {
   displayPeriod();
 }
 
+function savePeriodName() {
+  if(disPeriodI != null) {
+    var input = findElements(document.body, false, "#period__header").value;
+    periodNames[schedule[disPeriodI].name] = (input == "") ? schedule[disPeriodI].name : input;
+    localStorage.setItem("periodNames", JSON.stringify(periodNames));
+  }
+}
+
 function init() {
   gallery.create();
   updateClock();
+
+  findElements(document.body, false, "#period__header").addEventListener("keyup", ({key}) => {
+    if (key === "Enter") {
+      document.activeElement.blur();
+    }
+  })
+
+  periodNames = localStorage.getItem("periodNames");
+  if(periodNames == '' || periodNames == null) {
+    periodNames = {};
+  }
+  else {
+    periodNames = JSON.parse(periodNames);
+  }
 }
