@@ -29,7 +29,9 @@
           ?>
         </section>
         <section class = "block">
-
+          <?php
+            include_once($r . "/global/modules/splash.html");
+          ?>
         </section>
       </article>
       <?php

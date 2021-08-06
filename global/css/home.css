@@ -139,7 +139,7 @@ body {
   text-align: left;
 }
 
-#splash img {
+#splash svg {
   display: inline-block;
   vertical-align: middle;
   margin: 2vw 0;
@@ -545,7 +545,7 @@ body {
     font-size: 25px;
   }
 
-  #splash img {
+  #splash svg {
     padding-left: 5px;
     width: 50px;
     height: 50px;
