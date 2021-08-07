@@ -22,31 +22,23 @@
       include_once( $r . "/global/modules/header.html");
     ?>
     <article id = "main_body">
-      <section class = "inline">
-        <div class="calendar_container">
-          <div class="calendar_head">
-            <button type="button" name="button" class = "calendar_head_btn" value = '-1'><p></p></button>
-            <div id = "calendar_date"></div>
-            <button type="button" name="button" class = "calendar_head_btn" value = '1'><p></p></button>
+      <section class = "block">
+        <section class = "inline">
+          <div class="calendar_container">
+            <div class="calendar_head">
+              <button type="button" name="button" class = "calendar_head_btn" value = '-1'><p></p></button>
+              <div id = "calendar_date"></div>
+              <button type="button" name="button" class = "calendar_head_btn" value = '1'><p></p></button>
+            </div>
+            <div class="calendar_body">
+              <div class="weekday_container"></div>
+              <div id = "dates"></div>
+            </div>
           </div>
-          <div class="calendar_body">
-            <div class="weekday_container"></div>
-            <div id = "dates"></div>
-          </div>
-        </div>
-        <!-- <select name="cars" id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedesdddddddddddddddddddddd</option>
-  <option value="audi">Audi</option>
-</select> -->
+        </section>
+        <section class= "inline"></section>
+      </section>
 
-      </section>
-      <section class= "inline">
-        <div class="">
-          <p>test</p>
-        </div>
-      </section>
     </article>
     <?php
       include_once($r . "/global/modules/navigation.html");
@@ -58,6 +50,17 @@
   --mod: 1;
   font-size: 3vw;
 }
+
+.block{
+  width:100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.inline{
+  line-height: 0;
+  display: inline-block;
+}
+
 p{
   margin:0;
   text-align: center;
@@ -71,11 +74,6 @@ p,button{
   background: transparent;
 }
 
-.inline{
-  width: 50%;
-  line-height: 0;
-  display: inline-block;
-}
 
 
 .cal_itm{
@@ -144,18 +142,7 @@ p,button{
 }
 
 
-.drop{
-  background-color: #eee;
-  padding: 0.5rem;
-}
-.dropcontainer{
-  background-color: #ddd;
-}
-.dropcontainer::-webkit-scrollbar {
-    display: none;
-}
-
-.custom-select-wrapper {
+/* .custom-select-wrapper {
      position: relative;
      user-select: none;
      width: 100%;
@@ -224,7 +211,7 @@ p,button{
      color: #ffffff;
      background-color: #305c91;
 }
-
+*/
 .arrow {
      position: relative;
      height: 15px;
@@ -257,6 +244,36 @@ p,button{
      transform: rotate(45deg);
 }
 
+
+.schedule_container{
+  grid-template-columns: auto 1fr;
+  display: grid;
+  justify-content: center;
+  padding: 5px;
+}
+.schedule_container:hover{
+  background: #fff;
+}
+.schedule_container > div{
+  width:100%;
+  margin:auto;
+}
+.schedule_container .schedule_color_container span{
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.overflow_container{
+  outline: 1px solid black;
+}
+thead{
+  background: #fff;
+}
+tbody{
+  background: #ddd;
+}
 </style>
 
 <script type="text/javascript">

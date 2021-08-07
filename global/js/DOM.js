@@ -44,13 +44,12 @@ function replaceElementsWith(parent, newNodes){
 
 
 function createDropDown(nodeList, maxShow = 3){
-  let table = createElement('table', 'style::border-collapse: collapse;box-sizing: border-box;'),
+  let table = createElement('table', 'style::border-collapse: collapse;'),
   thead = createElement('thead'),
   tbody = createElement('tbody', 'style:: visibility:collapse'),
-  wrapper = createElement('div', 'class:: dropdown_wrapper', 'style:: width: fit-content;display: inline-block;line-height: 0;position: relative;box-sizing: border-box;'),
-  overflowContainer = createElement('div', 'class:: overflow_container',  'style::position: absolute;top: 0;left: 0;width: max-content;cursor: pointer;overflow:auto;box-sizing: border-box;')
+  wrapper = createElement('div', 'class:: dropdown_wrapper', 'style:: width: fit-content;display: inline-block;line-height: 0;position: relative;box-sizing: content-box;'),
+  overflowContainer = createElement('div', 'class:: overflow_container',  'style::position: absolute;width: max-content;cursor: pointer;overflow:auto;')
   tr = createElement('tr');
-
   for(node of nodeList){
     node.classList += ' drop_itm';
     tr.appendChild( node );
@@ -65,28 +64,39 @@ function createDropDown(nodeList, maxShow = 3){
 
   window.addEventListener('load', function size(){
     let comp = window.getComputedStyle(thead);
-    wrapper.style.width = comp.width;
-    wrapper.style.height = comp.height;
+    wrapper.style.minWidth = comp.width;
+    wrapper.style.minHeight = comp.height;
     overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
     let comp = window.getComputedStyle(thead);
-    wrapper.style.width = comp.width;
-    wrapper.style.height = comp.height;
+    wrapper.style.minWidth = comp.width;
+    wrapper.style.minHeight = comp.height;
     overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
   });
   window.addEventListener('click', function(event){
     let style = "visibility:collapse";
-    if(event.target.classList.contains('drop_itm')){
-      if(event.target.parentNode == thead){
-        overflowContainer.style.width =  window.getComputedStyle(thead).width;
-        style = "";
-      }
-        thead.replaceChild(event.target.cloneNode(true), thead.children[0]);
+    for(let p of event.path){
+      if(p === document){break;}
+        if(p == thead){
+          // overflowContainer.style.width =  window.getComputedStyle(thead).width;
+          style = "";
+          break;
+        }else if(p.classList.contains('drop_itm')){
+          let parent = p,
+          replace = true;
+          while(parent.parentNode != tr){
+            if(parent == document){replace = false;break;}
+            parent = parent.parentNode;
+          }
+          if(replace){
+          thead.replaceChild(parent.cloneNode(true), thead.children[0]);
+          }
+        }
     }
     tbody.style = style;
-  });
+  }, true);
   var addRule = (function (style) {
       var sheet = document.head.appendChild(style).sheet;
       return function (selector, css) {
@@ -101,4 +111,8 @@ addRule(".overflow_container::-webkit-scrollbar",{
 });
 
   return wrapper;
+}
+
+function getDropDownValue(){
+  let drop = findElements()
 }

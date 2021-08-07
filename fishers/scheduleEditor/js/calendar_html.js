@@ -6,14 +6,7 @@ document.onreadystatechange = () => {
 
     // document.querySelector('#main_body').appendChild(createDropDown([createElement('p','text::2'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111')]));
     document.querySelectorAll('.inline')[1].insertBefore(createDropDown(
-      [
-        createElement('p','text::he'),
-        createElement('p','text::hello'),
-        createElement('p','text::hllo'),
-        createElement('p','text::he'),
-        createElement('p','text::hello'),
-        createElement('p','text::hllo')
-      ]
+        createScheduleOptions()
     ), document.querySelectorAll('.inline')[1].children[0]);
 
     let weekdays = [];
@@ -104,7 +97,6 @@ function updateCalendar(){
   }
 }
 
-
 //animation for calendar
 function slide(dir){
 
@@ -119,19 +111,6 @@ function colorRGB(c){
   ];
   return rgb;
 }
-// function setInitBackground(day, elm){
-//   let background = JSON_schedule[day.userData][0].color,
-//   rgb = colorRGB(background);
-//   if(background !== undefined){
-//     elm.style.background = "radial-gradient(1.5rem circle," + background + " 40%," +  ((day.month - calendar.currentMonth === 0)? "transparent": "var(--secondary-background)")  + " 41%)";
-//  // elm.style.background = background;
-//   if(needsTextColorSwitch(rgb[0], rgb[1], rgb[2])){
-//     elm.style.color = "rgb(255,255,255)";
-//   }else{
-//     elm.style.color = "rgb(0,0,0)";
-//   }
-// }
-// }
 function updateColor(day, elm){
   let background = JSON_schedule[day.userData.active][0].color,
   rgb = colorRGB(background);
@@ -180,4 +159,29 @@ function rgbToHsl(r, g, b) {
 function needsTextColorSwitch(r, g, b) {
     [r, g, b] = ([r, g, b]).map(c => { c /= 255; if (c <= 0.03928) {return c / 12.92;} else { return Math.pow(((c + 0.055 )/ 1.055), 2.4) } } );
     return !(0.2126 * r + 0.7152 * g + 0.0722 * b > Math.sqrt(1.05 * 0.05) - 0.05);
+}
+
+function createScheduleOptions(){
+  let arr = [];
+  let container,
+  colCont,
+  textCont,
+  color,
+  text;
+
+  for(let key of Object.keys(JSON_schedule)) {
+    container = createElement("div", "class::schedule_container");
+    colCont = createElement("div", "class::schedule_color_container");
+    textCont = createElement("div", "class::schedule_text_container");
+    color = createElement("span", "style:: background:" + JSON_schedule[key][0].color);
+    text = createElement("p", "text::" + key);
+
+    textCont.appendChild(text);
+    colCont.appendChild(color);
+    container.appendChild(colCont);
+    container.appendChild(textCont);
+    arr.push(container);
+  }
+
+  return arr;
 }
