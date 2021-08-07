@@ -43,44 +43,62 @@ function replaceElementsWith(parent, newNodes){
 
 
 
-
-
-
-
-
-
-
-
-//bruh idk
 function createDropDown(nodeList, maxShow = 3){
-  let main = createElement('dropdown', 'class::drop','style::display: inline-block; z-index:2; cursor:default'),
-  container = createElement('div','class::dropcontainer', 'style::z-index: 1;cursor:pointer; visibility:hidden;');
-  for(let i =0; i < nodeList.length; i++){
-    container.appendChild( (createElement('opt','style:: display:block; cursor:pointer').appendChild(nodeList[i])).cloneNode(true) );
-  }
-  main.appendChild( (createElement('p','class::dropface').appendChild(nodeList[0])) );
-  main.appendChild(container);
-  for(let opt of container.children){
-    opt.onclick = function(){
-      main.replaceChild(opt.cloneNode(true), main.children[0]);
-    }
-  }
-  //if they click off
-  window.onclick = function(event) {
-    if (!event.target.parentNode.matches('.drop') && !event.target.matches('.drop')) {
-      container.setAttribute('style','display: block;z-index: 1; visibility:hidden;');
-      main.style.height = window.getComputedStyle(main.children[0]).height;
-    }
-  }
-  //when click on the closed dropdown
-  main.onclick = function(){
-  container.setAttribute('style', 'display: block;z-index: 1;overflow:auto');
-  container.style.height = (parseInt( ( (window.getComputedStyle(main.children[0]).height).split('px')[0]) ) * maxShow * 1.2) + "px";
-  main.style.height = 'auto';
-  };
-  window.onload = function(){
-    main.style.height = window.getComputedStyle(main.children[0]).height;
-  };
+  let table = createElement('table', 'style::border-collapse: collapse;box-sizing: border-box;'),
+  thead = createElement('thead'),
+  tbody = createElement('tbody', 'style:: visibility:collapse'),
+  wrapper = createElement('div', 'class:: dropdown_wrapper', 'style:: width: fit-content;display: inline-block;line-height: 0;position: relative;box-sizing: border-box;'),
+  overflowContainer = createElement('div', 'class:: overflow_container',  'style::position: absolute;top: 0;left: 0;width: max-content;cursor: pointer;overflow:auto;box-sizing: border-box;')
+  tr = createElement('tr');
 
-  return main;
+  for(node of nodeList){
+    node.classList += ' drop_itm';
+    tr.appendChild( node );
+  }
+  tbody.appendChild(tr);
+  thead.appendChild( ( (tr.cloneNode()).appendChild(  nodeList[0].cloneNode(true)  ) )  );
+  table.appendChild(thead);
+  table.appendChild(tbody);
+  overflowContainer.appendChild(table);
+  wrapper.appendChild(overflowContainer);
+
+
+  window.addEventListener('load', function size(){
+    let comp = window.getComputedStyle(thead);
+    wrapper.style.width = comp.width;
+    wrapper.style.height = comp.height;
+    overflowContainer.style.height = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+    this.removeEventListener('load', size);
+  });
+  window.addEventListener('resize', function size(){
+    let comp = window.getComputedStyle(thead);
+    wrapper.style.width = comp.width;
+    wrapper.style.height = comp.height;
+    overflowContainer.style.height = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+  });
+  window.addEventListener('click', function(event){
+    let style = "visibility:collapse";
+    if(event.target.classList.contains('drop_itm')){
+      if(event.target.parentNode == thead){
+        overflowContainer.style.width =  window.getComputedStyle(thead).width;
+        style = "";
+      }
+        thead.replaceChild(event.target.cloneNode(true), thead.children[0]);
+    }
+    tbody.style = style;
+  });
+  var addRule = (function (style) {
+      var sheet = document.head.appendChild(style).sheet;
+      return function (selector, css) {
+          var propText = typeof css === "string" ? css : Object.keys(css).map(function (p) {
+              return p + ":" + (p === "content" ? "'" + css[p] + "'" : css[p]);
+          }).join(";");
+          sheet.insertRule(selector + "{" + propText + "}", sheet.cssRules.length);
+      };
+  })(document.createElement("style"));
+addRule(".overflow_container::-webkit-scrollbar",{
+  display: "none"
+});
+
+  return wrapper;
 }

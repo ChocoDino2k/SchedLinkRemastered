@@ -4,7 +4,17 @@ var activeSched = "Red Day";
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
 
-    document.querySelector('#main_body').appendChild(createDropDown([createElement('p','text::2'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111')]));
+    // document.querySelector('#main_body').appendChild(createDropDown([createElement('p','text::2'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111')]));
+    document.querySelectorAll('.inline')[1].insertBefore(createDropDown(
+      [
+        createElement('p','text::he'),
+        createElement('p','text::hello'),
+        createElement('p','text::hllo'),
+        createElement('p','text::he'),
+        createElement('p','text::hello'),
+        createElement('p','text::hllo')
+      ]
+    ), document.querySelectorAll('.inline')[1].children[0]);
 
     let weekdays = [];
     DAYS_OF_WEEK_ABR.forEach((item, i) => {
