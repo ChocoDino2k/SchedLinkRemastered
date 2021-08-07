@@ -67,14 +67,14 @@ function createDropDown(nodeList, maxShow = 3){
     let comp = window.getComputedStyle(thead);
     wrapper.style.width = comp.width;
     wrapper.style.height = comp.height;
-    overflowContainer.style.height = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+    overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
     let comp = window.getComputedStyle(thead);
     wrapper.style.width = comp.width;
     wrapper.style.height = comp.height;
-    overflowContainer.style.height = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+    overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
   });
   window.addEventListener('click', function(event){
     let style = "visibility:collapse";
