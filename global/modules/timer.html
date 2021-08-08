@@ -3,7 +3,7 @@
     &#8249;
   </button>
   <div id="period__box" class="container">
-    <input type="text" id="period__header" placeholder="Enter Period Name" value="No Period" onfocusout="savePeriodName();" maxlength="20" readonly>
+    <input class="hover" type="text" id="period__header" placeholder="Enter Period Name" value="No Period" onfocusout="savePeriodName();" maxlength="20" readonly>
     <p id="period__time">Not School Hours</p>
     <div id="period__gallery"></div>
   </div>
@@ -20,11 +20,11 @@
   </div>
 </section>
 
-<section class="row hidden" id="lunch">
-  <div id="lunch__choose">
-    <button class="container hover" onclick="chooseLunch('A')">A</button>
-    <button class="container hover l-margin r-margin" onclick="chooseLunch('B')">B</button>
-    <button class="container hover" onclick="chooseLunch('C')">C</button>
+<section class="hidden" id="lunch">
+  <div class="row" id="lunch__choose">
+    <button class="container hover" onclick="chooseLunch('A',this)">A</button>
+    <button class="container hover l-margin r-margin" onclick="chooseLunch('B',this)">B</button>
+    <button class="container hover" onclick="chooseLunch('C',this)">C</button>
   </div>
-  <button id="lunch__toggle" class="container hover">Toggle</button>
+  <button id="lunch__toggle" class="row container hover" onclick="toggleLunch();">Toggle Lunch View</button>
 </section>

@@ -119,9 +119,28 @@ body {
 #lunch div {
   display: flex;
 }
+
 #lunch div button {
   vertical-align: middle;
   flex: 1;
+  padding: 2vw;
+  font-size: 8vw;
+  display: inline-block;
+  top: 0px;
+  font-family: var(--bold-font);
+}
+#lunch div button.active {
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+}
+#lunch div button.active:hover {
+  background-color: var(--button-hover);
+  color: var(--button-hover-text-color);
+}
+
+#lunch #lunch__toggle {
+  width: 100%;
+  vertical-align: middle;
   padding: 1vw;
   font-size: 5vw;
   display: inline-block;
@@ -512,6 +531,7 @@ body {
   }
   #period__header.active:focus-visible {
     border-bottom: 2.5px solid var(--secondary-background);
+    background-color: var(--container-color);
   }
   #period__time {
     font-size: 40px;
@@ -554,6 +574,16 @@ body {
   }
   #countdown__progress, #hall-pass .countdown__bar .countdown__progress {
     height: 12.5px;
+  }
+
+  #lunch div button {
+    padding: 10px;
+    font-size: 40px;
+  }
+
+  #lunch #lunch__toggle {
+    padding: 5px;
+    font-size: 25px;
   }
 
   #extra-features a div {

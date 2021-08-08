@@ -7,7 +7,7 @@ function newDateAdjusted() {
 
 var secOffset = -1;
 var minOffset = 0;
-var hourOffset = -6;
+var hourOffset = -9;
 
 var disPeriodI = null;
 var curPeriodI = null;
@@ -23,6 +23,7 @@ var schedule = JSON_schedule[schedName];
 var updateClockFrame = 0;
 var periodNames = {};
 var lunchPeriods = {};
+var showLunch = true;
 
 var displayData = {
   items: {
@@ -54,7 +55,7 @@ var gallery = {
   dots: [],
   create: function() {
     for (var i = 0; i < schedule.length / 2; i++) {
-      this.dots[i] = createElement('button', 'class:gallery-dot', 'onclick:changeDisPeriod(' + (i*2+1) + ');');
+      this.dots[i] = createElement('button', 'class::gallery-dot', 'onclick::changeDisPeriod(' + (i*2+1) + ');');
       findElements(document.body, false, "#period__gallery").appendChild(this.dots[i]);
     }
   },
@@ -85,7 +86,7 @@ function updateClock() {
     // new day
     window.location.reload();
     return;
-  } else if (curPeriodI !== null && curLunchI !== null) {
+  } else if (curPeriodI !== null && curLunchI !== null && showLunch) {
     // period with lunches
     var lunchPeriod = schedule[curPeriodI].lunches[lunchPeriods[schedule[curPeriodI].lunches.type]][curLunchI];
     minsLeft = (lunchPeriod.EHours * 60)
@@ -121,7 +122,6 @@ function updateClock() {
 
     //Progress Bar
     var secLeft = 60 * minsLeft + (59 - now.getSeconds());
-    console.log(periodTotalMin)
     var percentProgress = ((1 - (secLeft / (60 * periodTotalMin))) * 100) + '%';
     displayData.progressBar = percentProgress
   }
@@ -140,7 +140,7 @@ function checkCurPeriod() {
   curLunchI = null;
   disLunchI = null;
 
-  if ('lunches' in schedule[curPeriodI]) {
+  if ('lunches' in schedule[curPeriodI] && showLunch) {
     if (schedule[curPeriodI].lunches.type in lunchPeriods) {
       curLunchI = checkTimeFrame(schedule[curPeriodI].lunches[lunchPeriods[schedule[curPeriodI].lunches.type]]);
       disLunchI = curLunchI;
@@ -180,7 +180,7 @@ function displayPeriod() {
   } else if ("lunches" in schedule[disPeriodI]) {
     // lunch period
     findElements(document.body, false, "#lunch").classList.remove('hidden');
-    if (schedule[disPeriodI].lunches.type in lunchPeriods && disLunchI !== null) {
+    if (schedule[disPeriodI].lunches.type in lunchPeriods && disLunchI !== null && showLunch) {
       periodToDisplay = schedule[disPeriodI].lunches[lunchPeriods[schedule[disPeriodI].lunches.type]][disLunchI];
     }
     else {
@@ -202,8 +202,25 @@ function displayPeriod() {
 
 function changeDisPeriod(periodI, additive = false) {
   if(additive) {
-    disPeriodI = (disPeriodI % 2 == 0) ? disPeriodI + periodI : disPeriodI + periodI*2;
-    disPeriodI = (disPeriodI < 0) ? disPeriodI + schedule.length : disPeriodI %= schedule.length;
+    if("lunches" in schedule[disPeriodI] && schedule[disPeriodI].lunches.type in lunchPeriods && showLunch) {
+      disLunchI = (disLunchI % 2 == 0) ? disLunchI + periodI : disLunchI + periodI*2;
+      if(disLunchI < 0) {
+        disLunchI = null;
+        disPeriodI -= 2;
+      }
+      else if(disLunchI >= schedule[disPeriodI].lunches[lunchPeriods[schedule[disPeriodI].lunches.type]].length) {
+        disLunchI = null;
+        disPeriodI += 2;
+      }
+      disPeriodI = (disPeriodI < 0) ? disPeriodI + schedule.length : disPeriodI %= schedule.length;
+    }
+    else {
+      disPeriodI = (disPeriodI % 2 == 0) ? disPeriodI + periodI : disPeriodI + periodI*2;
+      disPeriodI = (disPeriodI < 0) ? disPeriodI + schedule.length : disPeriodI %= schedule.length;
+      if("lunches" in schedule[disPeriodI] && schedule[disPeriodI].lunches.type in lunchPeriods && showLunch) {
+        disLunchI = (periodI == 1) ? disLunchI = 1 : disLunchI = schedule[disPeriodI].lunches[lunchPeriods[schedule[disPeriodI].lunches.type]].length - 1;
+      }
+    }
   }
   else {
     disPeriodI = periodI;
@@ -211,11 +228,24 @@ function changeDisPeriod(periodI, additive = false) {
   displayPeriod();
 }
 
-function chooseLunch(lunchType) {
+function chooseLunch(lunchType, button) {
   lunchPeriods[schedule[disPeriodI].lunches.type] = lunchType;
   localStorage.setItem("lunchPeriods", JSON.stringify(lunchPeriods));
-  checkCurPeriod();
-  displayPeriod();
+
+  for (var i = 0; i < button.parentNode.children.length; i++) {
+    button.parentNode.children[i].classList.remove("active");
+  }
+  button.classList.add("active");
+  if("lunches" in schedule[curPeriodI]) {
+    checkCurPeriod();
+  }
+}
+
+function toggleLunch() {
+  showLunch = showLunch ? false : true;
+  if("lunches" in schedule[curPeriodI]) {
+    checkCurPeriod();
+  }
 }
 
 function savePeriodName() {
