@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="HandheldFriendly" content="true">
-    <title></title>
+    <title>SchedLink</title>
+    <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
     <script src="json/bell-schedules.js" charset="utf-8"></script>
     <script src="json/schedule-calendar.js" charset="utf-8"></script>
