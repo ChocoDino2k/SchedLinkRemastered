@@ -9,6 +9,7 @@ function createElement(type){
           elm.innerHTML = a[1];
           break;
         case "children":
+
           if(arguments[i+1] instanceof Array){
             for(let e of arguments[i+1]){
               elm.appendChild(e);
@@ -59,11 +60,28 @@ function createDropDown(nodeList, maxShow = 3){
   tbody = createElement('tbody', 'style:: visibility:collapse'),
   wrapper = createElement('div', 'class:: dropdown_wrapper', 'style:: width: fit-content;display: inline-block;line-height: 0;position: relative;box-sizing: content-box;'),
   overflowContainer = createElement('div', 'class:: overflow_container',  'style::position: absolute;width: max-content;cursor: pointer;overflow:auto;')
-  tr = createElement('tr');
-  for(node of nodeList){
+  tr = createElement('tr'),
+  closeDropdown = false;
+  var comp;
+  for(let node of nodeList){
     node.classList += ' drop_itm';
+    node.onclick = function(){
+    thead.replaceChild(this.cloneNode(true), thead.children[0]);
+    window.dropdownRef = getDropDownCurrentNode();
+    dropdownUpdated();
+    closeDropdown = true;
+    }
     tr.appendChild( node );
   }
+
+  thead.onclick = function(){
+      overflowContainer.style.height = "";
+      overflowContainer.style.overflow = "auto";
+      tbody.style = "";
+      closeDropdown = false;
+  }
+
+
   tbody.appendChild(tr);
   thead.appendChild( ( (tr.cloneNode()).appendChild(  nodeList[0].cloneNode(true)  ) )  );
   table.appendChild(thead);
@@ -71,45 +89,30 @@ function createDropDown(nodeList, maxShow = 3){
   overflowContainer.appendChild(table);
   wrapper.appendChild(overflowContainer);
   window.addEventListener('load', function size(){
-    let comp = window.getComputedStyle(thead);
-    wrapper.style.minWidth = comp.width;
-    wrapper.style.minHeight = comp.height;
+    comp = window.getComputedStyle(thead);
+    wrapper.style.width = comp.width;
+    wrapper.style.height = comp.height;
     overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+    overflowContainer.style.height = parseInt( (comp.height.split("px")[0]) ) + "px";
     //global variables to check if a new option has been selected
     window.dropdownRef = getDropDownCurrentNode();
-    document.body.appendChild( createElement("p", "children::", window.dropdownRef));
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
-    let comp = window.getComputedStyle(thead);
+    comp = window.getComputedStyle(thead);
     wrapper.style.minWidth = comp.width;
     wrapper.style.minHeight = comp.height;
     overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
   });
-  window.addEventListener('click', function(event){
-    let style = "visibility:collapse";
-    for(let p of event.path){
-      if(p === document){break;}
-        if(p == thead){
-          // overflowContainer.style.width =  window.getComputedStyle(thead).width;
-          style = "";
-          break;
-        }else if(p.classList.contains('drop_itm')){
-          let parent = p,
-          replace = true;
-          while(parent.parentNode != tr){
-            if(parent == document){replace = false;break;}
-            parent = parent.parentNode;
-          }
-          if(replace){
-          thead.replaceChild(parent.cloneNode(true), thead.children[0]);
-          window.dropdownRef = getDropDownCurrentNode();
-          dropdownUpdated();
-          }
-        }
-    }
-    tbody.style = style;
-  }, true);
+  window.addEventListener('click', function(){
+     if(closeDropdown){
+    overflowContainer.style.overflow = "hidden";
+    overflowContainer.style.height = parseInt( (comp.height.split("px")[0]) ) + "px";
+    overflowContainer.scrollTop = 0;
+    tbody.style = "visibility:hidden";
+     }
+     closeDropdown = true;
+  });
   var addRule = (function (style) {
       var sheet = document.head.appendChild(style).sheet;
       return function (selector, css) {
