@@ -272,8 +272,8 @@ tbody{
 
 </script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" async></script> -->
-<script src="../JSON/bell-schedules.js" charset="utf-8"></script>
-<script src="../JSON/schedule-calendar.js" charset="utf-8"></script>
+<script src="../json/bell-schedules.js" charset="utf-8"></script>
+<script src="../json/schedule-calendar.js" charset="utf-8"></script>
 <script src="js/calendar.js" charset="utf-8"></script>
 <script src="js/calendar_html.js" charset="utf-8"></script>
 <script src="js/schedule_html.js" charset="utf-8"></script>
