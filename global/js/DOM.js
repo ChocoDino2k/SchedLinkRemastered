@@ -77,6 +77,7 @@ function createDropDown(nodeList, maxShow = 3){
     overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
     //global variables to check if a new option has been selected
     window.dropdownRef = getDropDownCurrentNode();
+    document.body.appendChild( createElement("p", "children::", window.dropdownRef));
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
