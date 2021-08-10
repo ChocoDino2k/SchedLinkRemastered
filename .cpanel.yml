@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/<user_name>/public_html #Add /<sub_folder> if required
+    - export DEPLOYPATH=/home/schedasr/public_html
     - /bin/cp -r * $DEPLOYPATH
