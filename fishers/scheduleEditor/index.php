@@ -36,7 +36,17 @@
             </div>
           </div>
         </section>
-        <section class= "inline"></section>
+        <section class= "inline">
+          <div class="grid_pos">
+            <div class="schedule_view_container">
+              <div id = "schedule_view">
+                <div id = "schedule_head">
+                </div>
+                <div id = "schedule_body"></div>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
 
     </article>
@@ -48,6 +58,7 @@
 <style media="screen">
 :root{
   --mod: 1;
+  --sched-ratio: .5;
   font-size: 3vw;
 }
 
@@ -59,8 +70,14 @@
 .inline{
   line-height: 0;
   display: inline-block;
+  max-height: calc(100vh - 60px - 60px - 11.25px);
 }
-
+.grid_pos{
+  grid-template-rows: auto auto;
+  max-height: inherit;
+  height: 100%;
+  overflow: auto;
+}
 p{
   margin:0;
   text-align: center;
@@ -140,111 +157,6 @@ p,button{
   width: 100%;
   line-height: 0;
 }
-
-
-/* .custom-select-wrapper {
-     position: relative;
-     user-select: none;
-     width: 100%;
-}
- .custom-select {
-     position: relative;
-     display: flex;
-     flex-direction: column;
-     border-width: 0 2px 0 2px;
-     border-style: solid;
-     border-color: #394a6d;
-}
- .custom-select__trigger {
-     position: relative;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     padding: 0 22px;
-     font-size: 20px;
-     font-weight: 300;
-     color: #3b3b3b;
-     height: 60px;
-     line-height: 60px;
-     background: #ffffff;
-     cursor: pointer;
-     border-width: 2px 0 2px 0;
-     border-style: solid;
-     border-color: #394a6d;
-}
- .custom-options {
-     position: absolute;
-     display: block;
-     top: 100%;
-     left: 0;
-     right: 0;
-     border: 2px solid #394a6d;
-     border-top: 0;
-     background: #fff;
-     transition: all 0.5s;
-     opacity: 0;
-     visibility: hidden;
-     pointer-events: none;
-     z-index: 2;
-}
- .custom-select.open .custom-options {
-     opacity: 1;
-     visibility: visible;
-     pointer-events: all;
-}
- .custom-option {
-     position: relative;
-     display: block;
-     padding: 0 22px 0 22px;
-     font-size: 22px;
-     font-weight: 300;
-     color: #3b3b3b;
-     line-height: 60px;
-     cursor: pointer;
-     transition: all 0.5s;
-}
- .custom-option:hover {
-     cursor: pointer;
-     background-color: #b2b2b2;
-}
- .custom-option.selected {
-     color: #ffffff;
-     background-color: #305c91;
-}
-*/
-.arrow {
-     position: relative;
-     height: 15px;
-     width: 15px;
-}
- .arrow::before, .arrow::after {
-     content: "";
-     position: absolute;
-     bottom: 0px;
-     width: 0.15rem;
-     height: 100%;
-     transition: all 0.5s;
-}
- .arrow::before {
-     left: -5px;
-     transform: rotate(45deg);
-     background-color: #394a6d;
-}
- .arrow::after {
-     left: 5px;
-     transform: rotate(-45deg);
-     background-color: #394a6d;
-}
- .open .arrow::before {
-     left: -5px;
-     transform: rotate(-45deg);
-}
- .open .arrow::after {
-     left: 5px;
-     transform: rotate(45deg);
-}
-
-
 .schedule_container{
   grid-template-columns: auto 1fr;
   display: grid;
@@ -274,6 +186,86 @@ thead{
 tbody{
   background: #ddd;
 }
+.period_name p{
+  text-align: left;
+}
+.period_time{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+.period_time p:first-child{
+  text-align: right;
+}
+.period_time p{
+  margin: 0 .2rem;
+}
+.period_time p:last-child{
+  text-align: left;
+}
+.sub{
+  margin-left: 1.5rem;
+}
+/*
+#schedule_body {
+  margin: 0;
+  width: calc(100% + 1px);
+  font-family: var(--norm-font);
+  font-size: calc(3vw * var(--sched-ratio));
+  text-align: center;
+  border-collapse: collapse;
+}
+#schedule_body tr {
+  border-bottom: solid var(--background-color) calc(0.5vw * var(--sched-ratio));
+  width: calc((100% - 6vw) * var(--sched-ratio));
+}
+#schedule_body td {
+  padding: calc(1vw * var(--sched-ratio)) 0;
+  text-align: center;
+}
+
+#schedule_body .sub-row .period {
+ text-align: right;
+}
+#schedule_body .sub-row .period input{
+  width: calc(16vw * var(--sched-ratio));
+}
+
+#schedule_body .period {
+  padding: 0 calc(2vw * var(--sched-ratio)) 0 0;
+}
+#schedule_body .period input{
+  width: calc(18vw * var(--sched-ratio));
+  text-align: center;
+}
+#schedule_body .dash {
+  padding: 0 calc(0.5vw * var(--sched-ratio));
+}
+#schedule_body .remove {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 calc(1vw * var(--sched-ratio));
+  background: none;
+}
+#schedule_body .remove > img {
+  width: calc(4vw * var(--sched-ratio));
+}
+#schedule_body .handle {
+  padding: 0 calc(1vw * var(--sched-ratio));
+  height: calc(5vw * var(--sched-ratio));
+  vertical-align: middle;
+  cursor: move;
+}
+#schedule_body .start-time input, #schedule_body .end-time input {
+  width: calc(24vw * var(--sched-ratio));
+}
+
+#schedule_body input {
+  padding: calc(0.8vw * var(--sched-ratio));
+  width: auto;
+  height: calc(4vw * var(--sched-ratio));
+  font-size: calc(3.5vw * var(--sched-ratio));
+} */
 </style>
 
 <script type="text/javascript">
@@ -284,4 +276,5 @@ tbody{
 <script src="../JSON/schedule-calendar.js" charset="utf-8"></script>
 <script src="js/calendar.js" charset="utf-8"></script>
 <script src="js/calendar_html.js" charset="utf-8"></script>
+<script src="js/schedule_html.js" charset="utf-8"></script>
 </html>

@@ -7,7 +7,7 @@ function newDateAdjusted() {
 
 var secOffset = -1;
 var minOffset = 0;
-var hourOffset = -9;
+var hourOffset = 0;
 
 var disPeriodI = null;
 var curPeriodI = null;

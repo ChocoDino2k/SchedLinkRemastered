@@ -1,14 +1,10 @@
 var calendar = new Calendar(true);
 let calHeadDate, calBody;
-var activeSched = "Red Day";
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
-
-    // document.querySelector('#main_body').appendChild(createDropDown([createElement('p','text::2'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111'), createElement('p','text::11111111111')]));
-    document.querySelectorAll('.inline')[1].insertBefore(createDropDown(
+    document.querySelector('.grid_pos').insertBefore(createDropDown(
         createScheduleOptions()
-    ), document.querySelectorAll('.inline')[1].children[0]);
-
+    ), document.querySelector('.grid_pos').children[0]);
     let weekdays = [];
     DAYS_OF_WEEK_ABR.forEach((item, i) => {
       weekdays.push(createElement('p','class::cal_itm' ,'text::' + item));
@@ -61,15 +57,14 @@ function createDays(){
   for(let day of displayDays){
     htmlDays.push(createElement("p","class::day cal_itm", "text::" + day.day));
     updateColor(day, htmlDays[htmlDays.length -1]);
-    // setCircleColors(htmlDays[htmlDays.length -1]);
     htmlDays[htmlDays.length -1].onclick = function(){
-      console.log(day);
-      if(activeSched === day.userData.active && day.userData.previous !== null){
+      let ref = dropdownRef[0].children[1].children[0].innerHTML;
+      if(ref === day.userData.active && day.userData.previous !== null){
         day.userData.active = day.userData.previous;
-        day.userData.previous = activeSched;
+        day.userData.previous = ref;
       }else{
         day.userData.previous = day.userData.active;
-        day.userData.active = activeSched;
+        day.userData.active = ref;
       }
       updateColor(day, this);
       if(day.month != calendar.currentMonth)

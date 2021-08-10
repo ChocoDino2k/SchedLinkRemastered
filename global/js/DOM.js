@@ -8,6 +8,16 @@ function createElement(type){
         case "text":
           elm.innerHTML = a[1];
           break;
+        case "children":
+          if(arguments[i+1] instanceof Array){
+            for(let e of arguments[i+1]){
+              elm.appendChild(e);
+            }
+          }else{
+            elm.appendChild(arguments[i+1]);
+          }
+          i++;
+          break;
         default:
         elm.setAttribute(a[0], a[1]);
       }
@@ -60,13 +70,13 @@ function createDropDown(nodeList, maxShow = 3){
   table.appendChild(tbody);
   overflowContainer.appendChild(table);
   wrapper.appendChild(overflowContainer);
-
-
   window.addEventListener('load', function size(){
     let comp = window.getComputedStyle(thead);
     wrapper.style.minWidth = comp.width;
     wrapper.style.minHeight = comp.height;
     overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+    //global variables to check if a new option has been selected
+    window.dropdownRef = getDropDownCurrentNode();
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
@@ -92,6 +102,8 @@ function createDropDown(nodeList, maxShow = 3){
           }
           if(replace){
           thead.replaceChild(parent.cloneNode(true), thead.children[0]);
+          window.dropdownRef = getDropDownCurrentNode();
+          dropdownUpdated();
           }
         }
     }
@@ -113,6 +125,12 @@ addRule(".overflow_container::-webkit-scrollbar",{
   return wrapper;
 }
 
-function getDropDownValue(){
-  let drop = findElements()
+function getDropDownCurrentNode(){
+  let drop = findElements(document.body, false, ".dropdown_wrapper");
+  if(drop){
+    return drop.children[0].children[0].children[0].children;
+  }else{
+    return;
+  }
 }
+function dropdownUpdated(){return;}
