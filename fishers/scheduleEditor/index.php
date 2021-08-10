@@ -7,9 +7,9 @@
     <title></title>
 
     <script src="../json/bell-schedules.js" charset="utf-8"></script>
-    <script src="../json/schedule-calendar.js" charset="utf-8"></script>
+    <script src="../json/schedule-calendar.js?v=2" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=1" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=2" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/global/css/global.css?v=1">
 
@@ -58,20 +58,19 @@
 :root{
   --mod: 1;
   --sched-ratio: .5;
-  font-size: 5vw;
+  font-size: 6vw;
 }
 
 .block{
   width:100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
 }
 .inline{
   line-height: 0;
   display: inline-flex;
   justify-content: center;
-  align-items: center;
-  height: calc(100vh - 60px - 60px - 11.25px);
+  height: calc(100vh - 12vw - 12vw - 11.25px);
   overflow: auto;
 }
 .grid_pos{
@@ -110,7 +109,7 @@ p,button{
 .day{
   cursor: pointer;
   border-color: black;
-  width: 1.5rem;
+  width: calc(100%/3 - 5px);
   display: inline-block;
 }
 .weekday{
@@ -118,7 +117,7 @@ p,button{
 }
 .calendar_container{
   width: 100%;
-  margin: auto;
+  height: fit-content;
   background: var(--container-color);
 }
 .calendar_head{
@@ -156,7 +155,6 @@ p,button{
 }
 #calendar_date{
   display: flex;
-  align-items: center;
 }
 .calendar_body{
   width:100%;
@@ -169,10 +167,10 @@ p,button{
 }
 .calendar_group{
   display: grid;
-      grid-template-columns: auto 1fr;
-      justify-content: center;
-      align-items: center;
-      margin-top: 5px;
+  grid-template-columns: auto 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
 }
 
 
@@ -228,7 +226,7 @@ p,button{
   margin: 5px 0 5px 10%;
   width: 90%;
 }
-@media screen and (min-width: 800px){
+@media screen and (min-width: 500px){
   :root{
     font-size: 3vw;
   }
@@ -245,6 +243,19 @@ p,button{
   .weekday, .day{
     width: 100%;
   }
+    .inline{
+        height: calc(100vh - 60px - 60px - 11.25px);
+          align-items: center;
+    }
+    #calendar_date{
+          align-items: center;
+    }
+
+}
+@media screen and (max-width: 1050px){
+    :root{
+        font-size:5vw;
+    }
 }
 </style>
 
@@ -253,6 +264,6 @@ p,button{
 </script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" async></script> -->
 <script src="js/calendar.js" charset="utf-8"></script>
-<script src="js/calendar_html.js?v=1" charset="utf-8"></script>
-<script src="js/schedule_html.js?v=1" charset="utf-8"></script>
+<script src="js/calendar_html.js?v=2" charset="utf-8"></script>
+<script src="js/schedule_html.js?v=2" charset="utf-8"></script>
 </html>

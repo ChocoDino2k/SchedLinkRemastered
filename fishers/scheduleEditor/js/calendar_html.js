@@ -48,6 +48,7 @@ document.onreadystatechange = () => {
 
 
     // document.querySelector('.block').appendChild(createDropDown([11,22222,3]));
+    loadSchedule();
 }
 };
 
