@@ -6,34 +6,31 @@ function createSchedHead(){
   return child;
 }
 function createSchedRow(period, isSub = false){
-var nameRow = createElement("div", "class::period_name" + ((isSub)? " sub": ""), "children::", createElement("p", "text::" +  period["name"])),
+var nameRow = createElement("div", "class::period_name", "children::", createElement("p", "text::" +  period["name"])),
 bodyRow = createElement("div", "class::period_time", "children::",[
 createElement("p", "text::" +  toStringTime([period["SHours"], period["SMin"]])),
 createElement("p", "text::-" ),
 createElement("p", "text::" +  toStringTime([period["EHours"], period["EMin"]]))
 ]
-);
+),
+row = createElement("div", "class::name_body_container"  + ((isSub)? " sub": ""), "children::", [nameRow, bodyRow]);
 
 
 // scheduleHTML[2].appendChild(nameRow);
 // scheduleHTML[2].appendChild(bodyRow);
 
-return [nameRow, bodyRow];
+return row;
 
 }
 function loadSchedule(sched){
   scheduleHTML[1].appendChild(createSchedHead());
   for(let p of sched){
-    for(let row of createSchedRow(p)){
-    scheduleHTML[2].appendChild(row);
-    }
+    scheduleHTML[2].appendChild(createSchedRow(p));
     if(p["lunches"] !== undefined && p["lunches"] !== null){
       for(let l in p["lunches"]){
         for(let stupid of p["lunches"][l]){
           if(stupid instanceof Object)
-          for(let row of createSchedRow(stupid, true)){
-            scheduleHTML[2].appendChild(row);
-          }
+            scheduleHTML[2].appendChild(createSchedRow(stupid, true));
         }
       }
     }

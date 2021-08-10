@@ -31,7 +31,6 @@
               <button type="button" name="button" class = "calendar_head_btn" value = '1'><p></p></button>
             </div>
             <div class="calendar_body">
-              <div class="weekday_container"></div>
               <div id = "dates"></div>
             </div>
           </div>
@@ -59,7 +58,7 @@
 :root{
   --mod: 1;
   --sched-ratio: .5;
-  font-size: 3vw;
+  font-size: 5vw;
 }
 
 .block{
@@ -69,14 +68,18 @@
 }
 .inline{
   line-height: 0;
-  display: inline-block;
-  max-height: calc(100vh - 60px - 60px - 11.25px);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px - 60px - 11.25px);
+  overflow: auto;
 }
 .grid_pos{
   grid-template-rows: auto auto;
   max-height: inherit;
   height: 100%;
   overflow: auto;
+  flex:1;
 }
 p{
   margin:0;
@@ -90,12 +93,13 @@ p,button{
   line-height: 1.5;
   background: transparent;
 }
-
-
-
+.dropdown_wrapper thead{
+  background: var(--container-color);
+}
+.dropdown_wrapper tbody{
+  background: var(--secondary-background);
+}
 .cal_itm{
-  display: inline-block;
-  width:calc(100%/7);
   line-height: 2;
   font-size: 0.75rem;
   padding:0;
@@ -106,11 +110,20 @@ p,button{
 .day{
   cursor: pointer;
   border-color: black;
+  width: 1.5rem;
+  display: inline-block;
+}
+.weekday{
+  width: 2rem;
+}
+.calendar_container{
+  width: 100%;
+  margin: auto;
+  background: var(--container-color);
 }
 .calendar_head{
   display: flex;
   align-items: center;
-  background: var(--container-color);
 }
 .calendar_head button{
   flex:1;
@@ -144,19 +157,25 @@ p,button{
 #calendar_date{
   display: flex;
   align-items: center;
-  background: var(--container-color);
 }
 .calendar_body{
   width:100%;
+  margin: auto;
   height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  background: var(--container-color);
 }
 .calendar_body > div{
   width: 100%;
   line-height: 0;
 }
+.calendar_group{
+  display: grid;
+      grid-template-columns: auto 1fr;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5px;
+}
+
+
 .schedule_container{
   grid-template-columns: auto 1fr;
   display: grid;
@@ -171,8 +190,8 @@ p,button{
   margin:auto;
 }
 .schedule_container .schedule_color_container span{
-  width: 3vw;
-  height: 3vw;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
   display: inline-block;
 }
@@ -180,14 +199,16 @@ p,button{
 .overflow_container{
   outline: 1px solid black;
 }
-thead{
+.name_body_container{
+  margin: 5px 0;
+  padding: 0 5px;
   background: #fff;
-}
-tbody{
-  background: #ddd;
+  box-sizing: border-box;
+  font-size: .75rem;
 }
 .period_name p{
   text-align: left;
+  font-size: inherit;
 }
 .period_time{
   display: grid;
@@ -198,74 +219,33 @@ tbody{
 }
 .period_time p{
   margin: 0 .2rem;
+  font-size: inherit;
 }
 .period_time p:last-child{
   text-align: left;
 }
 .sub{
-  margin-left: 1.5rem;
+  margin: 5px 0 5px 10%;
+  width: 90%;
 }
-/*
-#schedule_body {
-  margin: 0;
-  width: calc(100% + 1px);
-  font-family: var(--norm-font);
-  font-size: calc(3vw * var(--sched-ratio));
-  text-align: center;
-  border-collapse: collapse;
-}
-#schedule_body tr {
-  border-bottom: solid var(--background-color) calc(0.5vw * var(--sched-ratio));
-  width: calc((100% - 6vw) * var(--sched-ratio));
-}
-#schedule_body td {
-  padding: calc(1vw * var(--sched-ratio)) 0;
-  text-align: center;
-}
+@media screen and (min-width: 800px){
+  :root{
+    font-size: 3vw;
+  }
+  .calendar_container{
+    width:90%;
+    margin: auto;
+  }
+  .calendar_group{
+    display: inline-block;
+    width: calc(100%/7);
+    margin-top:0;
 
-#schedule_body .sub-row .period {
- text-align: right;
+  }
+  .weekday, .day{
+    width: 100%;
+  }
 }
-#schedule_body .sub-row .period input{
-  width: calc(16vw * var(--sched-ratio));
-}
-
-#schedule_body .period {
-  padding: 0 calc(2vw * var(--sched-ratio)) 0 0;
-}
-#schedule_body .period input{
-  width: calc(18vw * var(--sched-ratio));
-  text-align: center;
-}
-#schedule_body .dash {
-  padding: 0 calc(0.5vw * var(--sched-ratio));
-}
-#schedule_body .remove {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 calc(1vw * var(--sched-ratio));
-  background: none;
-}
-#schedule_body .remove > img {
-  width: calc(4vw * var(--sched-ratio));
-}
-#schedule_body .handle {
-  padding: 0 calc(1vw * var(--sched-ratio));
-  height: calc(5vw * var(--sched-ratio));
-  vertical-align: middle;
-  cursor: move;
-}
-#schedule_body .start-time input, #schedule_body .end-time input {
-  width: calc(24vw * var(--sched-ratio));
-}
-
-#schedule_body input {
-  padding: calc(0.8vw * var(--sched-ratio));
-  width: auto;
-  height: calc(4vw * var(--sched-ratio));
-  font-size: calc(3.5vw * var(--sched-ratio));
-} */
 </style>
 
 <script type="text/javascript">

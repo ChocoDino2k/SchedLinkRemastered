@@ -5,10 +5,6 @@ document.onreadystatechange = () => {
     document.querySelector('.grid_pos').insertBefore(createDropDown(
         createScheduleOptions()
     ), document.querySelector('.grid_pos').children[0]);
-    let weekdays = [];
-    DAYS_OF_WEEK_ABR.forEach((item, i) => {
-      weekdays.push(createElement('p','class::cal_itm' ,'text::' + item));
-    });
 
     for(let m = 0; m < JSON_calendar.length; m++){
       for(let d =0; d < JSON_calendar[m].length; d++){
@@ -31,11 +27,14 @@ document.onreadystatechange = () => {
     // }
 
     //DOM elements
-    calHeadDate = findElements(document, false, '#calendar_date');
     calBody = findElements(document, false, '#dates');
+    calHeadDate = findElements(document, false, "#calendar_date");
     addElementsTo(calHeadDate, createElement('p', 'text::' + MONTH_NAMES[calendar.currentMonth-1]));
-    addElementsTo(findElements(document, false, '.weekday_container'), weekdays);
-    addElementsTo(calBody, createDays());
+    // addElementsTo(findElements(document, false, '.weekday_container'), weekdays);
+    let groups = createDays();
+    for(let group of groups){
+      addElementsTo(calBody, createElement("div","class::calendar_group", "children::", group));
+    }
 
     for(let btn of findElements(document.body, true, '.calendar_head_btn')){
       btn.onclick = function(){
@@ -51,13 +50,25 @@ document.onreadystatechange = () => {
     // document.querySelector('.block').appendChild(createDropDown([11,22222,3]));
 }
 };
+
+
 function createDays(){
   let displayDays = calendar.getFullMonth(calendar.currentMonth, true),
-  htmlDays = [];
+  htmlGroups = [
+    [],[],[],[],[],[],[]
+  ],
+  groupNum = 0;
+
+  DAYS_OF_WEEK_ABR.forEach((item, i) => {
+    htmlGroups[i].push( createElement('p','class::cal_itm weekday' ,'text::' + item) );
+  });
+  for(let group of htmlGroups){
+    group.push( createElement("div", "class::calendar_group_days"));
+  }
   for(let day of displayDays){
-    htmlDays.push(createElement("p","class::day cal_itm", "text::" + day.day));
-    updateColor(day, htmlDays[htmlDays.length -1]);
-    htmlDays[htmlDays.length -1].onclick = function(){
+    htmlGroups[(groupNum)%7][1].appendChild(createElement("p","class::day cal_itm", "text::" + day.day));
+    updateColor(day, htmlGroups[(groupNum)%7][1].children[htmlGroups[(groupNum)%7][1].children.length -1]);
+    htmlGroups[(groupNum)%7][1].children[htmlGroups[(groupNum)%7][1].children.length -1].onclick = function(){
       let ref = dropdownRef[0].children[1].children[0].innerHTML;
       if(ref === day.userData.active && day.userData.previous !== null){
         day.userData.active = day.userData.previous;
@@ -67,12 +78,14 @@ function createDays(){
         day.userData.active = ref;
       }
       updateColor(day, this);
-      if(day.month != calendar.currentMonth)
+      if(day.month != calendar.currentMonth){
         calendar.updateMonth( (day.month == 1 || (day.month > calendar.currentMonth && calendar.currentMonth != 1))? 1 : -1 );
         updateCalendar();
     }
+    }
+    groupNum++;
   }
-  return htmlDays;
+  return htmlGroups;
 }
 function addElementsTo(parent, elms){
   if(elms instanceof Array){
@@ -85,7 +98,12 @@ function addElementsTo(parent, elms){
 }
 function updateCalendar(){
   if(calBody && calHeadDate){
-    replaceElementsWith(calBody, createDays());
+    let groups = createDays(),
+    expanded = [];
+    for(let group of groups){
+      expanded.push( createElement("div","class::calendar_group", "children::", group) );
+    }
+    replaceElementsWith(calBody, expanded);
     calHeadDate.children[0].innerHTML = MONTH_NAMES[calendar.currentMonth-1];
   }else{
     return;
