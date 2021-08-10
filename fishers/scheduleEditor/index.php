@@ -9,7 +9,7 @@
     <script src="../json/bell-schedules.js" charset="utf-8"></script>
     <script src="../json/schedule-calendar.js" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=1" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/global/css/global.css?v=1">
 
@@ -272,9 +272,7 @@ tbody{
 
 </script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" async></script> -->
-<script src="../json/bell-schedules.js" charset="utf-8"></script>
-<script src="../json/schedule-calendar.js" charset="utf-8"></script>
 <script src="js/calendar.js" charset="utf-8"></script>
-<script src="js/calendar_html.js" charset="utf-8"></script>
-<script src="js/schedule_html.js" charset="utf-8"></script>
+<script src="js/calendar_html.js?v=1" charset="utf-8"></script>
+<script src="js/schedule_html.js?v=1" charset="utf-8"></script>
 </html>
