@@ -14,6 +14,7 @@ createElement("p", "text::" +  toStringTime([period["EHours"], period["EMin"]]))
 ]
 );
 
+
 // scheduleHTML[2].appendChild(nameRow);
 // scheduleHTML[2].appendChild(bodyRow);
 
