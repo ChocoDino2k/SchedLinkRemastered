@@ -16,9 +16,6 @@ createElement("p", "text::" +  toStringTime([period["EHours"], period["EMin"]]))
 row = createElement("div", "class::name_body_container"  + ((isSub)? " sub": ""), "children::", [nameRow, bodyRow]);
 
 
-// scheduleHTML[2].appendChild(nameRow);
-// scheduleHTML[2].appendChild(bodyRow);
-
 return row;
 
 }
@@ -52,4 +49,7 @@ function toNumberTime(time){
 dropdownUpdated = function(){
     clearSchedule();
     loadSchedule(JSON_schedule[dropdownRef[0].children[1].children[0].innerHTML]);
-}
+};
+dropdownLoaded = function(){
+  loadSchedule(JSON_schedule[dropdownRef[0].children[1].children[0].innerHTML]);
+};

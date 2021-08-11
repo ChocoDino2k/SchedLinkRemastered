@@ -91,6 +91,7 @@ function createDropDown(nodeList, maxShow = 3){
   table.appendChild(tbody);
   overflowContainer.appendChild(table);
   wrapper.appendChild(overflowContainer);
+
   window.addEventListener('load', function size(){
     comp = window.getComputedStyle(thead);
     wrapper.style.width = comp.width;
@@ -99,6 +100,7 @@ function createDropDown(nodeList, maxShow = 3){
     overflowContainer.style.height = parseInt( (comp.height.split("px")[0]) ) + "px";
     //global variables to check if a new option has been selected
     window.dropdownRef = getDropDownCurrentNode();
+    dropdownLoaded();
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
@@ -142,3 +144,4 @@ function getDropDownCurrentNode(){
   }
 }
 function dropdownUpdated(){return;}
+function dropdownLoaded(){return;}

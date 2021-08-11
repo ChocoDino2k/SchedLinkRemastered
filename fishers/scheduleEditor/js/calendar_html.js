@@ -5,7 +5,6 @@ document.onreadystatechange = () => {
     document.querySelector('.grid_pos').insertBefore(createDropDown(
         createScheduleOptions()
     ), document.querySelector('.grid_pos').children[0]);
-
     for(let m = 0; m < JSON_calendar.length; m++){
       for(let d =0; d < JSON_calendar[m].length; d++){
         if(d >= calendar.years[1].months[m].daysInMonth){continue;}
@@ -46,9 +45,6 @@ document.onreadystatechange = () => {
     };
   }
 
-
-    // document.querySelector('.block').appendChild(createDropDown([11,22222,3]));
-    loadSchedule();
 }
 };
 
