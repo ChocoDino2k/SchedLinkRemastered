@@ -10,11 +10,11 @@
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
     <script src="../json/schedules.js" charset="utf-8"></script>
-    <script src="../json/schedule-calendar.js?v=2" charset="utf-8"></script>
+    <script src="../json/schedule-calendar.js?v=3" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=2" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=3" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=1">
+    <link rel="stylesheet" href="/global/css/global.css?v=3">
   </head>
   <body>
     <div class="wrapper">
