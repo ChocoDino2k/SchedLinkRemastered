@@ -7,11 +7,11 @@
     <title>SchedLink</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="json/bell-schedules.js" charset="utf-8"></script>
-    <script src="json/schedule-calendar.js" charset="utf-8"></script>
+    <script src="json/schedules.js" charset="utf-8"></script>
+    <script src="json/filler.js" charset="utf-8"></script>
 
     <script src="/global/js/DOM.js" charset="utf-8"></script>
-    <script src="/global/js/timer.js" charset="utf-8"></script>
+    <script src="/global/js/clock.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/global/css/global.css?v=1">
     <link rel="stylesheet" href="/global/css/home.css?v=1">
@@ -36,7 +36,7 @@
         </section>
       </article>
       <?php
-        include_once($r . "/global/modules/navigation.html");
+        // include_once($r . "/global/modules/navigation.html");
       ?>
     </div>
   </body>

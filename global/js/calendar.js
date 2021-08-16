@@ -100,17 +100,17 @@ Calendar.prototype = {
     if(factor === 0){return false;}
     this.currentMonth += factor;
     if(this.currentMonth == 13){
-      if(!this.loopCurrentYear){
-        this.updateYear(factor);
-      }
       this.currentMonth = 1;
-    }else if(this.currentMonth === 0){
       if(!this.loopCurrentYear){
-        this.updateYear(factor);
+        return this.updateYear(factor);
       }
+    }else if(this.currentMonth === 0){
       this.currentMonth = 12;
+      if(!this.loopCurrentYear){
+        return this.updateYear(factor);
+      }
     }
-    return true;
+    return false;
   }
 
 }

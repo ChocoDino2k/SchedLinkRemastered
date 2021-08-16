@@ -37,7 +37,7 @@ body {
 #period__header.active:focus-visible {
   border-bottom: 0.5vw solid var(--secondary-background);
   margin-bottom: 0;
-} 
+}
 #period__time {
   letter-spacing: 0;
   font-size: 8vw;
@@ -56,11 +56,11 @@ body {
   display: inline-block;
   margin: 0 1.5vw 3vw;
   position: relative;
+  cursor: default;
 }
 .gallery-dot.active {
   background-color: var(--highlight-fill);
 }
-.gallery-dot:hover { background-color: var(--container-hover); }
 .gallery-dot:before {
   content: '';
   position: absolute;
@@ -113,14 +113,14 @@ body {
   transition: width 1s linear;
 }
 
-#lunch.hidden {
+#sub.hidden {
   display: none;
 }
-#lunch div {
+#sub div {
   display: flex;
 }
 
-#lunch div button {
+#sub div button {
   vertical-align: middle;
   flex: 1;
   padding: 2vw;
@@ -129,16 +129,16 @@ body {
   top: 0px;
   font-family: var(--bold-font);
 }
-#lunch div button.active {
+#sub div button.active {
   background-color: var(--button-color);
   color: var(--button-text-color);
 }
-#lunch div button.active:hover {
+#sub div button.active:hover {
   background-color: var(--button-hover);
   color: var(--button-hover-text-color);
 }
 
-#lunch #lunch__toggle {
+/* #lunch #lunch__toggle {
   width: 100%;
   vertical-align: middle;
   padding: 1vw;
@@ -146,7 +146,7 @@ body {
   display: inline-block;
   top: 0px;
   font-family: var(--bold-font);
-}
+} */
 
 #extra-features {
   display: flex;
@@ -576,15 +576,15 @@ body {
     height: 12.5px;
   }
 
-  #lunch div button {
+  #sub div button {
     padding: 10px;
     font-size: 40px;
   }
 
-  #lunch #lunch__toggle {
+  /* #lunch #lunch__toggle {
     padding: 5px;
     font-size: 25px;
-  }
+  } */
 
   #extra-features a div {
     padding: 5px;

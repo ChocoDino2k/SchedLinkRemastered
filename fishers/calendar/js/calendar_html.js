@@ -1,12 +1,13 @@
-var calendar = new Calendar(false);
+var calendar = new Calendar(true);
 let calHeadDate, calBody;
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
-    document.querySelector('.schedule_view_options').insertBefore(createDropDown(
-        createScheduleOptions()
-    ), document.querySelector('.schedule_view_options').children[0]);
-
-    populate(true);
+    for(let m = 0; m < JSON_calendar.length; m++){
+      for(let d =0; d < JSON_calendar[m].length; d++){
+        if(d >= calendar.years[1].months[m].daysInMonth){continue;}
+        calendar.years[1].months[m].days[d].userData = {active: JSON_calendar[m][d], previous: null};
+      }
+    }
 
     //DOM elements
     calBody = findElements(document, false, '#dates');
@@ -20,9 +21,7 @@ document.onreadystatechange = () => {
 
     for(let btn of findElements(document.body, true, '.calendar_head_btn')){
       btn.onclick = function(){
-      if(calendar.updateMonth(parseInt(btn.value))){
-        populate(false);
-      }
+      calendar.updateMonth(parseInt(btn.value));
       updateCalendar(calBody, calHeadDate, createDays());
       // replaceElementsWith(calBody, createDays());
       // calHeadDate.children[0].innerHTML = MONTH_NAMES[calendar.currentMonth-1]+ ' ' + calendar.currentYear;
@@ -32,10 +31,8 @@ document.onreadystatechange = () => {
 
 }
 };
-
-
 function createDays(){
-  let displayDays = calendar.getFullMonth(calendar.currentMonth),
+  let displayDays = calendar.getFullMonth(calendar.currentMonth, true),
   htmlGroups = [
     [],[],[],[],[],[],[]
   ],
@@ -59,13 +56,10 @@ function createDays(){
         day.userData.previous = day.userData.active;
         day.userData.active = ref;
       }
-      JSON_calendar[day.year][day.month-1][day.day-1] = day.userData.active;
+      JSON_calendar[day.month-1][day.day-1] = day.userData.active;
       updateColor(day, this);
       if(day.month != calendar.currentMonth){
-        let f = (day.month - calendar.currentMonth);
-        if(calendar.updateMonth( (Math.abs(f) > 1)? (Math.abs(f)/f * -1 ) : f) ) {
-          populate(false);
-        }
+        calendar.updateMonth( (day.month == 1 || (day.month > calendar.currentMonth && calendar.currentMonth != 1))? 1 : -1 );
         updateCalendar();
     }
     }
@@ -82,40 +76,6 @@ function addElementsTo(parent, elms){
     parent.appendChild(elms);
   }
 }
-function expandJSONCal(idx, year){
-  JSON_calendar[year]= {};
-for(let i =0; i < 12; i++){
-JSON_calendar[year][i] = [];
-    for(let k = 0; k < calendar.years[idx].months[i].daysInMonth;k++){
-        JSON_calendar[year][i].push("Unscheduled");
-    }
-}
-}
-function populate(all){
-  if(all){
-    for(let y =0; y < 3; y++){
-      if(JSON_calendar[calendar.years[y].year] == undefined){
-        expandJSONCal(y, calendar.years[y].year);
-      }
-      for(let m=0; m < 12; m++){
-        for(let d = 0; d < calendar.years[y].months[m].daysInMonth; d++){
-          calendar.years[y].months[m].days[d].userData = {active: JSON_calendar[calendar.years[y].year][m][d], previous: null};
-        }
-      }
-    }
-  }else{
-    let y = (calendar.currentMonth == 1)? 2: 0;
-    if(JSON_calendar[calendar.years[y].year] == undefined){
-      expandJSONCal(y, calendar.years[y].year);
-    }
-    for(let m=0; m < 12; m++){
-      for(let d = 0; d < calendar.years[y].months[m].daysInMonth; d++){
-        calendar.years[y].months[m].days[d].userData = {active: JSON_calendar[calendar.years[y].year][m][d], previous: null};
-      }
-    }
-
-  }
-}
 function updateCalendar(){
   if(calBody && calHeadDate){
     let groups = createDays(),
@@ -124,7 +84,7 @@ function updateCalendar(){
       expanded.push( createElement("div",["class","calendar_group"], ["children", group]) );
     }
     replaceElementsWith(calBody, expanded);
-    calHeadDate.children[0].innerHTML = MONTH_NAMES[calendar.currentMonth-1] + " " + calendar.currentYear;
+    calHeadDate.children[0].innerHTML = MONTH_NAMES[calendar.currentMonth-1];
   }else{
     return;
   }
@@ -192,32 +152,4 @@ function rgbToHsl(r, g, b) {
 function needsTextColorSwitch(r, g, b) {
     [r, g, b] = ([r, g, b]).map(c => { c /= 255; if (c <= 0.03928) {return c / 12.92;} else { return Math.pow(((c + 0.055 )/ 1.055), 2.4) } } );
     return !(0.2126 * r + 0.7152 * g + 0.0722 * b > Math.sqrt(1.05 * 0.05) - 0.05);
-}
-
-function createScheduleOptions(){
-  let arr = [];
-  let container,
-  colCont,
-  textCont,
-  color,
-  text;
-
-  for(let key in JSON_sched) {
-    container = createElement("div", ["class", "schedule_container"]);
-    colCont = createElement("div", ["class","schedule_color_container"]);
-    textCont = createElement("div", ["class","schedule_text_container"]);
-    color = createElement("span", ["style"," background:" + JSON_sched[key][0].color]);
-    text = createElement("p", ["text" , key]);
-
-    textCont.appendChild(text);
-    colCont.appendChild(color);
-    container.appendChild(colCont);
-    container.appendChild(textCont);
-    arr.push(container);
-  }
-
-  return arr;
-}
-
-function defaultSchedule(){
 }

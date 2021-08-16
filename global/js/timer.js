@@ -7,7 +7,7 @@ function newDateAdjusted() {
 
 var secOffset = -1;
 var minOffset = 0;
-var hourOffset = 0;
+var hourOffset = -14;
 
 var disPeriodI = null;
 var curPeriodI = null;
@@ -80,7 +80,7 @@ function updateClock() {
   var minsLeft;
   var periodTotalMin;
   now = newDateAdjusted();
-  curTotalMin = (now.getHours() * 60) + now.getMinutes();
+  curTotalSec = (now.getHours() * 60*60) + now.getMinutes()*60;
 
   if (pageLoadDate != now.toISOString().split('T')[0]) {
     // new day

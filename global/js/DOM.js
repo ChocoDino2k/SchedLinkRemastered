@@ -1,26 +1,23 @@
-//returns HTML element specified. Can overload arguments to give the element attributes. Syntax is "attr:value"
+//returns HTML element specified. Can overload arguments to give the element attributes. Syntax is "[attr, value]"
 function createElement(type){
-    let elm = document.createElement(type),
-    a;
+    let elm = document.createElement(type);
     for(let i = 1; i < arguments.length; i++){
-      a = arguments[i].split("::");
-      switch (a[0]) {
+
+      switch( arguments[i][0]){
         case "text":
-          elm.innerHTML = a[1];
+          elm.innerHTML = arguments[i][1];
           break;
         case "children":
-
-          if(arguments[i+1] instanceof Array){
-            for(let e of arguments[i+1]){
+          if(arguments[i][1] instanceof Array){
+            for(let e of arguments[i][1]){
               elm.appendChild(e);
             }
           }else{
-            elm.appendChild(arguments[i+1]);
+            elm.appendChild(arguments[i][1]);
           }
-          i++;
           break;
         default:
-        elm.setAttribute(a[0], a[1]);
+          elm.setAttribute(arguments[i][0], arguments[i][1]);
       }
     }
     return elm;
@@ -55,11 +52,11 @@ function replaceElementsWith(parent, newNodes){
 
 
 function createDropDown(nodeList, maxShow = 3){
-  let table = createElement('table', 'style::border-collapse: collapse;'),
+  let table = createElement('table', ['style','border-collapse: collapse;']),
   thead = createElement('thead'),
-  tbody = createElement('tbody', 'style:: visibility:collapse'),
-  wrapper = createElement('div', 'class:: dropdown_wrapper', 'style:: width: fit-content;display: inline-block;line-height: 0;position: relative;box-sizing: content-box;'),
-  overflowContainer = createElement('div', 'class:: overflow_container',  'style::position: absolute;width: max-content;cursor: pointer;overflow:auto;')
+  tbody = createElement('tbody', ['style',' visibility:collapse']),
+  wrapper = createElement('div', ['class',' dropdown_wrapper'], ['style',' width: fit-content;display: inline-block;line-height: 0;position: relative;box-sizing: content-box;']),
+  overflowContainer = createElement('div', ['class',' overflow_container'],  ['style','position: absolute;width: max-content;cursor: pointer;overflow:auto;'])
   tr = createElement('tr'),
   closeDropdown = true;
   var comp;
