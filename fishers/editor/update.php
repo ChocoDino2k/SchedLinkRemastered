@@ -1,7 +1,6 @@
 <?php
-
 if (isset($_POST["variable"])){
-  $filename =  $_POST['file'];
+  $filename =  "../" . $_POST['filen'];
   // $backupfile = '../js-data/backup/Schedule.json';
 $jsondata = $_POST["variable"];
 
@@ -16,11 +15,10 @@ if (is_writable($filename)) {
 
     fclose($handle);
   }else{
-    echo "hello";
     return;
   }
 
-echo "hello";
+echo "success";
   // if (is_writable($backupfile)) {
   //     if (!$handle = fopen($backupfile, 'w')) {
   //          exit;
@@ -33,7 +31,7 @@ echo "hello";
   //
   // }
 }else{
-  echo "failed";
+  echo "not set";
 }
 
 ?>

@@ -676,7 +676,7 @@ var JSON_calendar = {
       "Silver Day",
       "Red Day",
       "Silver Day",
-      "Red Day",
+      "eLearning",
       "No School",
       "No School",
       "Silver Day",

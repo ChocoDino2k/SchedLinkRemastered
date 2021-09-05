@@ -9,7 +9,7 @@ function Day(year, month, day){
   this.month = month;
   this.day = day;
   this.date = new Date(year, month-1, day);
-  this.userData;
+  this.userData = undefined;
 }
 
 Day.prototype = {
@@ -57,7 +57,7 @@ function Calendar(loopYear = false){
 }
 
 Calendar.prototype = {
-  getFullMonth: function(m){
+  getFullMonth: function(m = this.currentMonth){
     let arr = [],
     month = m || this.currentMonth,
     numPrev = this.years[1].months[month-1].days[0].getDayOfWeek();
@@ -98,6 +98,7 @@ Calendar.prototype = {
   //only takes -1 and 1
   updateMonth: function(factor){
     if(factor === 0){return false;}
+    factor /= Math.abs(factor);
     this.currentMonth += factor;
     if(this.currentMonth == 13){
       this.currentMonth = 1;

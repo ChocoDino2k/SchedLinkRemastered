@@ -10,9 +10,11 @@ function createElement(type){
         case "children":
           if(arguments[i][1] instanceof Array){
             for(let e of arguments[i][1]){
+              if(e != null)
               elm.appendChild(e);
             }
           }else{
+            if(arguments[i][1] != null)
             elm.appendChild(arguments[i][1]);
           }
           break;
@@ -40,12 +42,23 @@ function findElements(parent, findAll, desc){
   return (elms.length > 1)? elms : elms[0];
 }
 function replaceElementsWith(parent, newNodes){
-  for(let i=0; i < newNodes.length; i++){
-    parent.replaceChild(newNodes[i],parent.children[i]);
+  for(let i = 0; i < newNodes.length; i++){
+    if (i < parent.children.length){
+      parent.replaceChild(newNodes[i],parent.children[i]);
+    }else{
+      parent.appendChild(newNodes[i]);
+    }
   }
 }
-
-
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+function clearChildren(parent){
+  while(parent.firstChild){
+    parent.removeChild(parent.firstChild);
+  }
+  return parent;
+}
 
 
 
@@ -139,6 +152,32 @@ function getDropDownCurrentNode(){
   }else{
     return;
   }
+}
+function replaceDropdownContent(drop, nodeList){
+  let thead = findElements(drop, false, "thead"),
+  tr = findElements(drop, false, "tr");
+  
+  clearChildren(tr);
+  clearChildren(thead);
+
+
+  var r = function(n){
+    return function(){
+    thead.replaceChild(n.cloneNode(true), thead.children[0]);
+    window.dropdownRef = getDropDownCurrentNode();
+    dropdownUpdated();
+    closeDropdown = true;
+    };
+  };
+  for(let node of nodeList){
+    node.classList += ' drop_itm';
+    node.addEventListener('click', r(node));
+    tr.appendChild( node );
+  }
+  thead.appendChild( ( (tr.cloneNode()).appendChild(  nodeList[0].cloneNode(true)  ) )  );
+  window.dropdownRef = getDropDownCurrentNode();
+  dropdownUpdated();
+  return drop;
 }
 function dropdownUpdated(){return;}
 function dropdownLoaded(){return;}

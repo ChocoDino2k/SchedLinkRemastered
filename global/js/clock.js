@@ -344,7 +344,7 @@ function savePeriodName(inpt){
     for(let n of local[schedName]){
       if(n[compare] != undefined){
         n[compare] = inpt.value;
-        return;
+        break;
       }
     }
     local[schedName].push( makeObj([compare, inpt.value]) );
