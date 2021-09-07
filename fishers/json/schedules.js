@@ -8,28 +8,32 @@ var JSON_sched = {
       "name": "Passing Period",
       "ST": "08:00",
       "ET": "08:30",
-      "sub": {}
+      "sub": {},
+      "hasSub": false
     },
     {
       "name": "Silver Period 5",
       "ST": "08:30",
       "ET": "09:53",
-      "sub": {}
+      "sub": {},
+      "hasSub": false
     },
     {
       "name": "Passing Period",
       "ST": "09:53",
       "ET": "10:03",
-      "sub": {}
+      "sub": {},
+      "hasSub": false
     },
     {
       "name": "Silver Period 6",
       "ST": "10:03",
       "ET": "11:25",
-      "sub": {}
+      "sub": {},
+      "hasSub": false
     },
     {
-      "name": "Silver Period 6 & Lunch",
+      "name": "Silver Period 7 & Lunch",
       "ST": "11:25",
       "ET": "13:28",
       "sub": {
@@ -94,13 +98,15 @@ var JSON_sched = {
             "ET": "13:28"
           }
         ]
-      }
+      },
+      "hasSub": true
     },
     {
-      "name": "Silver Period 7",
+      "name": "Silver Period 8",
       "ST": "13:28",
       "ET": "15:00",
-      "sub": {}
+      "sub": {},
+      "hasSub": false
     }
   ],
   "No School": [

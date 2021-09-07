@@ -172,6 +172,7 @@ function mapPart(p){
   let obj = {};
   obj = parsePart(p.c.children[0]);
   obj["sub"] = {};
+  obj["hasSub"] = p.multipleChildren;
   if(p.multipleChildren){
     let b;
     for(let i=1; i < p.c.children.length; i++){

@@ -7,8 +7,8 @@
     <title>SchedLink</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="json/schedules.js?v=3" charset="utf-8"></script>
-    <script src="json/filler.js?v=3" charset="utf-8"></script>
+    <script src="json/schedules.js?v=4" charset="utf-8"></script>
+    <script src="json/filler.js?v=4" charset="utf-8"></script>
 
     <script src="/global/js/DOM.js?v=3" charset="utf-8"></script>
     <script src="/global/js/clock.js?v=3" charset="utf-8"></script>
