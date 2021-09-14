@@ -39,27 +39,25 @@ function setPopdown(text){
       [
         createElement("div", ["class","pop_text_container"], ["children", [createElement("p", ["text",text])]])
       ]
-    ], ["style", "opacity:0; position: absolute; top:0; left: 50%; transform: translate(-50%, 3vh); padding: 0.25rem 0.5rem; width: 50%; max-width: 10rem; min-width:fit-content; box-shadow:rgb(0 0 0) 0px 2px 12px 0px"]);
+    ], ["style", " position: absolute; top:0; left: 50%; transform: translate(-50%, 3vh); padding: 0.25rem 0.5rem; width: 50%; max-width: 10rem; min-width:fit-content; box-shadow:rgb(0 0 0) 0px 2px 12px 0px"]);
     document.body.appendChild(cont);
     h = cont;
   }else{
+    document.body.replaceChild(h.cloneNode(true), h);
+    h = findElements(document.body, false, "#popdown");
     h.children[0].children[0].innerHTML = text;
+    h.classList = "";
   }
   switch (text) {
-    case "saving":
-      h.style.background = "#00BCFF";
-      h.style.animation = "0.5s ease 0s 1 normal forwards running fadeIn";
-      break;
     case "success":
-      h.style.background = "#22FF31";
-      h.style.animation = "2s cubic-bezier(1, 0.04, 1, 0.04) 0s 1 normal forwards running fadeOut";
+      h.classList = "success";
+      break;
+    case "saving":
+      h.classList = "saving";
       break;
     default:
-      h.style.background = "#CB0000";
-      h.style.animation = "2s cubic-bezier(1, 0.04, 1, 0.04) 0s 1 normal forwards running fadeOut";
-
+      h.classList = "failed";
   }
-
 
   return;
 }
@@ -76,7 +74,6 @@ async function postData(filename, varname, data){
 async function saveCalendar(){
   setPopdown("saving");
   let p = await postData("json/filler.js", "calendar", JSON_calendar);
-
   setPopdown(p);
   return;
 }
@@ -88,75 +85,89 @@ async function saveSchedule(){
     s = parseSchedule(),
     replace = (s.head.ogn != s.head.name) && s.head.ogn != "",
     arr = [];
+
+    if(s.head.name == "" || checkEmpty(s.content)){
+      setPopdown("failed");
+      return;
+    }
+
+    s.content.splice(0,0,{color: s.head.color, position: Object.getOwnPropertyNames(JSON_sched).length -1});
+    swapSections();
+
+
+    if(s.head.ogn != "" || replace){
+
+      if(s.head.color == JSON_sched[s.head.ogn][0].color || checkColorAvaiablility(s.head.color)){
+        s.content[0].position = JSON_sched[s.head.name][0].position;
+        if(replace){
+          JSON_sched.renameProperty(s.head.ogn, s.head.name);
+        }
+      }
+
+    }else if(!checkColorAvaiablility(s.head.color)){
+      setPopdown("not a viable color");
+      return;
+    }
+
+
+    JSON_sched[s.head.name] = s.content;
+
+    reloadDrop();
+    reloadCalendar(replace, s.head.ogn, s.head.name);
+    useableColors = setAvailableColors();
+
+    swapSections();
+    let p = await postData("json/schedules.js","sched", JSON_sched);
+    setPopdown(p);
+    if(p == "success"){
+      swapShown();
+    }
+
   }catch(e){
     setPopdown("failed");
     return;
   }
-
-  s.content.splice(0,0,{color: s.head.color, position: Object.getOwnPropertyNames(JSON_sched).length -1});
-  swapSections();
-
-
-  if(s.head.ogn != "" || replace){
-
-    if(s.head.color == JSON_sched[s.head.ogn][0].color || checkColorAvaiablility(s.head.color)){
-      s.content[0].position = JSON_sched[s.head.name][0].position;
-      if(replace){
-        JSON_sched.renameProperty(s.head.ogn, s.head.name);
-      }
-    }
-  }else if(!checkColorAvaiablility(s.head.color)){
-    setPopdown("not a viable color");
-    return;
-  }
-
-
-  JSON_sched[s.head.name] = s.content;
-
-  reloadDrop();
-  reloadCalendar(replace, s.head.ogn, s.head.name);
-  useableColors = setAvailableColors();
-
-  swapSections();
-  let p = await postData("json/schedules.js","sched", JSON_sched);
-  setPopdown(p);
-  if(p == "success"){
-    swapShown();
-  }
   return;
 }
-
-async function removeSchedule(){
-
-  setPopdown("saving");
-
-  try{
-
-  let sched = findElements(document.body, false, "#schedule_head").children[0].children[1].children[0].getAttribute("originalName");
-
- if(JSON_sched[sched] != undefined && sched != "Unscheduled"){
-   delete JSON_sched[sched];
-
-   swapSections();
-   reloadDrop();
-   reloadCalendar(true, sched, "Unscheduled");
-   await postData("json/filler.js", "calendar", JSON_calendar);
-   swapSections();
-
-   let p = await postData("json/schedules.js","sched", JSON_sched);
-   setPopdown(p);
-   if(p == "success"){
-     swapShown();
-   }else{
-     setPopdown("could not delete");
-   }
- }else{
-   setPopdown("could not delete");
- }
-
-}catch(e){
-  setTimeout(setPopdown, 10, "could not delete");
+function checkEmpty(parts){
+  for(let part of parts){
+    if(part.name == "" || part.ST == "" || part.ET == ""){
+      return true;
+    }
+    if(part.hasSub){
+      for(let sub in part.sub){
+        if(sub == "" || checkEmpty(part.sub[sub])){
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
+async function removeSchedule(){
+  setPopdown("saving");
+  try{
+    let sched = findElements(document.body, false, "#schedule_head").children[0].children[1].children[0].getAttribute("originalName");
+    if(JSON_sched[sched] != undefined && sched != "Unscheduled"){
+      delete JSON_sched[sched];
+      swapSections();
+      reloadDrop();
+      reloadCalendar(true, sched, "Unscheduled");
+      await postData("json/filler.js", "calendar", JSON_calendar);
+      swapSections();
+      let p = await postData("json/schedules.js","sched", JSON_sched);
+      setPopdown(p);
+      if(p == "success"){
+        swapShown();
+      }else{
+        setPopdown("could not delete");
+      }
+    }else{
+      setPopdown("could not delete");
+    }
+  }catch(e){
+    setTimeout(setPopdown, 10, "could not delete");
+  }
 
 }
 

@@ -155,7 +155,7 @@ function parseBlock(b){
   sc = findElements(b, true, ".schedule_part"),
   obj = {name: findElements(nc, false, "input").value, sub: []};
 
-  for(child of sc){
+  for(let child of sc){
     obj.sub.push(parsePart(child));
   }
 

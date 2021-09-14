@@ -42,14 +42,6 @@ input[type = "text"] {
 input[type = "text"]:focus{
   outline:none;
 }
-@keyframes fadeIn{
-  0%{opacity: 0}
-  100%{opacity: 1}
-}
-@keyframes fadeOut{
-  0%{opacity: 1}
-  100%{opacity: 0}
-}
 /* Dropdown
 ________________________________________________________________________________ */
 .dropdown_wrapper{
@@ -89,7 +81,32 @@ ________________________________________________________________________________
   outline: 1px solid black;
 }
 
+/* popdown animations
+________________________________________________________________________________ */
 
+.saving{
+  background: #00F;
+  opacity: 0;
+  animation: 1s normal forwards fadeIn;
+}
+.success{
+  background: #0F0;
+  opacity: 1;
+  animation: 1s 0.5s normal forwards fadeOut;
+}
+.failed{
+  background: #F00;
+  opacity: 1;
+  animation: 1s 0.5s normal forwards fadeOut;
+}
+@keyframes fadeIn{
+  0%{opacity: 0}
+  100%{opacity: 1}
+}
+@keyframes fadeOut{
+  0%{opacity: 1}
+  100%{opacity: 0}
+}
 /* Edit Section
 ________________________________________________________________________________ */
 #edit_section{

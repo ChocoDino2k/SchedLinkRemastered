@@ -39,7 +39,7 @@ function findElements(parent, findAll, desc){
     }
   }
 
-  return (elms.length > 1)? elms : elms[0];
+  return (findAll)? elms : elms[0];
 }
 function replaceElementsWith(parent, newNodes){
   for(let i = 0; i < newNodes.length; i++){
@@ -110,15 +110,18 @@ function createDropDown(nodeList, maxShow = 3){
     overflowContainer.style.height = parseInt( (comp.height.split("px")[0]) ) + "px";
     //global variables to check if a new option has been selected
     window.dropdownRef = getDropDownCurrentNode();
+    window.dropdownLength = nodeList.length;
     dropdownLoaded();
     this.removeEventListener('load', size);
   });
   window.addEventListener('resize', function size(){
     comp = window.getComputedStyle(thead);
-    wrapper.style.width = comp.width;
-    wrapper.style.height = comp.height;
-    overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
-    if(closeDropdown){overflowContainer.style.height = parseInt( (comp.height.split("px")[0]) ) + "px";}
+    if(comp.width != "auto"){
+      wrapper.style.width = comp.width;
+      wrapper.style.height = comp.height;
+      overflowContainer.style.maxHeight = (parseInt( (comp.height.split("px")[0]) ) * maxShow * 1.2) + "px";
+      if(closeDropdown){overflowContainer.style.height = parseInt( (comp.height.split("px")[0]) ) + "px";}
+    }
   });
   window.addEventListener('click', function(){
      if(closeDropdown){
@@ -156,7 +159,7 @@ function getDropDownCurrentNode(){
 function replaceDropdownContent(drop, nodeList){
   let thead = findElements(drop, false, "thead"),
   tr = findElements(drop, false, "tr");
-  
+
   clearChildren(tr);
   clearChildren(thead);
 
