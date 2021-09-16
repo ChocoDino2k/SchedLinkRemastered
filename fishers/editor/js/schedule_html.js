@@ -257,6 +257,7 @@ function swapColors(el){
     let bl = Object.getOwnPropertyNames(JSON_sched);
     for(n of bl){
       if (el.style.background == JSON_sched[n][0].color){
+        alert("Color in use by schedule " + n);
         console.log(n);
       }
     }
