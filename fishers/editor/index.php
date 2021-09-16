@@ -91,10 +91,10 @@
     </article>
   </div>
 </body>
-<script src="/global/js/calendar.js?v=3" charset="utf-8"></script>
-<script src="js/calendar_html.js" charset="utf-8"></script>
-<script src="js/schedule_html.js" charset="utf-8"></script>
-<script src="js/save.js" charset="utf-8"></script>
+<script src="/global/js/calendar.js?v=5" charset="utf-8"></script>
+<script src="js/calendar_html.js?v=5" charset="utf-8"></script>
+<script src="js/schedule_html.js?v=5" charset="utf-8"></script>
+<script src="js/save.js?v=5" charset="utf-8"></script>
 
 <script type="text/javascript">
 let mSection, eSection, sectionIdx;
