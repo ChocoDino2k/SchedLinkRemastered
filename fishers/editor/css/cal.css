@@ -238,3 +238,36 @@ ________________________________________________________________________________
   height: 1rem;
   display: inline-block;
 }
+
+
+@media screen and (max-width: 800px) {
+  :root{
+    font-size: 5vw;
+  }
+  #main-content{
+    grid-template-columns: none;
+    grid-template-rows: auto 1fr;
+  }
+  #calendar_options{
+    display: flex;
+    justify-content: space-around;
+  }
+  #schedule_options{
+    grid-column-gap: 2px;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+  }
+  #schedule_options .options_container:first-child{
+    flex-basis: 100%;
+  }
+  .color{
+    width:2rem;
+  }
+  #color_picker{
+    width: 12rem;
+    height: 2.13rem;
+    overflow: auto;
+    margin: auto;
+  }
+}
