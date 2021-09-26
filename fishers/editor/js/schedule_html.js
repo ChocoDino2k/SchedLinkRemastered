@@ -1,5 +1,11 @@
 var useableColors = setAvailableColors();
 
+function numbersOnly(evt){
+  console.log(evt);
+  let ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+  return (ASCIICode > 47 && ASCIICode < 59);
+}
+
 function swapShown(){
   mSection.classList.toggle("hidden");
   eSection.classList.toggle("hidden");
@@ -46,8 +52,9 @@ function createPeriodHeading(name = "", includeAdd = false, isBlock = false){
   ])
 }
 function createPeriodTime(period = {ST: "", ET: ""}){
+
   return createElement("div", ["class", "period_time"], ["children",[
-  createElement("input", ["type", "text"], ["value",  period.ST], ["placeholder","00:00"], ["maxlength","5"]),
+  createElement("input", ["type", "text"], ["value",  period.ST], ["placeholder","00:00"], ["maxlength","5"], ["onkeypress", numbersOnly]),
   createElement("p", ["text", "-"] ),
   createElement("input", ["type", "text"], ["value",  period.ET], ["placeholder","24:00"], ["maxlength","5"])
   ] ]

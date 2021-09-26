@@ -133,12 +133,12 @@ document.onreadystatechange = () => {
     );
     for(let btn of findElements(eSection, true, '.calendar_head_btn')){
       btn.onclick = function(){
-      if(calendar.updateMonth(parseInt(btn.value))){
-        setUserData(false);
+        if(calendar.updateMonth(parseInt(btn.value))){
+          setUserData(false);
+        }
+        replaceDays();
       }
-      replaceDays();
     }
-  }
     DAYS_OF_WEEK_ABR.forEach((item, i) => {
       eSection.children[1].children[i].children[0].innerHTML = item;
     });

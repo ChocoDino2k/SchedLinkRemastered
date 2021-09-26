@@ -110,13 +110,13 @@ function updateClock(){
   }
 }
 function getTimeRemaining(gal, idx){
-  let cur = (idx != undefined)? idx : gal.current,
-  part = (gal.dots[cur].sched != undefined)? gal.dots[cur].sched : gal.dots[cur],
-  tf = {s:breakTime(part.ST), e:breakTime(part.ET)},
-  start = tf.s[0] * 60 + tf.s[1],
-  end = tf.e[0] * 60 + tf.e[1];
-  if(curTotalSec > end*60){return [-1, true];}
-  return (curTotalSec < start*60)? [start*60 - curTotalSec, true] : [end*60 - curTotalSec, false];
+    let cur = (idx != undefined)? idx : gal.current,
+    part = (gal.dots[cur].sched != undefined)? gal.dots[cur].sched : gal.dots[cur],
+    tf = {s:breakTime(part.ST), e:breakTime(part.ET)},
+    start = tf.s[0] * 60 + tf.s[1],
+    end = tf.e[0] * 60 + tf.e[1];
+    if(curTotalSec > end*60){return [-1, true];}
+    return (curTotalSec < start*60)? [start*60 - curTotalSec, true] : [end*60 - curTotalSec, false];
 
 }
 function updateCurrentDot(){
@@ -247,7 +247,12 @@ function loop(){
   if(curDot){
   let tf;
   if(curDot.current != 0 && curDot.subGals != undefined){
-    tf = getTimeRemaining(curDot.subGals[curDot.current]);
+    if(curDot.subGals[curDot.current].dots.length > 0){
+      tf = getTimeRemaining(curDot.subGals[curDot.current]);
+    }else{
+      curDot.current = 0;
+      tf = getTimeRemaining(gallery);
+    }
   }else{
     tf = getTimeRemaining(gallery);
   }

@@ -18,6 +18,10 @@ function createElement(type){
             elm.appendChild(arguments[i][1]);
           }
           break;
+        case "onkeypress":
+        console.log(arguments[i])
+        let func = arguments[i][1];
+          elm.addEventListener("keypress", func.bind(event));
         default:
           elm.setAttribute(arguments[i][0], arguments[i][1]);
       }
