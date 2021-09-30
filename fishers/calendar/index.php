@@ -64,6 +64,12 @@
         if (document.readyState === 'complete') {
           cSec = findElements(document.body, false, "#calendar_container");
           sSec = findElements(document.body, false, "#schedule_section");
+          sSec.classList.toggle("hidden");
+          sSec.onclick = (e) =>{
+            // console.log(e.target.id);
+            // if(e.target.id == "schedule_container" || e.target.id == "schedule_section")
+            sSec.classList.toggle("hidden");
+          }
           calendar = new Calendar(false);
 
           DAYS_OF_WEEK_ABR.forEach((item, i) => {

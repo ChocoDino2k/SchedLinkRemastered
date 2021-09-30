@@ -50,6 +50,8 @@ function replaceDays(){
       // JSON_calendar[day.year][day.month-1][day.day-1] = day.userData.active;
       // setBackground(day, this);
       // clearSchedule();
+      sSec.classList.toggle("hidden");
+
       fillSchedule(day.userData.active);
       if(day.month != calendar.currentMonth){
         let f = (day.month - calendar.currentMonth);
@@ -243,6 +245,9 @@ function fillSchedule(name = ""){
   body = sSec.children[0].children[1],
   container;
 
+  clearChildren(body);
+  clearChildren(head);
+  
   if(name == "" || JSON_sched[name] == undefined){
     head.appendChild(createScheduleHead());
     body.appendChild(createElement("div", ["class","part_container"], ["children",[createScheduleMain()]]));

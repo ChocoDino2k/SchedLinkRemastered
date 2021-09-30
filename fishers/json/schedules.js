@@ -264,5 +264,18 @@ var JSON_sched = {
       "sub": {},
       "hasSub": false
     }
+  ],
+  "PSAT": [
+    {
+      "color": "rgb(199, 217, 38)",
+      "position": 4
+    },
+    {
+      "name": "Schedule TBD",
+      "ST": "00:00",
+      "ET": "00:00",
+      "sub": {},
+      "hasSub": false
+    }
   ]
 }
