@@ -193,7 +193,7 @@ body.fullsize-content #nav-tabs {
 }
 #nav-tabs a div {
   display: inline-block;
-  width: calc(100% / 4);
+  width: calc(100% / 2);
   height: auto;
 }
 #nav-tabs a div:hover{

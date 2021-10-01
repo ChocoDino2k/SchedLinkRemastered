@@ -202,6 +202,8 @@ function createSubChoices(){
 }
 
 function init(){
+  findElements(document.body, false, "#nav-tabs__home").classList.toggle("selected");
+
   b = findElements(document.body, false, "#sub");
   updateClock();
   gallery.fillDots();
