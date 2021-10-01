@@ -1,5 +1,5 @@
 :root{
-  font-size: 30px;
+  font-size: 25px;
 }
 /* global
 ________________________________________________________________________________ */
@@ -39,6 +39,7 @@ button{
 }
 .calendar_head > *{
   display: inline-block;
+  font-family: var(--bold-font);
 }
 .calendar_head button {
   flex: 1;
@@ -59,6 +60,9 @@ button{
 .calendar_head #calendar_date{
     flex: 5;
     padding: 5px 0;
+}
+.calendar_head #calendar_date p {
+  font-family: var(--bold-font);
 }
 .calendar_body{
   width: 100%;
@@ -105,7 +109,9 @@ button{
   width: 20rem;
   max-width: 80%;
   margin: auto;
-  height: 100vh;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  height: calc(100vh - 60px);;
   overflow: auto;
   z-index: 5;
   cursor: default;
@@ -150,4 +156,10 @@ button{
 }
 .label_block, .schedule_part, .period_heading, .schedule_head{
   border-radius: 10px;
+}
+
+@media screen and (max-width: 500px){
+  #schedule_section{
+    height: calc(100vh - 12vw);
+  }
 }

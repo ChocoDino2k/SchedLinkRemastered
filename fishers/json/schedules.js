@@ -277,5 +277,18 @@ var JSON_sched = {
       "sub": {},
       "hasSub": false
     }
+  ],
+  "Finals (Normal) Red Day": [
+    {
+      "color": "rgb(217, 38, 38)",
+      "position": 5
+    },
+    {
+      "name": "Schedule TBD",
+      "ST": "00:00",
+      "ET": "00:00",
+      "sub": {},
+      "hasSub": false
+    }
   ]
 }

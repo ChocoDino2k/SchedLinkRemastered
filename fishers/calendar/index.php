@@ -1,12 +1,24 @@
 <!DOCTYPE html>
+
+<?php
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+ ?>
+
 <html lang="en" dir="ltr">
   <head>
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="HandheldFriendly" content="true">
     <meta http-equiv="Cache-control" content="no-cache">
 
-    <title>Schedule Editor</title>
+    <title>Calendar</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
     <script src="../json/schedules.js" charset="utf-8"></script>
@@ -53,6 +65,9 @@
           </div>
         </section>
       </article>
+      <?php
+        include_once($r . "/global/modules/navigation.html");
+      ?>
     </div>
       </body>
       <script src="/global/js/DOM.js?v=3" charset="utf-8"></script>
@@ -62,6 +77,8 @@
       var cSec,sSec;
       document.onreadystatechange = () => {
         if (document.readyState === 'complete') {
+          findElements(document.body, false, "#nav-tabs__cal").classList.toggle("selected");
+
           cSec = findElements(document.body, false, "#calendar_container");
           sSec = findElements(document.body, false, "#schedule_section");
           sSec.classList.toggle("hidden");
