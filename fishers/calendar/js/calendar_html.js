@@ -215,9 +215,9 @@ function createPeriodHeading(name = "", isBlock = false){
 }
 function createPeriodTime(period = {ST: "", ET: ""}){
   return createElement("div", ["class", "period_time"], ["children",[
-  createElement("p",["text",period.ST]),
+  createElement("p",["text",to12H(period.ST)]),
   createElement("p", ["text", "-"] ),
-  createElement("p",["text",period.ET])
+  createElement("p",["text",to12H(period.ET)])
   ] ]
   );
 }
@@ -247,7 +247,7 @@ function fillSchedule(name = ""){
 
   clearChildren(body);
   clearChildren(head);
-  
+
   if(name == "" || JSON_sched[name] == undefined){
     head.appendChild(createScheduleHead());
     body.appendChild(createElement("div", ["class","part_container"], ["children",[createScheduleMain()]]));
@@ -265,4 +265,15 @@ function fillSchedule(name = ""){
       body.appendChild(container);
     }
   }
+}
+
+function joinTime(hm){
+  return (hm.map(s => (s < 10)? "0" + s: "" + s)).join(":");
+}
+function breakTime(time){
+  return (time.split(":")).map(s => parseInt(s));
+}
+function to12H(time){
+  let t = breakTime(time);
+  return joinTime([ ((t[0] > 12)? t[0]%12: t[0]), t[1]]);
 }
