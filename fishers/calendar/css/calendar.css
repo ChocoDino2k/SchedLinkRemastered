@@ -109,7 +109,7 @@ button{
   width: 20rem;
   max-width: 80%;
   margin: auto;
-  padding: 1rem 0;
+  padding: 2rem 0;
   box-sizing: border-box;
   height: calc(100vh - 60px);;
   overflow: auto;
@@ -161,5 +161,8 @@ button{
 @media screen and (max-width: 500px){
   #schedule_section{
     height: calc(100vh - 12vw);
+  }
+  #schedule_container {
+    padding: 1rem 0 2rem 0;
   }
 }
