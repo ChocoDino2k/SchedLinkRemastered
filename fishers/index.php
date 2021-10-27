@@ -18,14 +18,14 @@ header('Expires: 0');
     <title>SchedLink</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="json/schedules.js?v=5" charset="utf-8"></script>
-    <script src="json/filler.js?v=5" charset="utf-8"></script>
+    <script src="json/schedules.js?v=6" charset="utf-8"></script>
+    <script src="json/filler.js?v=6" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=5" charset="utf-8"></script>
-    <script src="/global/js/clock.js?v=5" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=6" charset="utf-8"></script>
+    <script src="/global/js/clock.js?v=6" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=5">
-    <link rel="stylesheet" href="/global/css/home.css?v=5">
+    <link rel="stylesheet" href="/global/css/global.css?v=6">
+    <link rel="stylesheet" href="/global/css/home.css?v=6">
   </head>
   <script type="text/javascript">
     if(localStorage.getItem("renamed") == null){

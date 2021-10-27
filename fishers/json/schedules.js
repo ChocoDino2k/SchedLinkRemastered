@@ -271,11 +271,105 @@ var JSON_sched = {
       "position": 4
     },
     {
-      "name": "Schedule TBD",
-      "ST": "00:00",
-      "ET": "00:00",
-      "sub": {},
-      "hasSub": false
+      "name": "Block 1",
+      "ST": "08:30",
+      "ET": "10:10",
+      "sub": {
+        "9th": [
+          {
+            "name": "Employability Lesson/Counselor Presentation",
+            "ST": "08:30",
+            "ET": "10:10"
+          }
+        ],
+        "10th/11th": [
+          {
+            "name": "PSAT Practice/Employability",
+            "ST": "08:30",
+            "ET": "9:15"
+          },
+          {
+            "name": "Passing Period",
+            "ST": "09:15",
+            "ET": "9:25"
+          },
+          {
+            "name": "Targeted Instruction",
+            "ST": "09:25",
+            "ET": "10:10"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Block 2",
+      "ST": "10:10",
+      "ET": "11:30",
+      "sub": {
+        "A": [
+          {
+            "name": "A Lunch",
+            "ST": "10:10",
+            "ET": "10:45"
+          },
+          {
+            "name": "Passing Period",
+            "ST": "10:45",
+            "ET": "10:55"
+          },
+          {
+            "name": "Pre-test Activity",
+            "ST": "10:55",
+            "ET": "11:30"
+          }
+        ],
+        "B": [
+          {
+            "name": "Passing Period",
+            "ST": "10:10",
+            "ET": "10:20"
+          },
+          {
+            "name": "Pre-test Activity",
+            "ST": "10:20",
+            "ET": "10:55"
+          },
+          {
+            "name": "B Lunch",
+            "ST": "10:55",
+            "ET": "11:30"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Block 3",
+      "ST": "11:30",
+      "ET": "15:00",
+      "sub": {
+        "A": [
+          {
+            "name": "PSAT/NMSQT Test",
+            "ST": "11:30",
+            "ET": "15:00"
+          }
+        ],
+        "B": [
+          {
+            "name": "Passing Period",
+            "ST": "11:30",
+            "ET": "11:40"
+          },
+          {
+            "name": "PSAT/NMSQT Test",
+            "ST": "11:40",
+            "ET": "15:00"
+          }
+        ]
+      },
+      "hasSub": true
     }
   ],
   "Finals (Normal) Red Day": [
