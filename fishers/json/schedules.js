@@ -372,15 +372,356 @@ var JSON_sched = {
       "hasSub": true
     }
   ],
-  "Finals (Normal) Red Day": [
+  "Final Exam 8": [
     {
-      "color": "rgb(217, 38, 38)",
-      "position": 5
+      "color": "rgb(179, 77, 77)",
+      "position": 6
     },
     {
-      "name": "Schedule TBD",
-      "ST": "00:00",
-      "ET": "00:00",
+      "name": "Period 1",
+      "ST": "08:30",
+      "ET": "9:00",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "09:00",
+      "ET": "09:10",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Period 2",
+      "ST": "09:10",
+      "ET": "09:40",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "09:40",
+      "ET": "9:50",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Period 3",
+      "ST": "09:50",
+      "ET": "10:20",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "10:20",
+      "ET": "10:30",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Period 4",
+      "ST": "10:30",
+      "ET": "11:00",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "11:00",
+      "ET": "11:10",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Period 6",
+      "ST": "11:10",
+      "ET": "11:40",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Period 7 & Lunch",
+      "ST": "11:40",
+      "ET": "1:10",
+      "sub": {
+        "A": [
+          {
+            "name": "A Lunch",
+            "ST": "11:40",
+            "ET": "12:10"
+          },
+          {
+            "name": "Passing Period",
+            "ST": "12:10",
+            "ET": "12:20"
+          },
+          {
+            "name": "Period 7",
+            "ST": "12:20",
+            "ET": "13:10"
+          }
+        ],
+        "B": [
+          {
+            "name": "Passing Period",
+            "ST": "11:40",
+            "ET": "11:50"
+          },
+          {
+            "name": "Period 7",
+            "ST": "11:50",
+            "ET": "12:10"
+          },
+          {
+            "name": "B Lunch",
+            "ST": "12:10",
+            "ET": "12:40"
+          },
+          {
+            "name": "Passing Period",
+            "ST": "12:40",
+            "ET": "12:50"
+          },
+          {
+            "name": "Period 7",
+            "ST": "12:50",
+            "ET": "13:10"
+          }
+        ],
+        "C": [
+          {
+            "name": "Passing Period",
+            "ST": "11:40",
+            "ET": "11:50"
+          },
+          {
+            "name": "Period 7",
+            "ST": "11:50",
+            "ET": "12:40"
+          },
+          {
+            "name": "C Lunch",
+            "ST": "12:40",
+            "ET": "13:10"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Passing Period",
+      "ST": "13:10",
+      "ET": "13:20",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 8",
+      "ST": "13:20",
+      "ET": "15:00",
+      "sub": {},
+      "hasSub": false
+    }
+  ],
+  "Final Exam 1/2": [
+    {
+      "color": "rgb(108, 19, 19)",
+      "position": 7
+    },
+    {
+      "name": "Teacher Office Hours",
+      "ST": "08:30",
+      "ET": "10:40",
+      "sub": {
+        "Lunch": [
+          {
+            "name": "Office Hours",
+            "ST": "08:30",
+            "ET": "10:10"
+          },
+          {
+            "name": "Lunch Block",
+            "ST": "10:10",
+            "ET": "11:10"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Lunch Block",
+      "ST": "10:10",
+      "ET": "11:10",
+      "sub": {
+        "Student": [
+          {
+            "name": "Student Lunch",
+            "ST": "10:10",
+            "ET": "11:10"
+          }
+        ],
+        "Teacher": [
+          {
+            "name": "Teacher Lunch",
+            "ST": "10:30",
+            "ET": "11:10"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Passing Period",
+      "ST": "11:10",
+      "ET": "11:20",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 1",
+      "ST": "11:20",
+      "ET": "13:05",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "13:05",
+      "ET": "13:15",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 2",
+      "ST": "13:15",
+      "ET": "15:00",
+      "sub": {},
+      "hasSub": false
+    }
+  ],
+  "Final Exam 3/4": [
+    {
+      "color": "rgb(128, 0, 0)",
+      "position": 8
+    },
+    {
+      "name": "Teacher Office Hours",
+      "ST": "08:30",
+      "ET": "10:40",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Lunch Block",
+      "ST": "10:10",
+      "ET": "11:10",
+      "sub": {
+        "Student": [
+          {
+            "name": "Student Lunch",
+            "ST": "10:10",
+            "ET": "11:10"
+          }
+        ],
+        "Teacher": [
+          {
+            "name": "Teacher Lunch",
+            "ST": "10:40",
+            "ET": "11:10"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Passing Period",
+      "ST": "11:10",
+      "ET": "11:20",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 3",
+      "ST": "11:20",
+      "ET": "13:05",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "13:05",
+      "ET": "13:15",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 4",
+      "ST": "13:15",
+      "ET": "15:00",
+      "sub": {},
+      "hasSub": false
+    }
+  ],
+  "Final Exam 6/7": [
+    {
+      "color": "rgb(108, 68, 19)",
+      "position": 9
+    },
+    {
+      "name": "Teacher Office Hours",
+      "ST": "08:30",
+      "ET": "10:40",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Lunch Block",
+      "ST": "10:10",
+      "ET": "11:10",
+      "sub": {
+        "Student": [
+          {
+            "name": "Student Lunch",
+            "ST": "10:10",
+            "ET": "11:10"
+          }
+        ],
+        "Teacher": [
+          {
+            "name": "Teacher Lunch",
+            "ST": "10:40",
+            "ET": "11:10"
+          }
+        ]
+      },
+      "hasSub": true
+    },
+    {
+      "name": "Passing Period",
+      "ST": "11:10",
+      "ET": "11:20",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 6",
+      "ST": "11:20",
+      "ET": "13:05",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "Passing Period",
+      "ST": "13:05",
+      "ET": "13:15",
+      "sub": {},
+      "hasSub": false
+    },
+    {
+      "name": "FINAL EXAM 7",
+      "ST": "13:15",
+      "ET": "15:00",
       "sub": {},
       "hasSub": false
     }
