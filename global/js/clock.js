@@ -259,6 +259,7 @@ function loop(){
   }
   if(tf[0] == 0){
     updatePeriod(gallery, 1, false);
+    curDot = gallery.dots[gallery.current];
   }
   if(curDot.current != undefined && curDot.current != 0){
     curDot =  curDot.subGals[curDot.current].dots[curDot.subGals[curDot.current].current];

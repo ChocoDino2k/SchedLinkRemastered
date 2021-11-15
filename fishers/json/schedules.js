@@ -443,7 +443,7 @@ var JSON_sched = {
     {
       "name": "Period 7 & Lunch",
       "ST": "11:40",
-      "ET": "1:10",
+      "ET": "13:10",
       "sub": {
         "A": [
           {
@@ -533,21 +533,8 @@ var JSON_sched = {
       "name": "Teacher Office Hours",
       "ST": "08:30",
       "ET": "10:40",
-      "sub": {
-        "Lunch": [
-          {
-            "name": "Office Hours",
-            "ST": "08:30",
-            "ET": "10:10"
-          },
-          {
-            "name": "Lunch Block",
-            "ST": "10:10",
-            "ET": "11:10"
-          }
-        ]
-      },
-      "hasSub": true
+      "sub": {},
+      "hasSub": false
     },
     {
       "name": "Lunch Block",
@@ -564,7 +551,7 @@ var JSON_sched = {
         "Teacher": [
           {
             "name": "Teacher Lunch",
-            "ST": "10:30",
+            "ST": "10:40",
             "ET": "11:10"
           }
         ]
