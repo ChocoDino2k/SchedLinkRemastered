@@ -160,7 +160,8 @@ button{
 
 @media screen and (max-width: 500px){
   #schedule_section{
-    height: calc(100vh - 12vw);
+    height: calc(100vh - 12vw - 3vh);
+    padding: 0 0 3vh 0;
   }
   #schedule_container {
     padding: 1rem 0 2rem 0;

@@ -116,7 +116,7 @@ function getTimeRemaining(gal, idx){
     start = tf.s[0] * 60 + tf.s[1],
     end = tf.e[0] * 60 + tf.e[1];
     if(curTotalSec > end*60){return [-1, true];}
-    return (curTotalSec < start*60)? [start*60 - curTotalSec, true] : [end*60 - curTotalSec, false];
+    return (curTotalSec < start*60)? [start*60 - curTotalSec, true, start*60] : [end*60 - curTotalSec, false, end*60];
 
 }
 function updateCurrentDot(){
@@ -245,8 +245,7 @@ loop();
 function loop(){
   updateClock();
   let curDot = gallery.dots[gallery.current];
-
-  if(curDot){
+  if(curDot) {
   let tf;
   if(curDot.current != 0 && curDot.subGals != undefined){
     if(curDot.subGals[curDot.current].dots.length > 0){
@@ -260,18 +259,15 @@ function loop(){
   }
   if(tf[0] == 0){
     updatePeriod(gallery, 1, false);
-    displayAll = true;
   }
   if(curDot.current != undefined && curDot.current != 0){
     curDot =  curDot.subGals[curDot.current].dots[curDot.subGals[curDot.current].current];
   }else{
     curDot = curDot.sched;
   }
-  if(displayAll){
-    displayData.items["periodTime"].value  = to12H(curDot.ST) + " - " + to12H(curDot.ET);
-    displayData.items["periodName"].value = curDot.name;
-  }
 
+  displayData.items["periodTime"].value  = to12H(curDot.ST) + " - " + to12H(curDot.ET);
+  displayData.items["periodName"].value = curDot.name;
   displayData.items["timer"].value = (tf[0] > 0 )? joinTime( (tf[0] > 60*60)? [Math.trunc(tf[0]/60/60), Math.trunc(tf[0]/60%60), tf[0]%60 ] : [Math.trunc(tf[0]/60%60), tf[0]%60] ): "--:--";
   let endTime = breakTime(curDot.ET),
   startTime = breakTime(curDot.ST);

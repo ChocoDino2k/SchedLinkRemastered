@@ -21,11 +21,11 @@ header('Expires: 0');
     <title>Calendar</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="../json/schedules.js?v=6" charset="utf-8"></script>
-    <script src="../json/filler.js?v=6" charset="utf-8"></script>
+    <script src="../json/schedules.js?v=7" charset="utf-8"></script>
+    <script src="../json/filler.js?v=7" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=6">
-    <link rel="stylesheet" href="css/calendar.css?v=7">
+    <link rel="stylesheet" href="/global/css/global.css?v=7">
+    <link rel="stylesheet" href="css/calendar.css?v=8">
   </head>
   <body>
     <div class="wrapper">
