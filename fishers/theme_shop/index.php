@@ -48,8 +48,8 @@ if(isset($_POST["answer"]) and isset($_POST["theme"])) { //checking answer
       if($questionNums[$n] == count($questions[$n]) - 1) {
         $unlocks[count($unlocks)] = $n;
         $unlocks = json_encode($unlocks);
-        $connection -> query("UPDATE userset SET unlockedThemes = '$unlocks' ");
-        $connection -> query("UPDATE userset SET activeTheme = '$n'");
+        $connection -> query("UPDATE userset SET unlockedThemes = '$unlocks' WHERE ID = '$id'");
+        $connection -> query("UPDATE userset SET activeTheme = '$n' WHERE ID = '$id'");
       } else {
         $themeProgress[$n] = (int)$questionNums[$n] + 1;
 
