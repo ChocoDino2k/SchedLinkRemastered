@@ -778,7 +778,7 @@ var JSON_calendar = {
       "No School",
       "No School",
       "No School",
-      "Red Day",
+      "No School",
       "No School",
       "No School"
     ]
