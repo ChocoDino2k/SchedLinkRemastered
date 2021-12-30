@@ -24,7 +24,7 @@ body {
 #period__header {
   width: 60vw;
   font-size: 4vw;
-  margin: 2vw 0 0.5vw;
+  margin: 2vw auto 0.5vw;
   padding: 0;
   border: 0;
   text-align: center;
@@ -35,7 +35,7 @@ body {
   outline: 0;
 }
 #period__header.active:focus-visible {
-  border-bottom: 0.5vw solid var(--secondary-background);
+  border-bottom: 0.5vw solid var(--secondary-background-color);
   margin-bottom: 0;
 }
 #period__time {
@@ -51,7 +51,7 @@ body {
 .gallery-dot {
   width: 4.2vw;
   padding: 4.2vw 0 0;
-  background: var(--background-fill);
+  background: var(--secondary-background-color);
   border-radius: 50%;
   display: inline-block;
   margin: 0 1.5vw 3vw;
@@ -59,7 +59,10 @@ body {
   cursor: default;
 }
 .gallery-dot.active {
-  background-color: var(--highlight-fill);
+  background-color: var(--active-color);
+}
+.gallery-dot:hover {
+  background-color: var(--secondary-background-color);
 }
 .gallery-dot:before {
   content: '';
@@ -83,6 +86,10 @@ body {
   top: 0px;
   font-family: var(--norm-font);
 }
+.arrow:hover {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-text);
+}
 
 #countdown {
   letter-spacing: 0.5vw;
@@ -96,20 +103,20 @@ body {
   padding: 0;
   margin: 0;
   font-size: 12vw;
-  color: var(--highlight-text-color);
+  color: var(--active-color);
 }
 #countdown__bar, #hall-pass .countdown__bar {
   position: relative;
   margin: 0 auto 2vw;
   width: 90%;
   height: 2.5vw;
-  background-color: var(--background-fill);
+  background-color: var(--secondary-background-color);
   overflow-x:hidden;
 }
 #countdown__progress, #hall-pass .countdown__bar .countdown__progress {
   width: 0%;
   height: 2.5vw;
-  background-color: var(--highlight-fill);
+  background-color: var(--active-color);
   transition: width 1s linear;
 }
 
@@ -130,12 +137,12 @@ body {
   font-family: var(--bold-font);
 }
 #sub div button.active {
-  background-color: var(--button-color);
-  color: var(--button-text-color);
+  background-color: var(--active-color);
+  color: var(--button-active-color);
 }
 #sub div button.active:hover {
-  background-color: var(--button-hover);
-  color: var(--button-hover-text-color);
+  background-color: var(--active-hover-color);
+  color: var(--button-active-color);
 }
 
 /* #lunch #lunch__toggle {
@@ -266,7 +273,7 @@ body {
 }
 #splash__reopen button {
     width: 100%;
-    background: var(--button-color);
+    background: var(--button-background-color);
     color: var(--button-text-color);
     font-size: 4vw;
     font-family: var(--norm-font);
@@ -320,7 +327,7 @@ body {
   font-family: var(--norm-font);
   font-size: 7vw;
   background:rgb(0,0,0,0);
-  color: var(--highlight-header);
+  color: var(--header-text-color);
 }
 
 #link-coupon {
@@ -416,7 +423,7 @@ body {
 }
 
 /* Hall Pass */
-
+/*
 #hall-pass {
   position: relative;
   font-size: 0;
@@ -446,11 +453,11 @@ body {
   line-height: 5vw;
   font-family: var(--bold-font);
   color: var(--highlight-text-color)
-}
+} */
 
 /* Video */
 
-#thank-you {
+/* #thank-you {
   width: 100%;
 }
 
@@ -504,7 +511,7 @@ body {
 }
 #help-popup a {
   color: white;
-}
+} */
 
 @media screen and (min-width: 500px) {
   #help-popup {
@@ -526,7 +533,7 @@ body {
   #period__header {
     width: 300px;
     font-size: 20px;
-    margin: 10px 0 2.5px;
+    margin: 10px auto 2.5px;
     letter-spacing: 1px;
   }
   #period__header.active:focus-visible {

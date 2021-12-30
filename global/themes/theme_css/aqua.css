@@ -1,0 +1,30 @@
+:root {
+  --norm-font: "robotoregular";
+  --light-font: "robotolight";
+  --bold-font: "robotobold";
+
+  --background-color: rgb(228,228,228);
+  --secondary-background-color: rgb(210,210,210);
+  --container-background-color: white;
+  --container-text-color: rgb(0,30,100);
+
+  --button-background-color: white;
+  --button-text-color: rgb(0,30,100);
+  --button-hover-background: rgb(200,200,200);
+  --button-hover-text: rgb(0,70,180);
+  --button-active-color: white;
+
+  --header-background-color: rgb(0,50,150);
+  --header-text-color: white;
+  --navigation-background-color: white;
+  --navigation-icon-color: rgb(100,100,100);
+  --navigation-active-icon-color: rgb(0,100,255);
+
+  --active-color: rgb(0,100,255);
+  --active-hover-color: rgb(20,120,255);
+
+  --outline-color: rgb(180,180,180);
+
+  --anchor-color: rgb(0,100,255);
+  --anchor-hover: rgb(105,105,105);
+}

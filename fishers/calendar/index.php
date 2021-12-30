@@ -4,6 +4,8 @@
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Pragma: no-cache');
 header('Expires: 0');
+$r = $_SERVER['DOCUMENT_ROOT'];
+include_once($r . "/global/themes/getCurrentTheme.php");
  ?>
 
 <html lang="en" dir="ltr">
@@ -28,15 +30,18 @@ header('Expires: 0');
     <link rel="stylesheet" href="css/calendar.css?v=8">
   </head>
   <body>
+    <style media="screen">
+      <?php include_once($r . "/global/themes/theme_css/" . $currentTheme . ".css"); ?>
+    </style>
+    <canvas id = "canvas"></canvas>
     <div class="wrapper">
       <?php
-        $r = $_SERVER['DOCUMENT_ROOT'];
         include_once($r . "/global/modules/noscript.html");
         include_once( $r . "/global/modules/header.html");
       ?>
       <article id = "main_body">
         <section id = "calendar_section">
-          <div id = "calendar_container" class="">
+          <div id = "calendar_container" class="container">
             <div class="calendar_head">
               <button type="button" name="button" class = "calendar_head_btn" value = '-1'><p></p></button>
               <div id = "calendar_date"><p>undefined</p>
@@ -104,6 +109,8 @@ header('Expires: 0');
 
           setUserData(true);
           replaceDays();
+
+          <?php include_once($r . "/global/themes/theme_js/" . $currentTheme . ".js"); ?>
         }
       }
       </script>

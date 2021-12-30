@@ -69,10 +69,10 @@ function setBackground(day, elm){
   if(background == undefined){
     background = JSON_sched["Unscheduled"][0].color;
   }
-  elm.style.background = "radial-gradient(1.5rem circle," + background + " 40%," +  ((day.month - calendar.currentMonth === 0)? "transparent": "var(--secondary-background)")  + " 41%)";
+  elm.style.background = "radial-gradient(1.5rem circle," + background + " 40%," +  ((day.month - calendar.currentMonth === 0)? "transparent": "var(--secondary-background-color)")  + " 41%)";
   rgb = colorRGB(background);
 
-  elm.style.color = "var(--container-color)";
+  elm.style.color = "var(--container-text-color)";
   // if(needsTextColorSwitch(rgb[0], rgb[1], rgb[2])){
   //   elm.style.color = "rgb(255,255,255)";
   // }else{
@@ -198,7 +198,7 @@ function createScheduleHead(name = "Unscheduled"){
 
   return container;
 }
-function createScheduleMain(period = {name:"", ST: "", ET:""}, isBlock = false){
+function createScheduleMain(period = {name:"", startTimeDigits: "", endTimeDigits:""}, isBlock = false){
   return createElement("div",["class","schedule_part"],["children",
     [
       createPeriodHeading(period.name, isBlock),
@@ -213,11 +213,11 @@ function createPeriodHeading(name = "", isBlock = false){
     ]
   ])
 }
-function createPeriodTime(period = {ST: "", ET: ""}){
+function createPeriodTime(period = {startTimeDigits: "", endTimeDigits: ""}){
   return createElement("div", ["class", "period_time"], ["children",[
-  createElement("p",["text",to12H(period.ST)]),
+  createElement("p",["text",to12H(period.startTimeDigits)]),
   createElement("p", ["text", "-"] ),
-  createElement("p",["text",to12H(period.ET)])
+  createElement("p",["text",to12H(period.endTimeDigits)])
   ] ]
   );
 }
@@ -256,9 +256,9 @@ function fillSchedule(name = ""){
     for(let i=1; i < JSON_sched[name].length; i++){
       container = createElement("div", ["class","part_container"]);
       container.appendChild(createScheduleMain(JSON_sched[name][i]));
-      if(JSON_sched[name][i].sub != undefined){
-        for(let key of Object.getOwnPropertyNames(JSON_sched[name][i].sub) ){
-            container.appendChild(createScheduleLabelBlock(key, JSON_sched[name][i].sub[key]));
+      if(JSON_sched[name][i].intraschedule != null){
+        for(let key of Object.getOwnPropertyNames(JSON_sched[name][i].intraschedule) ){
+            container.appendChild(createScheduleLabelBlock(key, JSON_sched[name][i].intraschedule[key]));
         }
       }
 

@@ -116,7 +116,7 @@ function getTimeRemaining(gal, idx){
     start = tf.s[0] * 60 + tf.s[1],
     end = tf.e[0] * 60 + tf.e[1];
     if(curTotalSec > end*60){return [-1, true];}
-    return (curTotalSec < start*60)? [start*60 - curTotalSec, true, start*60] : [end*60 - curTotalSec, false, end*60];
+    return (curTotalSec < start*60)? [start*60 - curTotalSec, true] : [end*60 - curTotalSec, false];
 
 }
 function updateCurrentDot(){

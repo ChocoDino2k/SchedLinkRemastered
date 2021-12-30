@@ -1,0 +1,224 @@
+#progress__info {
+  font-family: var(--norm-font);
+  font-size: 3.2vw;
+}
+#progress__info p {
+  padding: 2vw;
+  margin: 0;
+}
+
+#progress__cards {
+  display: flex;
+}
+#progress__cards .progress-card {
+  flex: 1;
+}
+#progress__cards .progress-card h3{
+  font-family: var(--bold-font);
+  font-size: 4vw;
+  margin: 0;
+  padding: 2.8vw;
+}
+#progress__cards .progress-card > p {
+  margin: 0;
+  padding: 2.8vw;
+  font-size: 2.8vw;
+  font-style: italic;
+}
+
+#puzzle-card {
+  font-size: 0;
+}
+#puzzle-card h1 {
+  margin: 0;
+  font-family: var(--bold-font);
+  font-size: 4vw;
+  line-height: 4vw;
+  padding: 2.8vw;
+}
+#puzzle-card svg {
+  padding-bottom: 2.8vw;
+}
+
+.points-fill {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  width: 26.8vw;
+  height: 26.8vw;
+  background: var(--background-fill);
+  margin: auto;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+.points-fill h1{
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 4.8vw;
+  font-family: var(--bold-font);
+  color: var(--highlight-header-text-color);
+}
+.points-fill p{
+  position: absolute;
+  margin: 0;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 2.8vw;
+  font-family: var(--norm-font);
+  font-style: italic;
+  color: var(--highlight-header-text-color);
+}
+.points-fill.daily-check {
+  mask-image: url("/images/icons/bell.svg");
+  -webkit-mask-image: url("/images/icons/bell.svg");
+}
+.points-fill.planner {
+  mask-image: url("/images/icons/planner.svg");
+  -webkit-mask-image: url("/images/icons/planner.svg");
+}
+
+.points-fill__inner{
+  position: relative;
+  width: 100%;
+  height: 0;
+  top: 0;
+  background: var(--highlight-fill);
+  transition: height 1s;
+}
+
+.progress-card.info-card {
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 2.8vw;
+  position: fixed;
+  display: none;
+}
+.progress-card.info-card.active {
+  display: block;
+}
+.progress-card.info-card h3{
+  font-family: var(--bold-font);
+  font-size: 4vw;
+  margin: 0;
+  padding: 2.8vw;
+}
+.progress-card.info-card h2{
+  font-family: var(--bold-font);
+  color: var(--highlight-text-color);
+  font-size: 6.4vw;
+  margin: 0;
+  padding: 0 2.8vw 2.8vw;
+}
+.progress-card.info-card > p {
+  margin: 0;
+  padding: 0 2.8vw 2.8vw;
+  font-size: 2.8vw;
+  font-style: italic;
+}
+.progress-card.info-card > .info-card__desc{
+  margin: 0;
+  padding: 2.8vw 2.8vw 1.4vw;
+  font-size: 2.8vw;
+  font-style: normal;
+}
+.progress-card.info-card .points-fill h1{
+  padding: 0;
+}
+.progress-card.info-card .points-fill p{
+  padding: 0;
+}
+.progress-card.info-card .streaks-timeline{
+  width: 75vw;
+}
+
+#puzzle__info-card input {
+  width: 60vw;
+}
+#puzzle__info-card button {
+  width: 60vw;
+  background: var(--button-color);
+  color: var(--button-text-color);
+  font-size: 4vw;
+  border-radius: 1vw;
+  margin: 1vw 0 2.8vw;
+}
+.puzzle-image {
+  fill: var(--highlight-fill);
+  height: 10vw;
+  width: 20vw;
+}
+
+@media screen and (min-width: 750px) {
+  #progress__info {
+    font-size: 24px;
+  }
+  #progress__info p {
+    padding: 15px;
+  }
+
+  #progress__cards .progress-card h3{
+    font-size: 30px;
+    padding: 21px;
+  }
+  #progress__cards .progress-card > p {
+    padding: 21px;
+    font-size: 21px;
+  }
+
+  #puzzle-card h1 {
+    font-size: 30px;
+    line-height: 30px;
+    padding: 21px;
+  }
+  #puzzle-card svg {
+    padding-bottom: 21px;
+  }
+
+  .points-fill {
+    width: 201px;
+    height: 201px;
+  }
+  .points-fill h1{
+    font-size: 36px;
+  }
+  .points-fill p{
+    font-size: 21px;
+  }
+
+  .progress-card.info-card {
+    padding: 21px;
+  }
+  .progress-card.info-card#daily-check__info-card, .progress-card.info-card#planner__info-card {
+    width: 400px;
+  }
+  .progress-card.info-card h3{
+    font-size: 30px;
+    padding: 21px;
+  }
+  .progress-card.info-card h2{
+    font-size: 48px;
+    padding: 0 21px 21px;
+  }
+  .progress-card.info-card > p {
+    padding: 0 21px 21px;
+    font-size: 21px;
+  }
+  .progress-card.info-card > .info-card__desc{
+    padding: 21px 21px 10.5px;
+    font-size: 21px;
+  }
+
+  .puzzle-image {
+    height: 75px;
+    width: 150px;
+  }
+}

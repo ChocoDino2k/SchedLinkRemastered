@@ -11,43 +11,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
-:root {
-  --norm-font: "robotoregular";
-  --light-font: "robotolight";
-  --bold-font: "robotobold";
-
-  --highlight-header: rgb(255,0,0);
-  --highlight-header-text-color: rgb(255,255,255);
-  --highlight-fill: rgb(255,0,0);
-  --highlight-text-color: rgb(255,0,0);
-
-  --background-fill: rgb(228,228,228);
-
-  --container-color: rgb(255,255,255);
-  --container-color-transparent: rgba(255,255,255,0);
-  --container-hover: rgb(170,170,170);
-  --container-hover-text-color: var(--container-text-color);
-  --container-text-color: rgb(0,0,0);
-  --container-icon-color: rgb(0,0,0);
-  --secondary-text-color: rgb(170,170,170);
-  --secondary-background: rgb(210,210,210);
-
-  --button-color: rgb(255,0,0);
-  --button-hover: rgb(200,0,0);
-  --button-text-color: rgb(255,255,255);
-  --button-hover-text-color: rgb(255,255,255);
-
-  --outline-color: rgb(255,0,0);
-
-  --anchor-color: rgb(255,0,0);
-  --anchor-hover: rgb(200,0,0);
-
-  --nav-icons: rgb(100,100,100);
-
-  --background-color: rgb(228,228,228);
-}
-
 html {
   height: 100%;
 }
@@ -92,6 +55,12 @@ button {
   border: none;
   cursor: pointer;
   font-family: var(--norm-font);
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+}
+button:hover {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-text);
 }
 
 .wrapper {
@@ -119,7 +88,7 @@ button {
   margin-bottom: 1vw;
 }
 .container {
-  background: var(--container-color);
+  background: var(--container-background-color);
   color: var(--container-text-color);
   text-align:center;
 }
@@ -131,10 +100,10 @@ button {
   margin-right: 1vw;
 }
 
-.hover:hover {
+/* .hover:hover {
   background: var(--container-hover);
   color: var(--container-hover-text-color);
-}
+} */
 
 body.fullsize-content {
   overflow: auto;
@@ -154,7 +123,10 @@ header {
   padding-bottom: 0;
   margin: auto;
   text-align:center;
-  background-color: var(--highlight-header);
+  background-color: var(--header-background-color);
+}
+header a:link {
+  color: var(--header-text-color);
 }
 #header__anchor {
   position: absolute;
@@ -165,7 +137,7 @@ header {
   font-size: 7.5vw;
   line-height: 7.5vw;
   font-weight: bold;
-  color: var(--highlight-header-text-color);
+  color: var(--header-text-color);
   background-color: transparent;
   transform: translate(-50%,-50%);
 }
@@ -174,17 +146,17 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
-  border-top: solid 2px var(--nav-icons);
+  border-top: solid 2px var(--navigation-icon-color);
   z-index: 10;
 }
 #nav-tabs {
   height: 12vw;
-  background: var(--container-color);
-  color: var(--container-text-color);
+  background: var(--navigation-background-color);
+  color: var(--navigation-text-color);
   text-align:center;
 }
 body.fullsize-content #nav-tabs {
-  background-color: var(--highlight-header);
+  background-color: var(--navigation-background-color);
 }
 
 #nav-tabs a {
@@ -193,28 +165,28 @@ body.fullsize-content #nav-tabs {
 }
 #nav-tabs a div {
   display: inline-block;
-  width: calc(100% / 2);
+  width: calc(100% / 3);
   height: auto;
 }
-#nav-tabs a div:hover{
-  background-color: var(--container-hover);
-}
+/* #nav-tabs a div:hover{
+  background-color: var(--anchor-hover);
+} */
 #nav-tabs a div svg {
   margin: 2vw;
   width: auto;
   height: 8vw;
-  fill: var(--nav-icons);
+  fill: var(--navigation-icon-color);
 }
 #nav-tabs a.selected div svg {
-  fill: var(--highlight-fill);
+  fill: var(--navigation-active-icon-color);
 }
 
 .modal-polygon {
-  fill:var(--highlight-fill);
+  fill:var(--navigation-active-icon-color);
 }
 
 footer {
-  background-color: var(--highlight-header);
+  background-color: var(--navigation-background-color);
   border-top: solid 5px white;
   display: flex;
   flex-direction: column;
@@ -336,4 +308,14 @@ img.svg-mask-only:after {
 
 svg {
     fill: currentColor;
+}
+
+canvas {
+  pointer-events: none;
+    z-index: 5;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }

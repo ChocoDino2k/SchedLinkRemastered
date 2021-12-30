@@ -1,0 +1,35 @@
+:root {
+  --norm-font: "robotoregular";
+  --light-font: "robotolight";
+  --bold-font: "robotobold";
+
+  --background-color: #edf7ff;
+  --secondary-background-color: #b9cbd0bf;
+  --container-background-color: #dbf8ffa3;
+  --container-text-color: black;
+
+  --button-background-color: #1e96e6;
+  --button-text-color: white;
+  --button-hover-background: #fff;
+  --button-hover-text: lightblue;
+  --button-active-color: white;
+
+  --header-background-color: #00E1FF;
+  --header-text-color: white;
+  --navigation-background-color: #00E1FF;
+  --navigation-icon-color: #5979FF;
+  --navigation-active-icon-color: white;
+
+  --active-color: #8bf7ff;
+  --active-hover-color: #1a90e0;
+
+  --outline-color: #0064b4;
+
+  --anchor-color: #1e96e6;
+  --anchor-hover: #1464b4;
+}
+
+body {
+  background: url("/global/themes/theme_accessories/frost_background.jpg") repeat-y center center fixed #edf7ff;
+  background-size: cover;
+}

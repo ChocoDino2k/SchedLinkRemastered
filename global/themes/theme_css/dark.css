@@ -1,0 +1,30 @@
+:root {
+  --norm-font: "robotoregular";
+  --light-font: "robotolight";
+  --bold-font: "robotobold";
+
+  --background-color: black;
+  --secondary-background-color: rgb(170,170,170);
+  --container-background-color:  rgb(42,46,51);
+  --container-text-color: firebrick;
+
+  --button-background-color:  rgb(42,46,51);
+  --button-text-color: firebrick;
+  --button-hover-background: rgb(20,28,34);
+  --button-hover-text: firebrick;
+  --button-active-color: rgb(130,0,0);
+
+  --header-background-color: firebrick;
+  --header-text-color: black;
+  --navigation-background-color: rgb(30,34,39);
+  --navigation-icon-color: rgb(100,100,100);
+  --navigation-active-icon-color: red;
+
+  --active-color: firebrick;
+  --active-hover-color: rgb(90,24,29);
+
+  --outline-color: rgb(180,180,180);
+
+  --anchor-color: red;
+  --anchor-hover: black;
+}

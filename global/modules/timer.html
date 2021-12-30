@@ -1,13 +1,14 @@
 <section class="row" id="period">
-  <button class="container arrow hover" onclick="updatePeriod(gallery, -1, false)">
+  <button class="container arrow hover" onclick="scrollPeriod(-1)">
     &#8249;
   </button>
   <div id="period__box" class="container">
-    <input class="hover" type="text" id="period__header" placeholder="Enter Period Name" value="No Period" maxlength="20" onfocusout = "savePeriodName(this)">
+    <!-- <input class="hover" type="text" id="period__header" placeholder="Enter Period Name" value="No Period" maxlength="20" onfocusout = "savePeriodName(this)"> -->
+    <p id = "period__header"></p>
     <p id="period__time">Not School Hours</p>
     <div id="period__gallery"></div>
   </div>
-  <button class="container arrow hover" onclick="updatePeriod(gallery, 1, false)">
+  <button class="container arrow hover" onclick="scrollPeriod(1)">
     &#8250;
   </button>
 </section>
