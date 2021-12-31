@@ -80,14 +80,14 @@ $connection -> close();
      <title>SchedLink</title>
      <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-     <script src="/global/js/DOM.js?v=8" charset="utf-8"></script>
-     <script src="/global/js/theme_shop.js?v=8" charset="utf-8"></script>
+     <script src="/global/js/DOM.js?v=9" charset="utf-8"></script>
+     <script src="/global/js/theme_shop.js?v=9" charset="utf-8"></script>
 
-     <script src="/global/themes/plain_names.js?v=8" charset="utf-8"></script>
+     <script src="/global/themes/plain_names.js?v=9" charset="utf-8"></script>
 
-     <link rel="stylesheet" href="/global/css/global.css?v=8">
-     <link rel="stylesheet" href="/global/css/home.css?v=8">
-     <link rel="stylesheet" href="theme_shop.css?v=8">
+     <link rel="stylesheet" href="/global/css/global.css?v=9">
+     <link rel="stylesheet" href="/global/css/home.css?v=9">
+     <link rel="stylesheet" href="theme_shop.css?v=9">
 
    </head>
 
