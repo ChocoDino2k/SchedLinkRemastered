@@ -62,6 +62,7 @@ function startImageLoad() {
   let loading;
   for(let img of imgs) {
     if(img.alt == "noPreload"){continue;}
+    img.src = "../../global/images/preLoad.png";
     loading = new Image();
     loading.onload = function() {
       img.src = this.src;
@@ -94,7 +95,9 @@ function showThemePuzzle(theme) {
   cont.children[0].textContent = theme + " - Part " + (num + 1);
   cont.children[2].children[1].value = theme;
   if(question[num].includes("../../")) {
-    cont.children[1].children[0].classList = "hidden";
+    let combined = parseText(question[num]),
+    src = combined.shift().textContent;
+    replaceAllChildren(cont.children[1].children[0], combined);
     let img = cont.children[1].children[1];
     img.alt = theme;
     let loading = new Image();
@@ -107,11 +110,23 @@ function showThemePuzzle(theme) {
     if(img.classList.contains("loading")) {
       img.classList = "preview";
     }
-    loading.src = question[num] + "-" + ((isPortrait)? "portrait" : "landscape") + ".png";
+    loading.src = src + "-" + ((isPortrait)? "portrait" : "landscape") + ".png";
   } else {
     cont.children[1].children[1].classList = "preview hidden";
-    cont.children[1].children[0].textContent = question[num];
+    replaceAllChildren(cont.children[1].children[0], parseText(question[num]));
     cont.children[1].children[0].classList = "";
   }
   cont.parentNode.classList = "shown";
+}
+
+function parseText(text) {
+  let breaks = text.split("<br>");
+  let p;
+  let parts = [];
+  for(let phrase of breaks) {
+    p = document.createElement("p");
+    p.textContent = phrase;
+    parts.push(p);
+  }
+  return parts;
 }

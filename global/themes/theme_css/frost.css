@@ -14,11 +14,11 @@
   --button-hover-text: lightblue;
   --button-active-color: white;
 
-  --header-background-color: #00E1FF;
+  --header-background-color: #0064b4;
   --header-text-color: white;
-  --navigation-background-color: #00E1FF;
-  --navigation-icon-color: #5979FF;
-  --navigation-active-icon-color: white;
+  --navigation-background-color: white;
+  --navigation-icon-color: #0064b4;
+  --navigation-active-icon-color: #00E1FF;
 
   --active-color: #8bf7ff;
   --active-hover-color: #1a90e0;

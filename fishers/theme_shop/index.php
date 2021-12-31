@@ -42,7 +42,7 @@ if(isset($_POST["answer"]) and isset($_POST["theme"])) { //checking answer
   }
 
   if(array_key_exists($n, $questions)) {
-    $userAns = stripslashes(strip_tags($_POST["answer"]));
+    $userAns = strtolower(stripslashes(strip_tags($_POST["answer"])));
     if(in_array( $userAns, $ans[$questionNums[$n]])) {
 
       if($questionNums[$n] == count($questions[$n]) - 1) {
@@ -73,9 +73,6 @@ $connection -> close();
 
  <html lang="en" dir="ltr">
    <head>
-     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-     <meta http-equiv="Pragma" content="no-cache" />
-     <meta http-equiv="Expires" content="0" />
 
      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,7 +83,7 @@ $connection -> close();
      <script src="/global/js/DOM.js?v=8" charset="utf-8"></script>
      <script src="/global/js/theme_shop.js?v=8" charset="utf-8"></script>
 
-     <script src="/global/themes/plain_names.js" charset="utf-8"></script>
+     <script src="/global/themes/plain_names.js?v=8" charset="utf-8"></script>
 
      <link rel="stylesheet" href="/global/css/global.css?v=8">
      <link rel="stylesheet" href="/global/css/home.css?v=8">
@@ -111,7 +108,7 @@ $connection -> close();
           <div id = "puzzle-container" class = "container">
             <h2>theme heading</h2>
             <div id ="puzzle-content">
-              <p class = "hidden"></p>
+              <div id = "text-puzzle" class = ""></div>
               <img src="" alt="noPreload" class = "hidden preview">
             </div>
             <form class="puzzle-post" action="" method="post">

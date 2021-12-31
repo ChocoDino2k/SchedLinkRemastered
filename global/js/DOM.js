@@ -54,6 +54,10 @@ function replaceElementsWith(parent, newNodes){
     }
   }
 }
+function replaceAllChildren(parent, newNodes) {
+  clearChildren(parent);
+  replaceElementsWith(parent, newNodes);
+}
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }

@@ -21,13 +21,14 @@ h2 {
     position: relative;
     width: 25%;
     max-width: 150px;
+    margin: 1px 0.5vh;
 }
 
 .unit-button {
   position: relative;
     background-color: RGB(0,0,0,0);
     padding: 0;
-      margin: 1px 0.5vh;
+    width: 100%;
 }
 .unit-button:hover {
   background-color: RGB(0,0,0,0);
@@ -52,6 +53,7 @@ h2 {
   height:100%;
   display: block;
   filter: blur(20px);
+  aspect-ratio: 0.6;
 }
 img.preview {
   background: var(--secondary-background-color);
@@ -189,11 +191,7 @@ img.loading {
   }
 
   .theme-unit {
-    width: 33%;
     max-width: 250px;
-  }
-
-  .unit-button {
     margin: 15px 5px;
   }
   .unit-img-container {
@@ -202,6 +200,9 @@ img.loading {
   }
   .unit-img-container.locked::after {
     border-radius: 1vw;
+  }
+  .unit-img-container img {
+    aspect-ratio: 2;
   }
   .theme-fullscreen {
     padding: 10px 15px;
