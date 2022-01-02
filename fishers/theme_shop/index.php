@@ -8,30 +8,35 @@ $r = $_SERVER['DOCUMENT_ROOT'];
 
 include_once($r . "/global/themes/getCurrentTheme.php");
 
-
-//$displayConfetti = isset($_REQUEST["confetti"]);
-$loadPuzzle = false;
-$isCorrect = false;
 $connection = mysqli_connect('localhost', 'schedasr_admin', 'bananaman10?', 'schedasr_userbase');
 if($conn -> connect_error) {
   header("HTTP/1.1 500 Internal Server Error");
   exit;
 }
+$loadPuzzle = false;
+$isCorrect = false;
+$questions = array();
+$questionNums = array();
 
-$result = $connection -> query("SELECT themeName, questions FROM themeset WHERE 1");
-$questions;
-$questionNums;
+if($cookiesEnabled and !$hasAccount) {
+  $id = hash('sha256', strval(uniqid(rand(0, 100))));
+  $connection -> query("INSERT INTO userset (ID) VALUES ('$id')");
+  setcookie("IDString", $id, time() + 31536000, "/");
+}
+
+
+$result = $connection -> query("SELECT themeName, questions FROM themeset WHERE 1"); //get theme data
 if($result -> num_rows > 0) {
   while($row = $result -> fetch_assoc()) {
     if(!in_array($row["themeName"], array($unlocks))) {
       $questionNums[$row["themeName"]] = ((array_key_exists($row["themeName"], $themeProgress) )? (int)$themeProgress[$row["themeName"]] : 0);
-      $questions[$row["themeName"]] = json_decode($row["questions"]);
+      $questions[$row["themeName"]] = json_decode($row["questions"])[$questionNums[$row["themeName"]]];
     }
   }
 }
 
 
-if(isset($_POST["answer"]) and isset($_POST["theme"])) { //checking answer
+if(isset($_POST["answer"]) and isset($_POST["theme"]) and $hasAccount) { //checking answer
   $n = stripslashes(strip_tags($_POST["theme"]));
   $result = $connection -> query("SELECT questionAnswers FROM themeset WHERE themeName = '$n'");
   $ans;

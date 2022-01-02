@@ -94,8 +94,8 @@ function showThemePuzzle(theme) {
   num = QUESTIONSNUMS[theme];
   cont.children[0].textContent = theme + " - Part " + (num + 1);
   cont.children[2].children[1].value = theme;
-  if(question[num].includes("../../")) {
-    let combined = parseText(question[num]),
+  if(question.includes("../../")) {
+    let combined = parseText(question),
     src = combined.shift().textContent;
     replaceAllChildren(cont.children[1].children[0], combined);
     let img = cont.children[1].children[1];
@@ -113,7 +113,7 @@ function showThemePuzzle(theme) {
     loading.src = src + "-" + ((isPortrait)? "portrait" : "landscape") + ".png";
   } else {
     cont.children[1].children[1].classList = "preview hidden";
-    replaceAllChildren(cont.children[1].children[0], parseText(question[num]));
+    replaceAllChildren(cont.children[1].children[0], parseText(question));
     cont.children[1].children[0].classList = "";
   }
   cont.parentNode.classList = "shown";
