@@ -17,6 +17,7 @@ $loadPuzzle = false;
 $isCorrect = false;
 $questions = array();
 $questionNums = array();
+$questionLengths = array();
 
 if($cookiesEnabled and !$hasAccount) {
   $id = hash('sha256', strval(uniqid(rand(0, 100))));
@@ -25,12 +26,13 @@ if($cookiesEnabled and !$hasAccount) {
 }
 
 
-$result = $connection -> query("SELECT themeName, questions FROM themeset WHERE 1"); //get theme data
+$result = $connection -> query("SELECT themeName, questions, numQuestions FROM themeset WHERE 1"); //get theme data
 if($result -> num_rows > 0) {
   while($row = $result -> fetch_assoc()) {
     if(!in_array($row["themeName"], array($unlocks))) {
       $questionNums[$row["themeName"]] = ((array_key_exists($row["themeName"], $themeProgress) )? (int)$themeProgress[$row["themeName"]] : 0);
       $questions[$row["themeName"]] = json_decode($row["questions"])[$questionNums[$row["themeName"]]];
+      $questionsLengths[$row["themeName"]] = $row["numQuestions"];
     }
   }
 }
@@ -50,7 +52,7 @@ if(isset($_POST["answer"]) and isset($_POST["theme"]) and $hasAccount) { //check
     $userAns = strtolower(stripslashes(strip_tags($_POST["answer"])));
     if(in_array( $userAns, $ans[$questionNums[$n]])) {
 
-      if($questionNums[$n] == count($questions[$n]) - 1) {
+      if($questionNums[$n] == $questionsLengths[$n] - 1) {
         $unlocks[count($unlocks)] = $n;
         $unlocks = json_encode($unlocks);
         $connection -> query("UPDATE userset SET unlockedThemes = '$unlocks' WHERE ID = '$id'");
@@ -86,7 +88,7 @@ $connection -> close();
      <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
      <script src="/global/js/DOM.js?v=9" charset="utf-8"></script>
-     <script src="/global/js/theme_shop.js?v=9" charset="utf-8"></script>
+     <script src="/global/js/theme_shop.js?v=10" charset="utf-8"></script>
 
      <script src="/global/themes/plain_names.js?v=9" charset="utf-8"></script>
 
