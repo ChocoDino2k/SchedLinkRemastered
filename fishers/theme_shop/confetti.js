@@ -33,8 +33,6 @@ colors = [
 
 function randomColor() {
   colorSet = colors[Math.floor(Math.random() * 7)].slice();
-  console.log("Color");
-  console.log(colorSet[0] + "," + colorSet[1] + "," + colorSet[2]);
   return colorSet[0] + "," + colorSet[1] + "," + colorSet[2];
 }
 
