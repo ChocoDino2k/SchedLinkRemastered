@@ -35,7 +35,7 @@ function createScheduleHead(name = ""){
 
   return container;
 }
-function createScheduleMain(period = {name:"", ST: "", ET:""}, includeAdd = true, isBlock = false){
+function createScheduleMain(period = {name:"", startTimeDigits: "", endTimeDigits:""}, includeAdd = true, isBlock = false){
   return createElement("div",["class","schedule_part"],["children",
     [
       createPeriodHeading(period.name, includeAdd, isBlock),
@@ -51,12 +51,12 @@ function createPeriodHeading(name = "", includeAdd = false, isBlock = false){
     ]
   ])
 }
-function createPeriodTime(period = {ST: "", ET: ""}){
+function createPeriodTime(period = {startTimeDigits: "", endTimeDigits: ""}){
 
   return createElement("div", ["class", "period_time"], ["children",[
-  createElement("input", ["type", "text"], ["value",  period.ST], ["placeholder","00:00"], ["maxlength","5"], ["onkeypress", numbersOnly]),
+  createElement("input", ["type", "text"], ["value",  period.startTimeDigits], ["placeholder","00:00"], ["maxlength","5"], ["onkeypress", numbersOnly]),
   createElement("p", ["text", "-"] ),
-  createElement("input", ["type", "text"], ["value",  period.ET], ["placeholder","24:00"], ["maxlength","5"])
+  createElement("input", ["type", "text"], ["value",  period.endTimeDigits], ["placeholder","24:00"], ["maxlength","5"])
   ] ]
   );
 }
@@ -92,9 +92,9 @@ function fillSchedule(name = ""){
     for(let i=1; i < JSON_sched[name].length; i++){
       container = createElement("div", ["class","part_container"]);
       container.appendChild(createScheduleMain(JSON_sched[name][i]));
-      if(JSON_sched[name][i].sub != undefined){
-        for(let key of Object.getOwnPropertyNames(JSON_sched[name][i].sub) ){
-            container.appendChild(createScheduleLabelBlock(key, JSON_sched[name][i].sub[key]));
+      if(JSON_sched[name][i].intraschedule != null){
+        for(let key of Object.getOwnPropertyNames(JSON_sched[name][i].intraschedule) ){
+            container.appendChild(createScheduleLabelBlock(key, JSON_sched[name][i].intraschedule[key]));
         }
       }
 
@@ -112,7 +112,7 @@ function removePart(img, whole = false){
 function addPart(el, isBlock = false, inBody = false){
   if(inBody){
     if(isBlock){
-      el.parentNode.parentNode.parentNode.appendChild(createScheduleMain({name:"", ST: "", ET:""}, false, true))
+      el.parentNode.parentNode.parentNode.appendChild(createScheduleMain({name:"", startTimeDigits: "", endTimeDigits:""}, false, true));
     }else{
       el.parentNode.parentNode.parentNode.parentNode.appendChild(createScheduleLabelBlock());
     }
@@ -155,17 +155,17 @@ function parsePart(p){
   let nc = findElements(p, false, ".period_heading"),
   tc = findElements(p, false, ".period_time"),
   tcc = findElements(tc, true, "input");
-  return {name: findElements(nc, false, "input").value, ST: tcc[0].value, ET: tcc[1].value };
+  return {name: findElements(nc, false, "input").value, startTimeDigits: tcc[0].value, startTime: calculateTotalSeconds(breakTime(tcc[0].value)),
+  endTimeDigits: tcc[1].value, endTime: calculateTotalSeconds(breakTime(tcc[1].value)) };
 }
 function parseBlock(b){
   let nc = findElements(b, false, ".period_heading"),
   sc = findElements(b, true, ".schedule_part"),
-  obj = {name: findElements(nc, false, "input").value, sub: []};
-
-  for(let child of sc){
-    obj.sub.push(parsePart(child));
+  obj = {name: findElements(nc, false, "input").value, intraschedule: {}};
+  obj.intraschedule[nc.children[0].value] = [];
+  for(let child of sc) {
+    obj.intraschedule[nc.children[0].value].push(parsePart(child));
   }
-
 
   return obj;
 }
@@ -178,13 +178,13 @@ function parseSchedule(){
 function mapPart(p){
   let obj = {};
   obj = parsePart(p.c.children[0]);
-  obj["sub"] = {};
-  obj["hasSub"] = p.multipleChildren;
+  obj["intraschedule"] = {};
+  obj["intraindex"] = -1;
   if(p.multipleChildren){
     let b;
     for(let i=1; i < p.c.children.length; i++){
         b = parseBlock(p.c.children[i]);
-        obj["sub"][b.name] = b.sub;
+        obj["intraschedule"][b.name] = b.intraschedule[b.name];
     }
   }
 
@@ -333,4 +333,14 @@ function hueToRGB(h,s,l){
   //   for(i=0; i<6-len; i++)
   //     hex = '0'+hex;
   return "rgb(" + r + ", " + g + ", " + b + ")";
+}
+
+function breakTime(time){
+  return (time.split(":")).map(s => parseInt(s));
+}
+function sumTotal(total, num) {
+  return num + total;
+}
+function calculateTotalSeconds(arr) {
+  return (arr.map( (n, i) => Math.pow(60, arr.length - i) * n)).reduce(sumTotal, 0);
 }

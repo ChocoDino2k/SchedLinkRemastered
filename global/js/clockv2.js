@@ -91,16 +91,20 @@ function updateClock(){
   if (pageLoadDate != now.toISOString().split('T')[0]) {
     // new day
     window.location.reload(true);
-    return;
+    return false;
   }
+  return true;
 }
 
 //main loop
 function tick() {
-  updateClock();
-  checkPeriod();
-  window.cancelAnimationFrame(updateClockFrame);
-  updateClockFrame = window.requestAnimationFrame(tick);
+  if(updateClock()) {
+    checkPeriod();
+    window.cancelAnimationFrame(updateClockFrame);
+    updateClockFrame = window.requestAnimationFrame(tick);
+  } else {
+    window.cancelAnimationFrame(updateClockFrame);
+  }
 }
 
 /**

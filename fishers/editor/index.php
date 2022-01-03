@@ -9,13 +9,15 @@
     <title>Schedule Editor</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="../json/schedules.js?v=6" charset="utf-8"></script>
-    <script src="../json/filler.js?v=6" charset="utf-8"></script>
+    <script src="../json/schedules.js?v=7" charset="utf-8"></script>
+    <script src="../json/filler.js?v=7" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=6" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=7" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=6">
-    <link rel="stylesheet" href="css/cal.css?v=6">
+    <link rel="stylesheet" href="/global/css/global.css?v=7">
+    <link rel="stylesheet" href="../calendar/css/calendar.css?v=7">
+    <link rel="stylesheet" href="css/editor.css?v=7">
+    <link rel="stylesheet" href="/global/themes/theme_css/default.css?v=7">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
@@ -59,7 +61,7 @@
           </div>
       </section>
       <section id = "edit_section">
-        <div id = "calendar_container" class="">
+        <div id = "calendar_container" class="container">
           <div class="calendar_head">
             <button type="button" name="button" class = "calendar_head_btn" value = '-1'><p></p></button>
             <div id = "calendar_date"><p>undefined</p>
@@ -76,7 +78,7 @@
             <div class="group"><p class = "weekday">U</p><div class="day_group"><p class = "day">0</p><p class = "day">0</p><p class = "day">0</p><p class = "day">0</p><p class = "day">0</p><p class = "day">0</p></div></div>
           </div>
         </div>
-        <div id = "schedule_container" class="hidden">
+        <div id = "schedule_container" class="container hidden">
           <div id = "schedule_head">
 
           </div>
@@ -89,6 +91,9 @@
         </div>
       </section>
     </article>
+    <?php
+      include_once($r . "/global/modules/navigation.html");
+    ?>
   </div>
 </body>
 <script src="/global/js/calendar.js?v=5" charset="utf-8"></script>
