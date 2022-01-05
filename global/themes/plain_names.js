@@ -1,9 +1,9 @@
 var names = [
   "default",
-  "dark",
-  "cherry",
   "aqua",
   "emerald",
+  "cherry",
   "autumn",
+  "dark",
   "frost"
 ];

@@ -29,7 +29,7 @@ if($cookiesEnabled and !$hasAccount) {
 $result = $connection -> query("SELECT themeName, questions, numQuestions FROM themeset WHERE 1"); //get theme data
 if($result -> num_rows > 0) {
   while($row = $result -> fetch_assoc()) {
-    if(!in_array($row["themeName"], array($unlocks))) {
+    if(!in_array($row["themeName"], $unlocks)) {
       $questionNums[$row["themeName"]] = ((array_key_exists($row["themeName"], $themeProgress) )? (int)$themeProgress[$row["themeName"]] : 0);
       $questions[$row["themeName"]] = json_decode($row["questions"])[$questionNums[$row["themeName"]]];
       $questionsLengths[$row["themeName"]] = $row["numQuestions"];
@@ -55,8 +55,7 @@ if(isset($_POST["answer"]) and isset($_POST["theme"]) and $hasAccount) { //check
       if($questionNums[$n] == $questionsLengths[$n] - 1) {
         $unlocks[count($unlocks)] = $n;
         $unlocks = json_encode($unlocks);
-        $connection -> query("UPDATE userset SET unlockedThemes = '$unlocks' WHERE ID = '$id'");
-        $connection -> query("UPDATE userset SET activeTheme = '$n' WHERE ID = '$id'");
+        $connection -> query("UPDATE userset SET unlockedThemes = '$unlocks', activeTheme = '$n' WHERE ID = '$id'");
       } else {
         $themeProgress[$n] = (int)$questionNums[$n] + 1;
 
@@ -90,7 +89,7 @@ $connection -> close();
      <script src="/global/js/DOM.js?v=9" charset="utf-8"></script>
      <script src="/global/js/theme_shop.js?v=10" charset="utf-8"></script>
 
-     <script src="/global/themes/plain_names.js?v=9" charset="utf-8"></script>
+     <script src="/global/themes/plain_names.js?v=10" charset="utf-8"></script>
 
      <link rel="stylesheet" href="/global/css/global.css?v=9">
      <link rel="stylesheet" href="/global/css/home.css?v=9">

@@ -2,182 +2,169 @@ var JSON_sched = {
   "Silver Day": [
     {
       "color": "rgb(204, 204, 204)",
-      "position": 3,
-      "ID": "AAAAAA"
+      "position": 3
     },
     {
       "name": "Passing Period",
-      "startTime": 28800,
-      "endTime": 30600,
       "startTimeDigits": "08:00",
+      "startTime": 28800,
       "endTimeDigits": "08:30",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 30600,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Silver Period 5",
-      "startTime": 30600,
-      "endTime": 35580,
       "startTimeDigits": "08:30",
+      "startTime": 30600,
       "endTimeDigits": "09:53",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 35580,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Passing Period",
-      "startTime": 35580,
-      "endTime": 36180,
       "startTimeDigits": "09:53",
+      "startTime": 35580,
       "endTimeDigits": "10:03",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 36180,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Silver Period 6",
-      "startTime": 36180,
-      "endTime": 41100,
       "startTimeDigits": "10:03",
+      "startTime": 36180,
       "endTimeDigits": "11:25",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 41100,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Silver Period 7 & Lunch",
-      "startTime": 41100,
-      "endTime": 48480,
       "startTimeDigits": "11:25",
+      "startTime": 41100,
       "endTimeDigits": "13:28",
-      "intraindex": -1,
+      "endTime": 48480,
       "intraschedule": {
         "A": [
           {
             "name": "A Lunch",
-            "ID": "aaa",
-            "startTime": 41100,
-            "endTime": 42900,
             "startTimeDigits": "11:25",
-            "endTimeDigits": "11:55"
+            "startTime": 41100,
+            "endTimeDigits": "11:55",
+            "endTime": 42900
           },
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 42900,
-            "endTime": 43500,
             "startTimeDigits": "11:55",
-            "endTimeDigits": "12:05"
+            "startTime": 42900,
+            "endTimeDigits": "12:05",
+            "endTime": 43500
           },
           {
             "name": "Silver Period 6",
-            "ID": "aaa",
-            "startTime": 43500,
-            "endTime": 48480,
             "startTimeDigits": "12:05",
-            "endTimeDigits": "13:28"
+            "startTime": 43500,
+            "endTimeDigits": "13:28",
+            "endTime": 48480
           }
         ],
         "B": [
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 41100,
-            "endTime": 41700,
             "startTimeDigits": "11:25",
-            "endTimeDigits": "11:35"
+            "startTime": 41100,
+            "endTimeDigits": "11:35",
+            "endTime": 41700
           },
           {
             "name": "Silver Period 6",
-            "ID": "aaa",
-            "startTime": 41700,
-            "endTime": 43800,
             "startTimeDigits": "11:35",
-            "endTimeDigits": "12:10"
+            "startTime": 41700,
+            "endTimeDigits": "12:10",
+            "endTime": 43800
           },
           {
             "name": "B Lunch",
-            "ID": "aaa",
-            "startTime": 43800,
-            "endTime": 45600,
             "startTimeDigits": "12:10",
-            "endTimeDigits": "12:40"
+            "startTime": 43800,
+            "endTimeDigits": "12:40",
+            "endTime": 45600
           },
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 45600,
-            "endTime": 45900,
             "startTimeDigits": "12:40",
-            "endTimeDigits": "12:45"
+            "startTime": 45600,
+            "endTimeDigits": "12:45",
+            "endTime": 45900
           },
           {
             "name": "Silver Period 6",
-            "ID": "aaa",
-            "startTime": 45900,
-            "endTime": 48480,
             "startTimeDigits": "12:45",
-            "endTimeDigits": "13:28"
+            "startTime": 45900,
+            "endTimeDigits": "13:28",
+            "endTime": 48480
           }
         ],
         "C": [
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 41100,
-            "endTime": 41700,
             "startTimeDigits": "11:25",
-            "endTimeDigits": "11:35"
+            "startTime": 41100,
+            "endTimeDigits": "11:35",
+            "endTime": 41700
           },
           {
             "name": "Silver Period 6",
-            "ID": "aaa",
-            "startTime": 41700,
-            "endTime": 46680,
             "startTimeDigits": "11:35",
-            "endTimeDigits": "12:58"
+            "startTime": 41700,
+            "endTimeDigits": "12:58",
+            "endTime": 46680
           },
           {
             "name": "C Lunch",
-            "ID": "aaa",
-            "startTime": 46680,
-            "endTime": 48480,
             "startTimeDigits": "12:58",
-            "endTimeDigits": "13:28"
+            "startTime": 46680,
+            "endTimeDigits": "13:28",
+            "endTime": 48480
           }
         ]
-      }
+      },
+      "intraindex": -1
     },
     {
       "name": "Passing Period",
-      "startTime": 48480,
-      "endTime": 49080,
       "startTimeDigits": "13:28",
+      "startTime": 48480,
       "endTimeDigits": "13:38",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 49080,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Silver Period 8",
-      "startTime": 49080,
-      "endTime": 54000,
       "startTimeDigits": "13:38",
+      "startTime": 49080,
       "endTimeDigits": "15:00",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 54000,
+      "intraschedule": {},
+      "intraindex": -1
     }
   ],
   "No School": [
     {
       "color": "rgb(102, 102, 102)",
-      "position": 1,
-      "ID": "AAAAAA"
+      "position": 1
     },
     {
       "name": "No School",
-      "startTime": 0,
-      "endTime": 0,
       "startTimeDigits": "00:00",
+      "startTime": 0,
       "endTimeDigits": "00:00",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 0,
+      "intraschedule": {},
+      "intraindex": -1
     }
   ],
   "Unscheduled": [
@@ -190,166 +177,154 @@ var JSON_sched = {
   "Red Day": [
     {
       "color": "rgb(255, 0, 0)",
-      "position": 2,
-      "ID": "AAAAAA"
+      "position": 2
     },
     {
       "name": "Passing Period",
-      "startTime": 28800,
-      "endTime": 30600,
       "startTimeDigits": "08:00",
+      "startTime": 28800,
       "endTimeDigits": "08:30",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 30600,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Red Period 1",
-      "startTime": 30600,
-      "endTime": 35580,
       "startTimeDigits": "08:30",
+      "startTime": 30600,
       "endTimeDigits": "09:53",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 35580,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Passing Period",
-      "startTime": 35580,
-      "endTime": 36180,
       "startTimeDigits": "09:53",
+      "startTime": 35580,
       "endTimeDigits": "10:03",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 36180,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Red Period 2",
-      "startTime": 36180,
-      "endTime": 41100,
       "startTimeDigits": "10:03",
+      "startTime": 36180,
       "endTimeDigits": "11:25",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 41100,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
       "name": "Red Period 3 & Lunch",
-      "startTime": 41100,
-      "endTime": 48480,
       "startTimeDigits": "11:25",
+      "startTime": 41100,
       "endTimeDigits": "13:28",
-      "intraindex": -1,
+      "endTime": 48480,
       "intraschedule": {
         "A": [
           {
             "name": "A Lunch",
-            "ID": "aaa",
-            "startTime": 41100,
-            "endTime": 42900,
             "startTimeDigits": "11:25",
-            "endTimeDigits": "11:55"
+            "startTime": 41100,
+            "endTimeDigits": "11:55",
+            "endTime": 42900
           },
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 42900,
-            "endTime": 43500,
             "startTimeDigits": "11:55",
-            "endTimeDigits": "12:05"
+            "startTime": 42900,
+            "endTimeDigits": "12:05",
+            "endTime": 43500
           },
           {
             "name": "Red Period 3",
-            "ID": "aaa",
-            "startTime": 43500,
-            "endTime": 48480,
             "startTimeDigits": "12:05",
-            "endTimeDigits": "13:28"
+            "startTime": 43500,
+            "endTimeDigits": "13:28",
+            "endTime": 48480
           }
         ],
         "B": [
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 41100,
-            "endTime": 41700,
             "startTimeDigits": "11:25",
-            "endTimeDigits": "11:35"
+            "startTime": 41100,
+            "endTimeDigits": "11:35",
+            "endTime": 41700
           },
           {
             "name": "Red Period 3",
-            "ID": "aaa",
-            "startTime": 41700,
-            "endTime": 43800,
             "startTimeDigits": "11:35",
-            "endTimeDigits": "12:10"
+            "startTime": 41700,
+            "endTimeDigits": "12:10",
+            "endTime": 43800
           },
           {
             "name": "B Lunch",
-            "ID": "aaa",
-            "startTime": 43800,
-            "endTime": 45600,
             "startTimeDigits": "12:10",
-            "endTimeDigits": "12:40"
+            "startTime": 43800,
+            "endTimeDigits": "12:40",
+            "endTime": 45600
           },
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 45600,
-            "endTime": 45900,
             "startTimeDigits": "12:40",
-            "endTimeDigits": "12:45"
+            "startTime": 45600,
+            "endTimeDigits": "12:45",
+            "endTime": 45900
           },
           {
             "name": "Red Period 3",
-            "ID": "aaa",
-            "startTime": 45900,
-            "endTime": 48480,
             "startTimeDigits": "12:45",
-            "endTimeDigits": "13:28"
+            "startTime": 45900,
+            "endTimeDigits": "13:28",
+            "endTime": 48480
           }
         ],
         "C": [
           {
             "name": "Passing Period",
-            "ID": "aaa",
-            "startTime": 41100,
-            "endTime": 41700,
             "startTimeDigits": "11:25",
-            "endTimeDigits": "11:35"
+            "startTime": 41100,
+            "endTimeDigits": "11:35",
+            "endTime": 41700
           },
           {
             "name": "Red Period 3",
-            "ID": "aaa",
-            "startTime": 41700,
-            "endTime": 46680,
             "startTimeDigits": "11:35",
-            "endTimeDigits": "12:58"
+            "startTime": 41700,
+            "endTimeDigits": "12:58",
+            "endTime": 46680
           },
           {
             "name": "C Lunch",
-            "ID": "aaa",
-            "startTime": 46680,
-            "endTime": 48480,
             "startTimeDigits": "12:58",
-            "endTimeDigits": "13:28"
+            "startTime": 46680,
+            "endTimeDigits": "13:28",
+            "endTime": 48480
           }
         ]
-      }
+      },
+      "intraindex": -1
     },
     {
       "name": "Passing Period",
-      "startTime": 48480,
-      "endTime": 49080,
       "startTimeDigits": "13:28",
+      "startTime": 48480,
       "endTimeDigits": "13:38",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 49080,
+      "intraschedule": {},
+      "intraindex": -1
     },
     {
-      "name": "Period 4",
-      "startTime": 49080,
-      "endTime": 54000,
+      "name": "Red Period 4",
       "startTimeDigits": "13:38",
+      "startTime": 49080,
       "endTimeDigits": "15:00",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 54000,
+      "intraschedule": {},
+      "intraindex": -1
     }
   ],
   "eLearning": [

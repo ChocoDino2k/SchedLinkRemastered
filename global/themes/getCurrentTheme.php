@@ -25,8 +25,26 @@ if(count($_COOKIE) > 0) {
         $unlocks = json_decode($row["unlockedThemes"]);
         $themeProgress = json_decode($row["themeProgress"], true);
       }
+
+
+      $hasAqua = in_array("aqua", $unlocks);
+      $hasE = in_array("emerald", $unlocks);
+      if(!$hasAqua) {
+        array_push($unlocks, "aqua");
+      }
+      if(!$hasE) {
+        array_push($unlocks, "emerald");
+      }
+      if($currentTheme == "default" and (!$hasAqua or !$hasE) ) {
+        $currentTheme = "aqua";
+      }
+      if( (!$hasAqua or !$hasE) ) {
+        $unlocks = json_encode($unlocks);
+        $conn -> query("UPDATE userset SET unlockedThemes = '$unlocks', activeTheme = '$currentTheme' WHERE ID = '$id'");
+      }
     }
   }
+
   $conn -> close();
 } else {
   $cookiesEnabled = FALSE;
