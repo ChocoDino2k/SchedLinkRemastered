@@ -6,75 +6,13 @@
 // header('Expires: 0');
 $r = $_SERVER['DOCUMENT_ROOT'];
 
-include_once($r . "/global/themes/getCurrentTheme.php");
+include_once($r . "/global/php/getUserAccountInfo.php");
 
-$connection = mysqli_connect('localhost', 'schedasr_admin', 'bananaman10?', 'schedasr_userbase');
-if($conn -> connect_error) {
-  header("HTTP/1.1 500 Internal Server Error");
-  exit;
-}
-$loadPuzzle = false;
-$isCorrect = false;
-$questions = array();
-$questionNums = array();
-$questionLengths = array();
+include_once($r. "/global/php/streaks.php");
 
-if($cookiesEnabled and !$hasAccount) {
-  $id = hash('sha256', strval(uniqid(rand(0, 100))));
-  $connection -> query("INSERT INTO userset (ID) VALUES ('$id')");
-  setcookie("IDString", $id, time() + 31536000, "/");
-}
+include_once($r. "/global/php/themeShopSetup.php");
 
-
-$result = $connection -> query("SELECT themeName, questions, numQuestions FROM themeset WHERE 1"); //get theme data
-if($result -> num_rows > 0) {
-  while($row = $result -> fetch_assoc()) {
-    if(!in_array($row["themeName"], $unlocks)) {
-      $questionNums[$row["themeName"]] = ((array_key_exists($row["themeName"], $themeProgress) )? (int)$themeProgress[$row["themeName"]] : 0);
-      $questions[$row["themeName"]] = json_decode($row["questions"])[$questionNums[$row["themeName"]]];
-      $questionsLengths[$row["themeName"]] = $row["numQuestions"];
-    }
-  }
-}
-
-
-if(isset($_POST["answer"]) and isset($_POST["theme"]) and $hasAccount) { //checking answer
-  $n = stripslashes(strip_tags($_POST["theme"]));
-  $result = $connection -> query("SELECT questionAnswers FROM themeset WHERE themeName = '$n'");
-  $ans;
-  if($result -> num_rows > 0) {
-    while($row = $result -> fetch_assoc()) {
-      $ans = json_decode($row["questionAnswers"]);
-    }
-  }
-
-  if(array_key_exists($n, $questions)) {
-    $userAns = strtolower(stripslashes(strip_tags($_POST["answer"])));
-    if(in_array( $userAns, $ans[$questionNums[$n]])) {
-
-      if($questionNums[$n] == $questionsLengths[$n] - 1) {
-        $unlocks[count($unlocks)] = $n;
-        $unlocks = json_encode($unlocks);
-        $connection -> query("UPDATE userset SET unlockedThemes = '$unlocks', activeTheme = '$n' WHERE ID = '$id'");
-      } else {
-        $themeProgress[$n] = (int)$questionNums[$n] + 1;
-
-        $themeProgress = json_encode($themeProgress);
-        $connection -> query("UPDATE userset SET themeProgress = '$themeProgress' WHERE ID = '$id'");
-        $loadPuzzle = true;
-        $isCorrect = true;
-      }
-    } else {
-      $loadPuzzle = true;
-    }
-
-  $t = $_POST["theme"];
-  unset($_POST["theme"]);
-  unset($_POST["answer"]);
-  header("Location: index.php?loadPuzzle=" . json_encode($loadPuzzle) . "&theme=" . $t . "&isCorrect=" . json_encode($isCorrect));
-}
-}
-$connection -> close();
+$conn -> close();
  ?>
 
  <html lang="en" dir="ltr">
@@ -83,17 +21,20 @@ $connection -> close();
      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <meta name="HandheldFriendly" content="true">
-     <title>SchedLink</title>
+     <title>Theme Shop</title>
      <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-     <script src="/global/js/DOM.js?v=9" charset="utf-8"></script>
-     <script src="/global/js/theme_shop.js?v=10" charset="utf-8"></script>
+     <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
+     <script src="/global/js/shop/theme_shop.js?v=10" charset="utf-8"></script>
+     <script src="/global/js/shop/streaks.js?v=10" charset="utf-8"></script>
 
      <script src="/global/themes/plain_names.js?v=10" charset="utf-8"></script>
+     <script src="/global/js/shop/confetti.js?v=10" charset="utf-8"></script>
 
-     <link rel="stylesheet" href="/global/css/global.css?v=9">
-     <link rel="stylesheet" href="/global/css/home.css?v=9">
-     <link rel="stylesheet" href="theme_shop.css?v=9">
+     <link rel="stylesheet" href="/global/css/global.css?v=10">
+     <link rel="stylesheet" href="/global/css/home.css?v=10">
+     <link rel="stylesheet" href="/global/css/shop/theme_shop.css?v=10">
+     <link rel="stylesheet" href="/global/css/shop/streaks.css?v=10">
 
    </head>
 
@@ -117,21 +58,43 @@ $connection -> close();
               <div id = "text-puzzle" class = ""></div>
               <img src="" alt="noPreload" class = "hidden preview">
             </div>
-            <form class="puzzle-post" action="" method="post">
+            <form class="puzzle-post" action="" method="POST">
               <input type="text" name="answer" value="" placeholder="Answer Here">
-              <button type="submit" name="theme" value = "">Check</button>
+              <button type="submit" name="check" value ="CHECKING">Check</button>
+              <button type="submit" name="points" value = "POINTS">Use Points()</button>
             </form>
           </div>
        </div>
        <article id = "main-content">
          <section class = "block">
            <section id = "theme-section">
-            <div class="row container">
-              <h2>Market</h2>
+            <div class="row container" id = "shop-heading">
+              <h2 id = "shop-title">Market</h2>
+              <button class = "shop-toggle" value = "p">Points</button><button class = "shop-toggle active scene-loaded" value = "t">Themes</button>
+            </div>
+            <div class="contaienr row hidden" id = "point-content">
+              <div>
+                <div class="container row">
+                  <h1>Points</h1>
+                  <p class = "point-info" id = "points">POINTS</p>
+                  <a href = "../info/"><p class  = "point-info" id = "addi-info">HOW IT WORKS</p></a>
+                </div>
+                <div class="container row">
+                  <h1>Streak</h1>
+                  <p class = "point-info" id = "streak">STREAK</p>
+                  <p class = "point-info" id = "next-bonus">DAYS UNTIL</p>
+                </div>
+              </div>
+              <div id="streaks-timeline">
+                <div id="streaks-chain">
+                </div>
+                <div id="streaks-blur"></div>
+              </div>
             </div>
             <div class="container row" id = "theme-content"></div>
            </section>
          </section>
+
        </article>
        <?php
          include_once($r . "/global/modules/navigation.html");
@@ -141,41 +104,43 @@ $connection -> close();
 
    <script type="text/javascript">
    const COOKIESENABLE = <?php echo json_encode($cookiesEnabled); ?>;
-   const QUESTIONS = <?php echo json_encode($questions) ?>;
-   const QUESTIONSNUMS = <?php echo json_encode($questionNums) ?>;
+   const QUESTIONS = <?php echo json_encode($questions); ?>;
+   const QUESTIONSNUMS = <?php echo json_encode($questionNums); ?>;
+   const QUESTIONPOINTS = <?php echo json_encode($questionPoints); ?>;
+   const UNLOCKS = <?php echo json_encode($unlocks); ?>;
+   const POINTS = <?php echo $points; ?>;
+   const STREAK  = <?php echo $streak; ?>;
+   const LOAD = <?php echo (isset($_REQUEST["loadPuzzle"]))? $_REQUEST["loadPuzzle"] : json_encode(false); ?>;
+   const THEME = "<?php echo (isset($_REQUEST["theme"])) ? $_REQUEST["theme"] : "default"; ?>";
+   const ANI = <?php echo (isset($_REQUEST["isCorrect"]))? $_REQUEST["isCorrect"] : json_encode(false); ?>;
    document.onreadystatechange = () => {
        if(document.readyState == "complete") {
-         createImages(<?php echo json_encode($unlocks) ?>);
-         findElements(document.body, false, "#nav-tabs__theme").classList.toggle("selected");
-         document.body.querySelector("#scrim").onclick = function() {
-           for(let s of document.querySelectorAll(".shown")) {
-             if(s.id == "puzzle-scrim") {
-               s.children[0].classList = "container";
-               s.children[0].children[1].children[1].classList = "preview";
-               s.children[0].children[1].children[1].src = "";
+         let isThms = false;
+         let toggles = document.querySelectorAll(".shop-toggle"),
+         blocks = document.querySelector("#theme-section").children;
+         for (let t of toggles) {
+           t.onclick = function() {
+             for(let choice of this.parentNode.children) {
+               if(choice.classList.contains("active") && choice != this){
+                 choice.classList.toggle("active");
+                 this.classList.toggle("active");
+                 blocks[1].classList.toggle("hidden");
+                 blocks[2].classList.toggle("hidden");
+                 if(choice.value == "t" && !this.classList.contains("scene-loaded")) {
+                   this.classList.toggle("scene-loaded");
+                   loadStreakScene();
+                 } else if (choice.value == "p" && !this.classList.contains("scene-loaded")) {
+                   this.classList.toggle("scene-loaded");
+                   loadThemeScene();
+                 }
+               }
              }
-             s.classList.toggle("shown");
-           }
+           };
          }
-         <?php
-          $load = (isset($_REQUEST["loadPuzzle"]))? $_REQUEST["loadPuzzle"] : json_encode(false);
-          $theme = (isset($_REQUEST["theme"])) ? $_REQUEST["theme"] : "default";
-          $ani = (isset($_REQUEST["isCorrect"]))? $_REQUEST["isCorrect"] : json_encode(false);
-         ?>
-         if(<?php echo $load ?>) {
-           let btn = document.querySelector("<?php echo '#' . $theme; ?>");
-           btn.click();
-           btn.previousElementSibling.children[1].click();
-           if(<?php echo $ani ?>) {
-             <?php
-                if(json_decode($ani)) {
-                 include_once("confetti.js");
-                }
-              ?>
-           } else {
-             document.querySelector("#puzzle-container").classList.toggle("incorrect");
-           }
-         }
+         loadThemeScene();
+         findElements(document.body, false, "#nav-tabs__theme").classList.toggle("selected");
+
+
 
         <?php include_once($r . "/global/themes/theme_js/" . $currentTheme . ".js"); ?>
        }

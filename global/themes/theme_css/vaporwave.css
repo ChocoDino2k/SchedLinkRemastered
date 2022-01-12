@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+:root {
+  --norm-font: "Permanent Marker";
+  --light-font: "Permanent Marker";
+  --bold-font: "Permanent Marker";
+
+  --background-color:#e4e4e4;
+  --secondary-background-color: #4a0b3cb0;
+  --container-background-color: #8a0a6eb0;
+  --container-text-color: #ffffff;
+
+  --button-background-color: #d81faf;
+  --button-text-color: #ffffff;
+  --button-hover-background: #98177c;
+  --button-hover-text: #dddddd;
+  --button-active-color: #d81faf;
+
+  --header-background-color: #63094fb0;
+  --header-text-color: #ffffff;
+  --header-icon-color: #ffffff;
+  --navigation-background-color: #8a0a6e;
+  --navigation-icon-color: #bb5eb4;
+  --navigation-active-icon-color: #FF00EF;
+
+  --active-color: #FF00EF;
+  --active-hover-color:#8a0a6e;
+
+  --outline-color: rgb(180,180,180);
+
+  --anchor-color: #d81faf;
+  --anchor-hover: #98177c;
+}
+
+
+body {
+background: url("/global/themes/theme_accessories/vaporwave_background.gif") repeat-y center center fixed rgb(0,0,0);
+background-size: cover;
+}
+/* body::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+height: 200%;
+top: 0;
+left: -50%;
+z-index: -1;
+  background: url("/global/themes/theme_accessories/vaporwave_background.gif") repeat-y center center fixed rgb(0,0,0);
+  background-size: cover;
+  transform: rotate(180deg);
+  /* height: 100vh; */
+} */

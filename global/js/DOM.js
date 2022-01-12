@@ -1,7 +1,8 @@
 //returns HTML element specified. Can overload arguments to give the element attributes. Syntax is "[attr, value]"
 function createElement(type){
     let elm = document.createElement(type);
-    for(let i = 1; i < arguments.length; i++){
+    let func;
+    for(let i = 1; i < arguments.length; i++) {
 
       switch( arguments[i][0]){
         case "text":
@@ -18,10 +19,14 @@ function createElement(type){
             elm.appendChild(arguments[i][1]);
           }
           break;
-        case "onkeypress":
-        console.log(arguments[i])
-        let func = arguments[i][1];
-          elm.addEventListener("keypress", func.bind(event));
+        case "onkeydown":
+          func = arguments[i][1];
+          elm.addEventListener("keypress", func.bind(event, this, elm));
+          break;
+        case "onkeyup":
+          func = arguments[i][1];
+          elm.addEventListener("keyup", func.bind(event, this, elm));
+          break;
         default:
           elm.setAttribute(arguments[i][0], arguments[i][1]);
       }

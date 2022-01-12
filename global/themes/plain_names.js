@@ -5,7 +5,6 @@ var names = [
   "cherry",
   "autumn",
   "dark",
-  "frost"
-
-  
+  "frost",
+  "vaporwave"
 ];

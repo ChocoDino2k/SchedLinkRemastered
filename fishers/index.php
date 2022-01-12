@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 
 <?php
-header('Cache-Control: no-cache, no-store, must-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
+
 $r = $_SERVER['DOCUMENT_ROOT'];
 
-include_once($r . "/global/themes/getCurrentTheme.php");
+include_once($r . "/global/php/getUserAccountInfo.php");
+
+include_once($r . "/global/php/streaks.php");
+
+$conn->close();
+
  ?>
 
 <html lang="en" dir="ltr">
   <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="HandheldFriendly" content="true">
     <title>SchedLink</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="json/schedules.js?v=9" charset="utf-8"></script>
-    <script src="json/filler.js?v=9" charset="utf-8"></script>
+    <script src="json/schedules.js?v=<?php echo filemtime("json/schedules.js");?>" charset="utf-8"></script>
+    <script src="json/schedule-calendar.js?v=<?php echo filemtime("json/schedule-calendar.js"); ?>" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=9" charset="utf-8"></script>
-    <script src="/global/js/LinkedList.js?v=9" charset="utf-8"></script>
-    <script src="/global/js/clockv2.js?v=9" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
+    <script src="/global/js/home/LinkedList.js?v=10" charset="utf-8"></script>
+    <script src="/global/js/home/clockv2.js?v=10" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=9">
-    <link rel="stylesheet" href="/global/css/home.css?v=9">
+    <link rel="stylesheet" href="/global/css/global.css?v=10">
+    <link rel="stylesheet" href="/global/css/home.css?v=10">
 
   </head>
   <body>

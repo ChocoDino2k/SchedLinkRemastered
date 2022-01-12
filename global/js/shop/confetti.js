@@ -14,10 +14,10 @@ setAccessibilityState();
 
 reduceMotionQuery.addListener(setAccessibilityState);
 
-var conCanvas = document.querySelector("#confetti"),
-conCtx = conCanvas.getContext('2d'),
-windowW = window.innerWidth,
-windowH = window.innerHeight,
+var conCanvas,
+conCtx,
+windowW,
+windowH,
 numFetti = 100,
 fetti = [],
 colorVariation = 21,
@@ -67,6 +67,10 @@ this.update = function() {
 // It all starts here...
 //
 function initConfetti() {
+  conCanvas = document.querySelector("#confetti"),
+  conCtx = conCanvas.getContext('2d'),
+  windowW = window.innerWidth,
+  windowH = window.innerHeight;
   if (enableAnimations) {
     if(document.readyState === "interactive" || document.readyState === "complete")
     {
@@ -166,6 +170,3 @@ function distanceBetween(vector1, vector2) {
 
   return Math.sqrt(dx*dx + dy*dy);
 }
-
-
-initConfetti();

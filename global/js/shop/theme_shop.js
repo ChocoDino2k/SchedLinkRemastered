@@ -9,6 +9,30 @@ window.addEventListener("resize", function() {
   }
 }, false);
 
+function loadThemeScene() {
+  createImages(UNLOCKS);
+
+  document.body.querySelector("#scrim").onclick = function() {
+    for(let s of document.querySelectorAll(".shown")) {
+      if(s.id == "puzzle-scrim") {
+        s.children[0].classList = "container";
+        s.children[0].children[1].children[1].classList = "preview";
+        s.children[0].children[1].children[1].src = "";
+      }
+      s.classList.toggle("shown");
+    }
+  }
+  if(LOAD) {
+    let btn = document.querySelector("#" + THEME);
+    btn.click();
+    btn.previousElementSibling.children[1].click();
+    if(ANI) {
+      initConfetti();
+    } else {
+      document.querySelector("#puzzle-container").classList.toggle("incorrect");
+    }
+  }
+}
 
 function createThemeImage(imageName, isUnlocked) {
   let fullButton = createElement("button", ["text", (isUnlocked) ? "Activate" : "Unlock"], ["value", imageName]);
@@ -78,22 +102,29 @@ function startImageLoad() {
 }
 
 function activateTheme(theme) {
-  let xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    window.location.replace("index.php");
-  }
-};
-xmlhttp.open("GET", "checkAvailable.php?checkTheme=" + theme, true);
-xmlhttp.send();
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      console.log(this.readyState, this.status);
+      if (this.readyState == 4 && this.status == 200) {
+        window.location.replace("index.php");
+      } else if(this.readyState == 4 && this.status == 500) {
+        alert("Something went wrong. Try again later");
+        return;
+      }
+    };
+    xmlhttp.open("POST", "../../global/php/activateTheme.php?theme=" + theme, true);
+    xmlhttp.send();
 }
 
 function showThemePuzzle(theme) {
   let cont = document.querySelector("#puzzle-container");
   let question = QUESTIONS[theme],
-  num = QUESTIONSNUMS[theme];
-  cont.children[0].textContent = theme + " - Part " + (num + 1);
+  num = QUESTIONSNUMS[theme],
+  pts = QUESTIONPOINTS[theme];
+  cont.children[0].textContent = theme.toUpperCase() + " - Part " + (num + 1);
   cont.children[2].children[1].value = theme;
+  cont.children[2].children[2].value = theme;
+  cont.children[2].children[2].textContent = "Use Points (" + pts + ")";
   if(question.includes("../../")) {
     let combined = parseText(question),
     src = combined.shift().textContent;

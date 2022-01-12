@@ -24,7 +24,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.hidden {
+  display: none !important;
+}
 a:link {
   color: var(--anchor-color);
   background-color: transparent;
@@ -128,7 +130,7 @@ header {
 header a:link {
   color: var(--header-text-color);
 }
-#header__anchor {
+/* #header__anchor {
   position: absolute;
   top: 46%;
   left: 50%;
@@ -140,8 +142,7 @@ header a:link {
   color: var(--header-text-color);
   background-color: transparent;
   transform: translate(-50%,-50%);
-}
-
+} */
 nav {
   position: fixed;
   bottom: 0;
@@ -159,11 +160,13 @@ body.fullsize-content #nav-tabs {
   background-color: var(--navigation-background-color);
 }
 
-#nav-tabs a {
+#nav-tabs a,
+header a {
   text-decoration: none;
   font-size: 0;
 }
-#nav-tabs a div {
+#nav-tabs a div,
+header a div {
   display: inline-block;
   width: calc(100% / 3);
   height: auto;
@@ -171,16 +174,34 @@ body.fullsize-content #nav-tabs {
 /* #nav-tabs a div:hover{
   background-color: var(--anchor-hover);
 } */
-#nav-tabs a div svg {
+#nav-tabs a div svg,
+header a div svg {
   margin: 2vw;
   width: auto;
   height: 8vw;
   fill: var(--navigation-icon-color);
 }
-#nav-tabs a.selected div svg {
+header a div svg {
+  fill: var(--header-icon-color);
+}
+#nav-tabs a.selected div svg,
+header a.selected div svg {
   fill: var(--navigation-active-icon-color);
 }
 
+header a div {
+  height: 14.25vw;
+  width: auto;
+  top: 0;
+  right: 5px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+#question-mark-svg {
+  transform: scale(1.3);
+  transform-origin: center;
+}
 .modal-polygon {
   fill:var(--navigation-active-icon-color);
 }
@@ -249,7 +270,11 @@ img.svg-mask-only:after {
   #nav-tabs {
     height: 60px;
   }
-  #nav-tabs a div svg {
+  header a div {
+    height: 71.25px;
+  }
+  #nav-tabs a div svg,
+  header a div svg {
     margin: 10px;
     height: 40px;
   }

@@ -1,14 +1,6 @@
-h2 {
-    margin: 0;
-    font-size: 25px;
-    font-family: var(--bold-font);
-    padding: 5px 0;
-    color: var(--container-text-color);
-    text-transform: capitalize;
-}
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 #theme-content {
     display: flex;
     flex-wrap: wrap;
@@ -39,7 +31,7 @@ h2 {
     border-radius: 2vw;
 }
 .unit-img-container.locked::after {
-  background: url("../../global/images/lock.svg") no-repeat center center rgba(0,0,0,0.7);
+  background: url("../../images/lock.svg") no-repeat center center rgba(0,0,0,0.7);
   position: absolute;
       content:"";
       top:0;
@@ -170,6 +162,7 @@ form {
 }
 form input {
   background: var(--container-background-color);
+  color: var(--container-text-color);
   border: none;
   border-bottom: var(--container-text-color) 1px solid;
   line-height: 1.5;

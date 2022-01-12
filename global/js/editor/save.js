@@ -73,7 +73,7 @@ async function postData(filename, varname, data){
 }
 async function saveCalendar(){
   setPopdown("saving");
-  let p = await postData("json/filler.js", "calendar", JSON_calendar);
+  let p = await postData("json/schedule-calendar.js", "calendar", JSON_calendar);
   setPopdown(p);
   return;
 }

@@ -1,9 +1,16 @@
 var useableColors = setAvailableColors();
 
-function numbersOnly(evt){
-  console.log(evt);
-  let ASCIICode = (evt.which) ? evt.which : evt.keyCode;
-  return (ASCIICode > 47 && ASCIICode < 59);
+function numbersOnly(caller, parent, evt){
+  let key = (evt.keyCode ? evt.keyCode : evt.which);
+
+  if( !(key >= 48 && key <=57) ) { evt.preventDefault(); } //if it isn't a number
+  if( (key != 8 && key != 46) && !parent.value.includes(":") && parent.value.length == 2) { //not a backspace and the length is 2
+    if(parent.value[0] != "0" && parent.value[0] != "1" && parent.value[0] != "2") { //doesn't follow 2 digit format
+      parent.value = "0" + parent.value[0] + ":" + parent.value[1];
+    } else {
+      parent.value += ":";
+    }
+  }
 }
 
 function swapShown(){
@@ -54,9 +61,9 @@ function createPeriodHeading(name = "", includeAdd = false, isBlock = false){
 function createPeriodTime(period = {startTimeDigits: "", endTimeDigits: ""}){
 
   return createElement("div", ["class", "period_time"], ["children",[
-  createElement("input", ["type", "text"], ["value",  period.startTimeDigits], ["placeholder","00:00"], ["maxlength","5"], ["onkeypress", numbersOnly]),
+  createElement("input", ["type", "text"], ["value",  period.startTimeDigits], ["placeholder","00:00"], ["maxlength","5"], ["onkeydown", numbersOnly]),
   createElement("p", ["text", "-"] ),
-  createElement("input", ["type", "text"], ["value",  period.endTimeDigits], ["placeholder","24:00"], ["maxlength","5"])
+  createElement("input", ["type", "text"], ["value",  period.endTimeDigits], ["placeholder","24:00"], ["maxlength","5"], ["onkeydown", numbersOnly])
   ] ]
   );
 }

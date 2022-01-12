@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="HandheldFriendly" content="true">
-    <meta http-equiv="Cache-control" content="no-cache">
-
     <title>Schedule Editor</title>
     <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
-    <script src="../json/schedules.js?v=7" charset="utf-8"></script>
-    <script src="../json/filler.js?v=7" charset="utf-8"></script>
+    <script src="../json/schedules.js?v=<?php echo filemtime("../json/schedules.js");?>" charset="utf-8"></script>
+    <script src="../json/schedule-calendar.js?v=<?php echo filemtime("../json/schedule-calendar.js"); ?>" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=7" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=7">
-    <link rel="stylesheet" href="../calendar/css/calendar.css?v=7">
-    <link rel="stylesheet" href="css/editor.css?v=7">
-    <link rel="stylesheet" href="/global/themes/theme_css/default.css?v=7">
+    <link rel="stylesheet" href="/global/css/global.css?v=10">
+    <link rel="stylesheet" href="/global/css/calendar/calendar.css?v=10">
+    <link rel="stylesheet" href="/global/css/editor/editor.css?v=10">
+    <link rel="stylesheet" href="/global/themes/theme_css/default.css?v=10">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
@@ -96,10 +91,10 @@
     ?>
   </div>
 </body>
-<script src="/global/js/calendar.js?v=5" charset="utf-8"></script>
-<script src="js/calendar_html.js?v=5" charset="utf-8"></script>
-<script src="js/schedule_html.js?v=5" charset="utf-8"></script>
-<script src="js/save.js?v=5" charset="utf-8"></script>
+<script src="/global/js/calendar/calendar.js?v=5" charset="utf-8"></script>
+<script src="/global/js/editor/calendar_html.js?v=5" charset="utf-8"></script>
+<script src="/global/js/editor/schedule_html.js?v=5" charset="utf-8"></script>
+<script src="/global/js/editor/save.js?v=5" charset="utf-8"></script>
 
 <script type="text/javascript">
 let mSection, eSection, sectionIdx;

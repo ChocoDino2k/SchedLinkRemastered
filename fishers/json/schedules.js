@@ -2,7 +2,8 @@ var JSON_sched = {
   "Silver Day": [
     {
       "color": "rgb(204, 204, 204)",
-      "position": 3
+      "position": 3,
+			"needsCheck": true
     },
     {
       "name": "Passing Period",
@@ -155,7 +156,8 @@ var JSON_sched = {
   "No School": [
     {
       "color": "rgb(102, 102, 102)",
-      "position": 1
+      "position": 1,
+			"needsCheck": false
     },
     {
       "name": "No School",
@@ -171,13 +173,23 @@ var JSON_sched = {
     {
       "color": "rgb(0, 0, 0)",
       "position": 0,
-      "ID": "AAAAAA"
+			"needsCheck": false
+    },
+    {
+      "name": "Unscheduled",
+      "startTimeDigits": "00:00",
+      "startTime": 0,
+      "endTimeDigits": "00:00",
+      "endTime": 0,
+      "intraschedule": {},
+      "intraindex": -1
     }
   ],
   "Red Day": [
     {
       "color": "rgb(255, 0, 0)",
-      "position": 2
+      "position": 2,
+			"needsCheck": true
     },
     {
       "name": "Passing Period",
@@ -331,22 +343,23 @@ var JSON_sched = {
     {
       "color": "rgb(229, 255, 0)",
       "position": 3,
-      "ID": "AAAAAA"
+			"needsCheck": false
     },
     {
       "name": "eLearning",
-      "startTime": 0,
-      "endTime": 0,
       "startTimeDigits": "00:00",
+      "startTime": 0,
       "endTimeDigits": "00:00",
-      "intraindex": -1,
-      "intraschedule": null
+      "endTime": 0,
+      "intraschedule": {},
+      "intraindex": -1
     }
   ],
   "PSAT": [
     {
       "color": "rgb(199, 217, 38)",
-      "position": 4
+      "position": 4,
+			"needsCheck": true
     },
     {
       "name": "Block 1",
@@ -486,6 +499,7 @@ var JSON_sched = {
     {
       "color": "rgb(179, 77, 77)",
       "position": 6,
+			"needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -696,6 +710,7 @@ var JSON_sched = {
     {
       "color": "rgb(108, 19, 19)",
       "position": 7,
+			"needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -778,6 +793,7 @@ var JSON_sched = {
     {
       "color": "rgb(128, 0, 0)",
       "position": 8,
+			"needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -860,6 +876,7 @@ var JSON_sched = {
     {
       "color": "rgb(108, 68, 19)",
       "position": 9,
+			"needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -941,7 +958,8 @@ var JSON_sched = {
   "1 H Delay Red": [
     {
       "color": "rgb(217, 38, 38)",
-      "position": 9
+      "position": 9,
+			"needsCheck": true
     },
     {
       "name": "Red Period 1",
@@ -1085,7 +1103,8 @@ var JSON_sched = {
   "2 H Delay Red": [
     {
       "color": "rgb(89, 38, 38)",
-      "position": 10
+      "position": 1,
+			"needsCheck": true
     },
     {
       "name": "Red Period 1",
@@ -1229,7 +1248,8 @@ var JSON_sched = {
   "1 H Delay Silver": [
     {
       "color": "rgb(51, 51, 51)",
-      "position": 9
+      "position": 9,
+			"needsCheck": true
     },
     {
       "name": "Silver Period 1",
@@ -1373,7 +1393,8 @@ var JSON_sched = {
   "2 H Delay Silver": [
     {
       "color": "rgb(153, 153, 153)",
-      "position": 10
+      "position": 1,
+			"needsCheck": true
     },
     {
       "name": "Silver Period 1",
