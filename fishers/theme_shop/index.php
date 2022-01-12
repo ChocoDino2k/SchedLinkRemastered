@@ -31,7 +31,7 @@ $conn -> close();
      <script src="/global/themes/plain_names.js?v=11" charset="utf-8"></script>
      <script src="/global/js/shop/confetti.js?v=10" charset="utf-8"></script>
 
-     <link rel="stylesheet" href="/global/css/global.css?v=10">
+     <link rel="stylesheet" href="/global/css/global.css?v=11">
      <link rel="stylesheet" href="/global/css/home.css?v=10">
      <link rel="stylesheet" href="/global/css/shop/theme_shop.css?v=10">
      <link rel="stylesheet" href="/global/css/shop/streaks.css?v=10">

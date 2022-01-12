@@ -24,8 +24,8 @@ $conn->close();
     <script src="../json/schedules.js?v=<?php echo filemtime("../json/schedules.js");?>" charset="utf-8"></script>
     <script src="../json/schedule-calendar.js?v=<?php echo filemtime("../json/schedule-calendar.js"); ?>" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=9">
-    <link rel="stylesheet" href="/global/css/calendar/calendar.css?v=9">
+    <link rel="stylesheet" href="/global/css/global.css?v=10">
+    <link rel="stylesheet" href="/global/css/calendar/calendar.css?v=10">
   </head>
   <body>
     <style media="screen">

@@ -19,7 +19,7 @@ $conn -> close();
 
     <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="/global/css/global.css?v=10">
+    <link rel="stylesheet" href="/global/css/global.css?v=11">
     <link rel="stylesheet" href="/global/css/info/info.css?v=10">
   </head>
   <body>
