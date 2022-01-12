@@ -6,7 +6,7 @@ $cookiesEnabled = TRUE;
 $hasAccount = FALSE;
 
 $currentDateISO = date_format(date_create(NULL, timezone_open("America/New_York")), "Y-m-d");
-$points = 10;
+$points = 50;
 $streak = 1;
 $lastDate = "0000-00-00";
 

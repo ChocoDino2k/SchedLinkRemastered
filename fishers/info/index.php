@@ -54,7 +54,7 @@ $conn -> close();
           <div class="info-block container row">
             <h1>Points/Streaks</h1>
             <p>Points are collected passively by simplying using SchedLink</p>
-            <p>Every 5 consecutive days a user uses SchedLink, they get additional variable bonus points</p>
+            <p>Every 5 consecutive days a user uses SchedLink, they get additional bonus points</p>
             <p>If a user misses a day, their streak is stunted at their last log in (NOTE: This does NOT include eLearning or No School days)</p>
             <p>These points can be used to skip puzzles and unlock themes directly, and are found in the Theme Shop</p>
           </div>
