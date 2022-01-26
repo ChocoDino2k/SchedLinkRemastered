@@ -1,0 +1,41 @@
+:root {
+  --norm-font: "robotoregular";
+  --light-font: "robotolight";
+  --bold-font: "robotobold";
+
+  --background-color: #654f37;
+  --secondary-background-color: #3a5441d6;
+  --container-background-color: #496751d6;
+  --container-text-color: #162b1b;
+
+  --button-background-color: #2d7741d6;
+  --button-text-color: black;
+  --button-hover-background: #1f502dd6;
+  --button-hover-text: grey;
+  --button-active-color: white;
+
+  --header-background-color: #004A34;
+  --header-text-color: #dfece1;
+  --header-icon-color: #7d6448;
+  --navigation-background-color: #008B62;
+  --navigation-icon-color: #6B5129;
+  --navigation-active-icon-color: #162b1b;
+
+  --active-color: #6B5129d6;
+  --active-hover-color: #483928d6;
+
+  --outline-color: #389e54;
+
+  --anchor-color: #483928;
+  --anchor-hover: #080908;
+}
+
+
+body {
+  	background: url("/global/themes/theme_accessories/woodland_background.jpg") repeat-y center center fixed rgba(73, 103, 81, 0.84);
+  	background-size:cover;
+}
+
+header{
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}

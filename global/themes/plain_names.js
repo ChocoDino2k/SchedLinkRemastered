@@ -1,4 +1,5 @@
 var names = [
+  "woodland",
   "default",
   "aqua",
   "emerald",
@@ -6,6 +7,6 @@ var names = [
   "autumn",
   "dark",
   "frost",
-  "vaporwave"
-  
+  "vaporwave",
+
 ];

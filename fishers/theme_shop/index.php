@@ -28,7 +28,7 @@ $conn -> close();
      <script src="/global/js/shop/theme_shop.js?v=10" charset="utf-8"></script>
      <script src="/global/js/shop/streaks.js?v=10" charset="utf-8"></script>
 
-     <script src="/global/themes/plain_names.js?v=11" charset="utf-8"></script>
+     <script src="/global/themes/plain_names.js?v=12" charset="utf-8"></script>
      <script src="/global/js/shop/confetti.js?v=10" charset="utf-8"></script>
 
      <link rel="stylesheet" href="/global/css/global.css?v=11">
