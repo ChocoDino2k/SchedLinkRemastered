@@ -65,9 +65,11 @@ function replaceDays(){
 }
 }
 function setBackground(day, elm){
-  let background = JSON_sched[day.userData.active][0].color, rgb;
+  let background = JSON_sched[day.userData.active], rgb;
   if(background == undefined){
     background = JSON_sched["Unscheduled"][0].color;
+  } else {
+    background = background[0].color;
   }
   elm.style.background = "radial-gradient(1.5rem circle," + background + " 40%," +  ((day.month - calendar.currentMonth === 0)? "transparent": "var(--secondary-background-color)")  + " 41%)";
   rgb = colorRGB(background);

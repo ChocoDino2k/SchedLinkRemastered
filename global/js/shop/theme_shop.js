@@ -86,7 +86,7 @@ function startImageLoad() {
   let loading;
   for(let img of imgs) {
     if(img.alt == "noPreload"){continue;}
-    img.src = "../../global/images/preLoad.png";
+    //img.src = "../../global/images/preLoad.png";
     loading = new Image();
     loading.onload = function() {
       img.src = this.src;

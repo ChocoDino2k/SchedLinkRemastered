@@ -27,7 +27,7 @@ var now = newDateAdjusted(); //user's current time
 var curTotalSec = 0; //user's current time in seconds
 const pageLoadDate = now.toISOString().split('T')[0]; //date the user loaded the page
 const schedname = (JSON_calendar[now.getFullYear()] == undefined)? "Unscheduled" : JSON_calendar[now.getFullYear()][now.getMonth()][now.getDate() - 1]; //name of the day's schedule
-const schedule = JSON_sched[schedname]; //schedule the timer follows
+const schedule = (JSON_sched[schedname] == undefined)? JSON_sched["Unscheduled"] : JSON_sched[schedname]; //schedule the timer follows
 var schedule_links = new LinkedList(); //schedule converted into a doubly linked list
 var display_node; //node in linked list that is actively being displayed
 var parent_node; //parent of the display node, tracks the gallery dots
