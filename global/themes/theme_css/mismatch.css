@@ -1,0 +1,25 @@
+:root {
+  --norm-font: "robotoregular";
+    --light-font: "robotolight";
+    --bold-font: "robotobold";
+    --background-color: #fbe8c0;
+    --secondary-background-color: #ecdab6;
+    --container-background-color: #2AA1B3;
+    --container-text-color: #764300;
+    --button-background-color: #2AA1B3;
+    --button-text-color: black;
+    --button-hover-background: #0090B0;
+    --button-hover-text: #F0B040;
+    --button-active-color: black;
+    --header-background-color: #ff8742;
+    --header-text-color: black;
+    --header-icon-color: #e9f7b6;
+    --navigation-background-color: #9300DC;
+    --navigation-icon-color: #e9f7b6;
+    --navigation-active-icon-color: rgb(41 206 75);
+    --active-color: #FFB049;
+    --active-hover-color: #853e00;
+    --outline-color: rgb(180,180,180);
+    --anchor-color: #764300;
+    --anchor-hover: #853e00;
+}
