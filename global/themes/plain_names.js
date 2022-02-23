@@ -1,5 +1,5 @@
 var names = [
-  "mismatch",
+  "greyscale",
   "default",
   "aqua",
   "emerald",
@@ -8,5 +8,6 @@ var names = [
   "dark",
   "frost",
   "vaporwave",
-  "woodland"
+  "woodland",
+  "mismatch"
 ];
