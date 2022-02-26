@@ -2,7 +2,7 @@
 $currentTheme = "default";
 $unlocks = ["default", "emerald", "aqua"];
 $themeProgress = array();
-$cookiesEnabled = TRUE;
+$cookiesEnabled;
 $hasAccount = FALSE;
 
 $currentDateISO = date_format(date_create(NULL, timezone_open("America/New_York")), "Y-m-d");
@@ -12,17 +12,28 @@ $lastDate = "0000-00-00";
 
 $conn;
 $id;
-if(!isset($_COOKIE["checkActive"])) {
-  setcookie("checkActive", "true", time() + 3600, "/"); //set cookie to check if cookies are enabled
+
+// check if cookies are enabled
+if (count($_COOKIE) > 0) {
+  // cookies are enabled
+  $cookiesEnabled = TRUE;
+} else if (isset($_GET['nocookies'])) {
+  // a previous test concluded cookies are disabled
+  $cookiesEnabled = FALSE;
+} else {
+  // test if cookies are enabled
+  setcookie("cookietest", true, time() + 3600, "/");
+  header("location: /global/php/cookietest.php?returnURL=$_SERVER[REQUEST_URI]");
+  exit;
 }
 
-if(count($_COOKIE) > 0) {
-  $conn = mysqli_connect('localhost', 'schedasr_admin', 'bananaman10?', 'schedasr_userbase');
-  if($conn -> connect_error) {
-    header("HTTP/1.1 500 Internal Server Error");
-    exit;
-  }
+$conn = mysqli_connect('localhost', 'schedasr_admin', 'bananaman10?', 'schedasr_userbase');
+if($conn -> connect_error) {
+  http_response_code(500);
+  exit;
+}
 
+if($cookiesEnabled) {
   if (isset($_COOKIE["IDString"])) {
     $id = $_COOKIE["IDString"];
     $result = $conn -> query("SELECT * FROM userset WHERE ID = '$id'");
@@ -39,9 +50,6 @@ if(count($_COOKIE) > 0) {
 
     }
   }
-
-} else {
-  $cookiesEnabled = FALSE;
 }
 
 //connnection still open at this point
