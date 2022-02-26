@@ -1,0 +1,14 @@
+
+RewriteOptions inherit
+
+RewriteEngine on
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+RewriteCond %{HTTP_HOST} ^schedlink\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.schedlink\.com$
+RewriteRule ^/?$ "https\:\/\/schedlink\.com\/fishers" [R=301,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^FHS$ "https\:\/\/schedlink\.com\/fishers" [R=301,L]
+
+

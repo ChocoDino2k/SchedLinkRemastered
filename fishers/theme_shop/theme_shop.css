@@ -1,0 +1,276 @@
+h2 {
+    margin: 0;
+    font-size: 25px;
+    font-family: var(--bold-font);
+    padding: 5px 0;
+    color: var(--container-text-color);
+    text-transform: capitalize;
+}
+.hidden {
+  display: none;
+}
+#theme-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1vh 2vw;
+}
+
+.theme-unit {
+    position: relative;
+    width: 25%;
+    max-width: 150px;
+    margin: 1px 0.5vh;
+}
+
+.unit-button {
+  position: relative;
+    background-color: RGB(0,0,0,0);
+    padding: 0;
+    width: 100%;
+}
+.unit-button:hover {
+  background-color: RGB(0,0,0,0);
+}
+
+.unit-img-container {
+    overflow: hidden;
+    border-radius: 2vw;
+}
+.unit-img-container.locked::after {
+  background: url("../../global/images/lock.svg") no-repeat center center rgba(0,0,0,0.7);
+  position: absolute;
+      content:"";
+      top:0;
+      left:0;
+      bottom:0;
+      right:0;
+      border-radius: 2vw;
+}
+.unit-img-container img {
+  width: 100%;
+  height:100%;
+  display: block;
+  filter: blur(20px);
+  aspect-ratio: 0.6;
+}
+img.preview {
+  background: var(--secondary-background-color);
+}
+
+#scrim {
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: 5;
+  position: fixed;
+  background: rgb(0,0,0,0.5);
+  display: none;
+        cursor: pointer;
+}
+
+.theme-fullscreen {
+  width: auto;
+      height: auto;
+      z-index: 10;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2vh 5vw;
+      border-radius: 12.6px;
+      margin-top: 5vh;
+      position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.theme-fullscreen.shown {
+  display: flex;
+}
+#scrim.shown {
+  display: block;
+}
+#puzzle-scrim.shown {
+  display: flex;
+}
+.theme-fullscreen img {
+  width: 70vw;
+  max-width: 800px;
+  height: auto;
+  max-height: 50vh;
+  display: block;
+  border-radius: 12.6px;
+  outline: 1px black solid;
+}
+
+.theme-fullscreen button,
+#puzzle-container button {
+    background-color: var(--secondary-background-color);
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.theme-fullscreen button:hover,
+#puzzle-container button:hover {
+  background-color: var(--button-hover-background);
+}
+
+#puzzle-scrim {
+  width: 100%;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+    display: none;
+    align-items: baseline;
+    justify-content: center;
+    overflow-y: scroll;
+}
+#puzzle-container {
+  padding: 20px;
+  border-radius: 12.6px;
+  margin-top: 5vh;
+  z-index: 10;
+  animation: grow 0.5s ease 1 forwards;
+  max-width: 80vw;
+  transform: scale(0);
+}
+#puzzle-content {
+  max-height: 50vh;
+    overflow-y: scroll;
+    box-sizing: content-box;
+}
+#puzzle-content p {
+  font-size: 20px;
+  font-family: var(--norm-font);
+  color: var(--container-text-color);
+  margin: 0;
+  text-align: center;
+  width: 50vw;
+  min-width: 100%;
+}
+#puzzle-content img {
+  width: auto;
+    height: auto;
+    max-width: 70vw;
+    min-width: 50vw;
+    min-height: 20vh;
+    aspect-ratio: 0;
+    filter: blur(20px);
+}
+form input:focus {
+  outline: none;
+}
+form {
+  display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+form input {
+  background: var(--container-background-color);
+  border: none;
+  border-bottom: var(--container-text-color) 1px solid;
+  line-height: 1.5;
+  text-align: center;
+  font-size: 20px;
+}
+
+img.loading {
+  animation: 0.4s ease-out 0.3s 1 normal forwards running load;
+}
+
+.incorrect {
+  animation: grow 0.5s ease 1 forwards, incorrect 0.5s 0.5s ease-out 1 forwards !important;
+}
+
+@media screen and (min-width: 500px) {
+  h2 {
+    font-size: 3vw;
+    padding: 1vw 0;
+  }
+
+  .theme-unit {
+    max-width: 250px;
+    margin: 15px 5px;
+  }
+  .unit-img-container {
+    border-radius: 1vw;
+    position: relative;
+  }
+  .unit-img-container.locked::after {
+    border-radius: 1vw;
+  }
+  .unit-img-container img {
+    aspect-ratio: 2;
+  }
+  .theme-fullscreen {
+    padding: 10px 15px;
+  }
+  .theme-fullscreen button,
+  #puzzle-container button {
+    font-size: 2vw;
+  }
+  form input {
+    font-size: 25px;
+  }
+  #puzzle-content p
+  {
+    font-size: 3vw;
+  }
+  #puzzle-content img {
+    aspect-ratio: 2;
+  }
+}
+@media screen and (max-width: 500px) and (orientation: landscape) {
+  .theme-fullscreen,
+  #puzzle-container {
+    padding: 1vw;
+    border-radius: 2vw;
+  }
+  .theme-fullscreen,
+  #puzzle-container {
+        margin-top: 1vh;
+  }
+  .theme-fullscreen img {
+    outline: 0.5px solid black;
+    border-radius: 1vw;
+  }
+  .theme-fullscreen button,
+  #puzzle-container button {
+    margin-top: 1vh;
+    border-radius: 1vw;
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes load {
+  0% {
+    filter: blur(20px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+
+@keyframes incorrect {
+  0% { transform: translate(1vw, 1vh) rotate(0deg); }
+  10% { transform: translate(-1vw, -2vh) rotate(-5deg); }
+  20% { transform: translate(-3vw, 0vh) rotate(5deg); }
+  30% { transform: translate(3vw, 2vh) rotate(0deg); }
+  40% { transform: translate(1vw, -1vh) rotate(5deg); }
+  50% { transform: translate(-1vw, 2vh) rotate(-5deg); }
+  60% { transform: translate(-3vw, 1vh) rotate(0deg); }
+  70% { transform: translate(3vw, 1vh) rotate(-5deg); }
+  80% { transform: translate(-1vw, -1vh) rotate(5deg); }
+  90% { transform: translate(1vw, 2vh) rotate(-2deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}

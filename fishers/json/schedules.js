@@ -3,7 +3,7 @@ var JSON_sched = {
     {
       "color": "rgb(204, 204, 204)",
       "position": 3,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Passing Period",
@@ -157,7 +157,7 @@ var JSON_sched = {
     {
       "color": "rgb(102, 102, 102)",
       "position": 1,
-			"needsCheck": false
+      "needsCheck": false
     },
     {
       "name": "No School",
@@ -173,7 +173,7 @@ var JSON_sched = {
     {
       "color": "rgb(0, 0, 0)",
       "position": 0,
-			"needsCheck": false
+      "needsCheck": false
     },
     {
       "name": "Unscheduled",
@@ -189,7 +189,7 @@ var JSON_sched = {
     {
       "color": "rgb(255, 0, 0)",
       "position": 2,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Passing Period",
@@ -343,7 +343,7 @@ var JSON_sched = {
     {
       "color": "rgb(229, 255, 0)",
       "position": 3,
-			"needsCheck": false
+      "needsCheck": false
     },
     {
       "name": "eLearning",
@@ -359,7 +359,7 @@ var JSON_sched = {
     {
       "color": "rgb(199, 217, 38)",
       "position": 4,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Block 1",
@@ -499,7 +499,7 @@ var JSON_sched = {
     {
       "color": "rgb(179, 77, 77)",
       "position": 6,
-			"needsCheck": true,
+      "needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -710,7 +710,7 @@ var JSON_sched = {
     {
       "color": "rgb(108, 19, 19)",
       "position": 7,
-			"needsCheck": true,
+      "needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -793,7 +793,7 @@ var JSON_sched = {
     {
       "color": "rgb(128, 0, 0)",
       "position": 8,
-			"needsCheck": true,
+      "needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -876,7 +876,7 @@ var JSON_sched = {
     {
       "color": "rgb(108, 68, 19)",
       "position": 9,
-			"needsCheck": true,
+      "needsCheck": true,
       "ID": "AAAAAA"
     },
     {
@@ -959,7 +959,7 @@ var JSON_sched = {
     {
       "color": "rgb(217, 38, 38)",
       "position": 9,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Red Period 1",
@@ -1104,7 +1104,7 @@ var JSON_sched = {
     {
       "color": "rgb(89, 38, 38)",
       "position": 1,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Red Period 1",
@@ -1249,7 +1249,7 @@ var JSON_sched = {
     {
       "color": "rgb(51, 51, 51)",
       "position": 9,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Silver Period 1",
@@ -1394,7 +1394,7 @@ var JSON_sched = {
     {
       "color": "rgb(153, 153, 153)",
       "position": 1,
-			"needsCheck": true
+      "needsCheck": true
     },
     {
       "name": "Silver Period 1",
@@ -1529,6 +1529,246 @@ var JSON_sched = {
       "name": "Silver Period 4",
       "startTimeDigits": "14:06",
       "startTime": 50760,
+      "endTimeDigits": "15:00",
+      "endTime": 54000,
+      "intraschedule": {},
+      "intraindex": -1
+    }
+  ],
+  "7 Period Day": [
+    {
+      "color": "rgb(255, 140, 0)",
+      "position": 13
+    },
+    {
+      "name": "Period 1",
+      "startTimeDigits": "08:30",
+      "startTime": 30600,
+      "endTimeDigits": "09:10",
+      "endTime": 33000,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Passing Period",
+      "startTimeDigits": "09:10",
+      "startTime": 33000,
+      "endTimeDigits": "09:20",
+      "endTime": 33600,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 2",
+      "startTimeDigits": "09:20",
+      "startTime": 33600,
+      "endTimeDigits": "10:00",
+      "endTime": 36000,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Passing Period",
+      "startTimeDigits": "10:00",
+      "startTime": 36000,
+      "endTimeDigits": "10:10",
+      "endTime": 36600,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 3",
+      "startTimeDigits": "10:10",
+      "startTime": 36600,
+      "endTimeDigits": "10:50",
+      "endTime": 39000,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Passing Period",
+      "startTimeDigits": "10:50",
+      "startTime": 39000,
+      "endTimeDigits": "11:00",
+      "endTime": 39600,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 4",
+      "startTimeDigits": "11:00",
+      "startTime": 39600,
+      "endTimeDigits": "11:40",
+      "endTime": 42000,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 6",
+      "startTimeDigits": "11:40",
+      "startTime": 42000,
+      "endTimeDigits": "12:10",
+      "endTime": 43800,
+      "intraschedule": {
+        "A": [
+          {
+            "name": "A Lunch",
+            "startTimeDigits": "11:40",
+            "startTime": 42000,
+            "endTimeDigits": "12:10",
+            "endTime": 43800
+          },
+          {
+            "name": "Passing Period",
+            "startTimeDigits": "12:10",
+            "startTime": 43800,
+            "endTimeDigits": "12:20",
+            "endTime": 44400
+          },
+          {
+            "name": "Period 6",
+            "startTimeDigits": "12:20",
+            "startTime": 44400,
+            "endTimeDigits": "13:20",
+            "endTime": 48000
+          }
+        ],
+        "B": [
+          {
+            "name": "Passing Period",
+            "startTimeDigits": "11:40",
+            "startTime": 42000,
+            "endTimeDigits": "11:50",
+            "endTime": 42600
+          },
+          {
+            "name": "Period 6",
+            "startTimeDigits": "11:50",
+            "startTime": 42600,
+            "endTimeDigits": "12:15",
+            "endTime": 44100
+          },
+          {
+            "name": "B Lunch",
+            "startTimeDigits": "12:15",
+            "startTime": 44100,
+            "endTimeDigits": "12:45",
+            "endTime": 45900
+          },
+          {
+            "name": "Passing Period",
+            "startTimeDigits": "12:45",
+            "startTime": 45900,
+            "endTimeDigits": "12:55",
+            "endTime": 46500
+          },
+          {
+            "name": "Period 6",
+            "startTimeDigits": "12:55",
+            "startTime": 46500,
+            "endTimeDigits": "13:20",
+            "endTime": 48000
+          }
+        ],
+        "C": [
+          {
+            "name": "Passing Period",
+            "startTimeDigits": "11:40",
+            "startTime": 42000,
+            "endTimeDigits": "11:50",
+            "endTime": 42600
+          },
+          {
+            "name": "Period 6",
+            "startTimeDigits": "11:50",
+            "startTime": 42600,
+            "endTimeDigits": "12:50",
+            "endTime": 46200
+          },
+          {
+            "name": "C Lunch",
+            "startTimeDigits": "12:50",
+            "startTime": 46200,
+            "endTimeDigits": "13:20",
+            "endTime": 48000
+          }
+        ]
+      },
+      "intraindex": -1
+    },
+    {
+      "name": "Passing Period",
+      "startTimeDigits": "13:20",
+      "startTime": 48000,
+      "endTimeDigits": "13:30",
+      "endTime": 48600,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 7",
+      "startTimeDigits": "13:30",
+      "startTime": 48600,
+      "endTimeDigits": "14:10",
+      "endTime": 51000,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Passing Period",
+      "startTimeDigits": "14:10",
+      "startTime": 51000,
+      "endTimeDigits": "14:20",
+      "endTime": 51600,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 8",
+      "startTimeDigits": "14:20",
+      "startTime": 51600,
+      "endTimeDigits": "15:00",
+      "endTime": 54000,
+      "intraschedule": {},
+      "intraindex": -1
+    }
+  ],
+  "SAT Day": [
+    {
+      "color": "rgb(217, 136, 38)",
+      "position": 14
+    },
+    {
+      "name": "Final Device Setup",
+      "startTimeDigits": "08:30",
+      "startTime": 30600,
+      "endTimeDigits": "09:00",
+      "endTime": 32400,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Testing",
+      "startTimeDigits": "09:00",
+      "startTime": 32400,
+      "endTimeDigits": "13:00",
+      "endTime": 46800,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Lunch",
+      "startTimeDigits": "13:00",
+      "startTime": 46800,
+      "endTimeDigits": "13:30",
+      "endTime": 48600,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "College Career Readiness",
+      "startTimeDigits": "13:30",
+      "startTime": 48600,
       "endTimeDigits": "15:00",
       "endTime": 54000,
       "intraschedule": {},
