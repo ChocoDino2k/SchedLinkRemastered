@@ -1,7 +1,3 @@
 User-agent: *
-Disallow: /global/
+Disallow: /fishers/theme_shop
 Disallow: /fishers/theme_shop/
-Disallow: /fishers/editor/
-Disallow: /cgi-bin/
-Disallow: /tmp/
-Disallow: /junk/
