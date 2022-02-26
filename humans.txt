@@ -1,1 +1,1 @@
-A customizable scheduling tool made by students for students
+SchedLink is made by students for students. https://schedlink.com/fishers/info/#about-us

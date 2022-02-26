@@ -60,7 +60,7 @@ $conn -> close();
           </div>
         </section>
         <section class = "block">
-          <div class="info-block container row">
+          <div class="info-block container row" id="about-us">
             <h1>About Us</h1>
             <div id = "creator-info">
               <div class="creator-block row">
