@@ -17,13 +17,24 @@ $id;
 if (count($_COOKIE) > 0) {
   // cookies are enabled
   $cookiesEnabled = TRUE;
-} else if (isset($_GET['nocookies'])) {
-  // a previous test concluded cookies are disabled
+} else if (isset($_GET['nocookies']) && time() - 3600 < $_GET['nocookies'] && $_GET['nocookies'] < time() + 5) {
+  // a previous test in the last 3600 seconds (1 hour) concluded cookies are disabled
   $cookiesEnabled = FALSE;
 } else {
   // test if cookies are enabled
   setcookie("cookietest", true, time() + 3600, "/");
-  header("location: /global/php/cookietest.php?returnURL=$_SERVER[REQUEST_URI]");
+  if (isset($_GET['nocookies'])) {
+    unset($_GET['nocookies']);
+  }
+  $returnURLquery = http_build_query($_GET);
+  if (strlen($returnURLquery) > 0) {
+    $returnURLquery = '?' . $returnURLquery;
+  }
+  if ($_SERVER["SCRIPT_NAME"] == "/fishers/loadHomeWithErrorHandler.php") {
+    header("location: /global/php/cookietest.php?returnURL=/fishers/$returnURLquery");
+  } else {
+    header("location: /global/php/cookietest.php?returnURL=$_SERVER[SCRIPT_URL]$returnURLquery");
+  }
   exit;
 }
 

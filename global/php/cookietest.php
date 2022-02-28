@@ -7,11 +7,9 @@ if (isset($_GET['returnURL']) && $_GET['returnURL'][0] == '/') {
 
 if (!(count($_COOKIE) > 0)) {
     // cookies are disabled
-    if (parse_url($returnURL, PHP_URL_QUERY)) {
-        $returnURL .= '&nocookies';
-    } else {
-        $returnURL .= '?nocookies';
-    }
+    $returnURL .= parse_url($returnURL, PHP_URL_QUERY) ? '&' : '?';
+    $returnURL .= 'nocookies=';
+    $returnURL .= time();
 }
 header("location: $returnURL");
 ?>
