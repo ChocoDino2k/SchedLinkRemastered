@@ -1,5 +1,8 @@
 * text=auto
 * text eol=lf
 
+*.docx text eol=crlf
+
 *.png binary
 *.jpg binary
+*.gif binary
