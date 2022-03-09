@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/schedasr/public_html
-    - /bin/cp -r * $DEPLOYPATH
+    - / -r * $DEPLOYPATH
