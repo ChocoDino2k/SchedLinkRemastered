@@ -97,7 +97,7 @@ function startImageLoad() {
     if(img.classList.contains("loading")) {
       img.classList = "preview";
     }
-    loading.src = "../../global/themes/theme_images/" + img.alt + "-" + ((isPortrait)? "portrait" : "landscape") + ".png?v=1";
+    loading.src = "../../global/themes/theme_images/" + img.alt + "-" + ((isPortrait)? "portrait" : "landscape") + ".png?v=2";
 }
 }
 
