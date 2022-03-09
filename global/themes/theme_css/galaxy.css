@@ -1,0 +1,30 @@
+:root {
+  --norm-font: "robotoregular";
+      --light-font: "robotolight";
+      --bold-font: "robotobold";
+      --background-color: #39005e;
+      --secondary-background-color: #39005e78;
+      --container-background-color: #773bbc78;
+      --container-text-color: #ffffffbd;
+      --button-background-color: white;
+      --button-text-color: black;
+      --button-hover-background: #5500b578;
+      --button-hover-text: black;
+      --button-active-color: white;
+      --header-background-color: #ff000078;
+      --header-text-color: black;
+      --header-icon-color: white;
+      --navigation-background-color: #0000004d;
+      --navigation-icon-color: #8875c9;
+      --navigation-active-icon-color: white;
+      --active-color: #2d223398;
+      --active-hover-color: #00000078;
+      --outline-color: rgb(180,180,180);
+      --anchor-color: #ff000078;
+      --anchor-hover: #00000078;
+}
+
+body {
+  background: url("/global/themes/theme_accessories/galaxy_background.jpg") repeat-y center center fixed #000;
+  background-size: cover;
+}
