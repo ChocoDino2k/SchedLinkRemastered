@@ -25,7 +25,7 @@ $conn -> close();
      <link rel="shortcut icon" type="image/ico" href="/global/images/favicon.ico"/>
 
      <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
-     <script src="/global/js/shop/theme_shop.js?v=12" charset="utf-8"></script>
+     <script src="/global/js/shop/theme_shop.js?v=11" charset="utf-8"></script>
      <script src="/global/js/shop/streaks.js?v=10" charset="utf-8"></script>
 
      <script src="/global/themes/plain_names.js?v=15" charset="utf-8"></script>
