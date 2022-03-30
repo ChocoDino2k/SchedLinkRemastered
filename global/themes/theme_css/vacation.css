@@ -1,0 +1,39 @@
+:root {
+  --norm-font: "robotoregular";
+  --light-font: "robotolight";
+  --bold-font: "robotobold";
+  --background-color: rgb(164 209 255);
+  --secondary-background-color: rgb(209 191 141);
+  --container-background-color: #a4f4fb85;
+  --container-text-color: #ffffffB5;
+  --button-background-color: #ffffffB5;
+  --button-text-color: black;
+  --button-hover-background: #a4f4fbe0;
+  --button-active-color: #ffffffB5;
+  --header-background-color: #99d8f3b8;
+  --header-text-color: black;
+  --header-icon-color: #ffffffB5;
+  --navigation-background-color: #f8dbc3d1;
+  --navigation-icon-color: rgb(162 122 91);
+  --navigation-active-icon-color: #d6c078;
+  --active-color: #34d2f4A5;
+  --active-hover-color: #34d2f4A5;
+  --outline-color: rgb(180,180,180);
+  --anchor-color: #34d2f4;
+  --anchor-hover: white;
+}
+
+body {
+  background: url("/global/themes/theme_accessories/water_background.jpg") repeat-y center center fixed #000;
+  background-size: cover;
+}
+@keyframes waves {
+      0%{background-position:0% 0%}
+      50%{background-position:0% 100%;}
+      100%{background-position:0% 0%}
+}
+#period > *{
+  background: linear-gradient(0deg, rgba(164,244,251,0.71) 50%, rgba(233,253,255,0.81) 100%);
+  background-size: 200% 200%;
+  animation: waves 5s ease infinite;
+}

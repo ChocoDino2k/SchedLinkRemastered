@@ -33,7 +33,7 @@ $conn -> close();
 
      <link rel="stylesheet" href="/global/css/global.css?v=11">
      <link rel="stylesheet" href="/global/css/home.css?v=10">
-     <link rel="stylesheet" href="/global/css/shop/theme_shop.css?v=12">
+     <link rel="stylesheet" href="/global/css/shop/theme_shop.css?v=13">
      <link rel="stylesheet" href="/global/css/shop/streaks.css?v=10">
 
    </head>
