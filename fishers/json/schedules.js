@@ -1535,7 +1535,7 @@ var JSON_sched = {
       "intraindex": -1
     }
   ],
-  "7 Period Day": [
+  "All Period Day": [
     {
       "color": "rgb(255, 140, 0)",
       "position": 13
@@ -1769,6 +1769,86 @@ var JSON_sched = {
       "name": "College Career Readiness",
       "startTimeDigits": "13:30",
       "startTime": 48600,
+      "endTimeDigits": "15:00",
+      "endTime": 54000,
+      "intraschedule": {},
+      "intraindex": -1
+    }
+  ],
+  "Final Exam 8 Sm2": [
+    {
+      "color": "rgb(179, 133, 77)",
+      "position": 15
+    },
+    {
+      "name": "Teacher Office Hours",
+      "startTimeDigits": "08:30",
+      "startTime": 30600,
+      "endTimeDigits": "11:15",
+      "endTime": 40500,
+      "intraschedule": {
+        "Lunch": [
+          {
+            "name": "Student Lunch (During Office Hours)",
+            "startTimeDigits": "10:50",
+            "startTime": 39000,
+            "endTimeDigits": "11:15",
+            "endTime": 40500
+          }
+        ]
+      },
+      "intraindex": -1
+    },
+    {
+      "name": "Lunch Block",
+      "startTimeDigits": "10:50",
+      "startTime": 39000,
+      "endTimeDigits": "11:50",
+      "endTime": 42600,
+      "intraschedule": {
+        "S": [
+          {
+            "name": "Student Lunch",
+            "startTimeDigits": "10:50",
+            "startTime": 39000,
+            "endTimeDigits": "11:50",
+            "endTime": 42600
+          }
+        ],
+        "T": [
+          {
+            "name": "Teacher Lunch",
+            "startTimeDigits": "11:15",
+            "startTime": 40500,
+            "endTimeDigits": "11:50",
+            "endTime": 42600
+          }
+        ]
+      },
+      "intraindex": -1
+    },
+    {
+      "name": "Passing Period",
+      "startTimeDigits": "11:50",
+      "startTime": 42600,
+      "endTimeDigits": "12:00",
+      "endTime": 43200,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Period 8 Exam",
+      "startTimeDigits": "12:00",
+      "startTime": 43200,
+      "endTimeDigits": "13:45",
+      "endTime": 49500,
+      "intraschedule": {},
+      "intraindex": -1
+    },
+    {
+      "name": "Device Collection",
+      "startTimeDigits": "13:45",
+      "startTime": 49500,
       "endTimeDigits": "15:00",
       "endTime": 54000,
       "intraschedule": {},
