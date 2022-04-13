@@ -1,0 +1,229 @@
+:root {
+  --norm-font: "robotoregular";
+      --light-font: "robotolight";
+      --bold-font: "robotobold";
+      --background-color: rgb(255 154 246);
+      --secondary-background-color: rgb(255 195 248 / 70%);
+      --container-background-color: #df7399b0;
+      --container-text-color: white;
+      --button-background-color: white;
+      --button-text-color: black;
+      --button-hover-background: #de5c8ab0;
+      --button-hover-text: black;
+      --button-active-color: white;
+      --header-background-color: #d4749cb0;
+      --header-text-color: black;
+      --header-icon-color: #ffffffb0;
+      --navigation-background-color: rgb(255 197 208 / 70%);
+      --navigation-icon-color: rgb(255 131 131);
+      --navigation-active-icon-color: #ffffffb0;
+      --active-color: #ff81eeba;
+      --active-hover-color: #e090d0ba;
+      --outline-color: rgb(255 255 255);
+      --anchor-color: red;
+      --anchor-hover: black;
+}
+body {
+  background: url("/global/themes/theme_accessories/sakura6_background.jpg") repeat-y center center fixed #edf7ff;
+  background-size: cover;
+}
+
+
+/* https://github.com/jhammann/sakura/blob/master/src/sakura.scss */
+
+@keyframes fall {
+  0% {
+      top: -5%;
+  }
+  100% {
+      top: 97%;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes blow-soft-left {
+  0% {
+      margin-left: 0
+  }
+  50% {
+    margin-left: -15%;
+  }
+  75% {
+    margin-left: -5%;
+  }
+  100% {
+      margin-left: -25%
+  }
+}
+
+@keyframes blow-medium-left {
+  0% {
+      margin-left: 0
+  }
+  25% {
+    margin-left: -20%;
+  }
+  50% {
+    margin-left: -15%;
+  }
+  75% {
+    margin-left: -25%;
+  }
+  100% {
+      margin-left: -50%
+  }
+}
+
+@keyframes blow-soft-right {
+  0% {
+      margin-left: 0
+  }
+  50% {
+    margin-left: 15%;
+  }
+  75% {
+    margin-left: 5%;
+  }
+  100% {
+      margin-left: 25%
+  }
+}
+
+@keyframes blow-medium-right {
+  0% {
+      margin-left: 0
+  }
+  25% {
+    margin-left: 20%;
+  }
+  50% {
+    margin-left: 15%;
+  }
+  75% {
+    margin-left: 25%;
+  }
+  100% {
+      margin-left: 50%
+  }
+}
+
+@keyframes sway-0 {
+  0% {
+      transform: rotate(-5deg)
+  }
+  40% {
+      transform: rotate(28deg)
+  }
+  100% {
+      transform: rotate(3deg)
+  }
+}
+
+@keyframes sway-1 {
+  0% {
+      transform: rotate(10deg)
+  }
+  40% {
+      transform: rotate(43deg)
+  }
+  100% {
+      transform: rotate(15deg)
+  }
+}
+
+@keyframes sway-2 {
+  0% {
+      transform: rotate(15deg)
+  }
+  40% {
+      transform: rotate(56deg)
+  }
+  100% {
+      transform: rotate(22deg)
+  }
+}
+
+@keyframes sway-3 {
+  0% {
+      transform: rotate(25deg)
+  }
+  40% {
+      transform: rotate(74deg)
+  }
+  100% {
+      transform: rotate(37deg)
+  }
+}
+
+@keyframes sway-4 {
+  0% {
+      transform: rotate(40deg)
+  }
+  40% {
+      transform: rotate(68deg)
+  }
+  100% {
+      transform: rotate(25deg)
+  }
+}
+
+@keyframes sway-5 {
+  0% {
+      transform: rotate(50deg)
+  }
+  40% {
+      transform: rotate(78deg)
+  }
+  100% {
+      transform: rotate(40deg)
+  }
+}
+
+@keyframes sway-6 {
+  0% {
+      transform: rotate(65deg)
+  }
+  40% {
+      transform: rotate(92deg)
+  }
+  100% {
+      transform: rotate(58deg)
+  }
+}
+
+@keyframes sway-7 {
+  0% {
+      transform: rotate(72deg)
+  }
+  40% {
+      transform: rotate(118deg)
+  }
+  100% {
+      transform: rotate(68deg)
+  }
+}
+
+@keyframes sway-8 {
+  0% {
+      transform: rotate(94deg)
+  }
+  40% {
+      transform: rotate(136deg)
+  }
+  100% {
+      transform: rotate(82deg)
+  }
+}
+
+.sakura {
+/* background: linear-gradient(120deg, rgba(255, 183, 197, 0.9), rgba(255, 197, 208, 0.9)); */
+  pointer-events: none;
+  position: fixed;
+}

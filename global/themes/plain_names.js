@@ -1,5 +1,5 @@
 var names = [
-  "vacation",
+  "sakura",
   "default",
   "aqua",
   "emerald",
@@ -11,5 +11,6 @@ var names = [
   "woodland",
   "mismatch",
   "greyscale",
-  "galaxy"
+  "galaxy",
+  "vacation"
 ];
