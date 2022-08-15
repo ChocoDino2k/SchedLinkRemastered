@@ -22,7 +22,6 @@ function checkMiss($last, $current) {
     $checkMonth = 1;
   }
 
-  //iterate between the last checked date + 1 until the current date for schedules that needed user to check schedlink
   while(sprintf("%04d-%02d-%02d", $checkYear, $checkMonth, $checkDay) != $current) {
     if($scheduleArray[$calendarArray[$checkYear][$checkMonth-1][$checkDay-1]][0]["needsCheck"]) {
       return TRUE;
@@ -59,7 +58,7 @@ if($hasAccount and $cookiesEnabled) {
       $dateTime = date_timestamp_get(date_create($dateToCheck));
       $currentTime = date_timestamp_get(date_create($GLOBALS["currentDateISO"]));
       $lostStreak = false;
-      if($currentTime - $dateTime > 86400) {
+      if($currentTime - $dateTime  > 86400) {
         if(checkMiss($dateToCheck, $GLOBALS['currentDateISO'])) {
           $streak -= 1;
           $lostStreak = true;
@@ -87,8 +86,6 @@ if($hasAccount and $cookiesEnabled) {
             break;
         }
       }
-      //set the ID cookie to expire one year from last log in
-      setcookie("IDString", $_COOKIE["IDString"], time() + 31536000, "/");
       $now = $GLOBALS['currentDateISO'];
       $conn -> query("UPDATE userset SET streak = $streak, points = $points, lastDate = '$now' WHERE ID = '$id'");
     }
