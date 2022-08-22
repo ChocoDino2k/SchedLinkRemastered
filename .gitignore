@@ -1,3 +1,7 @@
-fishers/json/*
 fishers/editor/.htaccess
+fishers/json/*
 error_log
+
+
+fishers/editor/.htaccess
+fishers/json/schedules.js

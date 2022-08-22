@@ -91,7 +91,7 @@ async function saveSchedule(){
       return;
     }
 
-    s.content.splice(0,0,{color: s.head.color, position: Object.getOwnPropertyNames(JSON_sched).length -1});
+    s.content.splice(0,0,{color: s.head.color, needsCheck: s.head.needsCheck, position: Object.getOwnPropertyNames(JSON_sched).length -1});
     swapSections();
 
 

@@ -97,7 +97,7 @@
 <script src="/global/js/calendar/calendar.js?v=5" charset="utf-8"></script>
 <script src="/global/js/editor/calendar_html.js?v=5" charset="utf-8"></script>
 <script src="/global/js/editor/schedule_html.js?v=5" charset="utf-8"></script>
-<script src="/global/js/editor/save.js?v=5" charset="utf-8"></script>
+<script src="/global/js/editor/save.js?v=6" charset="utf-8"></script>
 
 <script type="text/javascript">
 let mSection, eSection, sectionIdx;

@@ -21,26 +21,35 @@ function swapShown(){
   eSection.classList.toggle("hidden");
 }
 
-function createScheduleHead(name = ""){
-  let container = createElement("div", ["class","schedule_container edit"],
-  ["children",
-    [
-      createElement("div",["class","schedule_color_container"],
-      ["children",
-        [
-          createElement("span", ["style"," background:" + ((name == "")? useableColors[0] : JSON_sched[name][0].color) ], ["starting_color", ((name == "")? useableColors[0] : JSON_sched[name][0].color)])
-        ]
-      ]),
-      createElement("div",["class","schedule_text_container"],
-      ["children",
-        [
-          createElement("input", ["type","text"], ["value" , name], ["placeholder","Schedule Name"], ["originalName", name])
-        ]
-      ])
-    ]
-  ]);
+function createScheduleHead(name = "", labelValue = false){
+  let arr = [
+    createElement("div", ["class","schedule_container edit"],
+    ["children",
+      [
+        createElement("div",["class","schedule_color_container"],
+        ["children",
+          [
+            createElement("span", ["style"," background:" + ((name == "")? useableColors[0] : JSON_sched[name][0].color) ], ["starting_color", ((name == "")? useableColors[0] : JSON_sched[name][0].color)])
+          ]
+        ]),
+        createElement("div",["class","schedule_text_container"],
+        ["children",
+          [
+            createElement("input", ["type","text"], ["value" , name], ["placeholder","Schedule Name"], ["originalName", name])
+          ]
+        ])
+      ]
+    ]),
+    createElement("div", ["class", "schedule_container edit checkbox_container"],
+    ["children",
+      [
+        createElement("input",["type","checkbox"],["id","needsCheck"],["value", (labelValue)? 'on' : 'off']),
+        createElement("label",["for","needsCheck"],["text","Students should be present"])
+      ]
+    ])
+  ];
 
-  return container;
+  return arr;
 }
 function createScheduleMain(period = {name:"", startTimeDigits: "", endTimeDigits:""}, includeAdd = true, isBlock = false){
   return createElement("div",["class","schedule_part"],["children",
@@ -86,16 +95,20 @@ function createScheduleLabelBlock(name = "", subParts = []){
 
   return block;
 }
-function fillSchedule(name = ""){
+function fillSchedule(name = "", needsCheck = false){
   let head = eSection.children[0],
   body = eSection.children[1],
   container;
 
   if(name == "" || JSON_sched[name] == undefined){
-    head.appendChild(createScheduleHead());
+    for (let item of createScheduleHead()) {
+      head.appendChild(item);
+    }
     body.appendChild(createElement("div", ["class","part_container"], ["children",[createScheduleMain()]]));
   }else{
-    head.appendChild(createScheduleHead(name));
+    for (let item of createScheduleHead(name, needsCheck)) {
+      head.appendChild(item);
+    }
     for(let i=1; i < JSON_sched[name].length; i++){
       container = createElement("div", ["class","part_container"]);
       container.appendChild(createScheduleMain(JSON_sched[name][i]));
@@ -137,7 +150,9 @@ function clearSchedule(){
 function edit(isNew = true){
   swapShown();
   clearSchedule();
-  fillSchedule( ((isNew)? "" : dropdownRef[0].children[1].children[0].innerHTML) );
+  let scheduleName = ((isNew)? "" : dropdownRef[0].children[1].children[0].innerHTML),
+      scheduleCheck = (isNew)? false : JSON_sched[scheduleName][0].needsCheck;
+  fillSchedule(scheduleName, scheduleCheck);
 }
 function toStringTime(hm){
   return (hm.map(s => (s < 10)? "0" + s: "" + s)).join(":");
@@ -177,10 +192,14 @@ function parseBlock(b){
   return obj;
 }
 function parseSchedule(){
-  let heading = findElements(document.body, false, "#schedule_head").children[0].children,
+  let heading = findElements(document.body, false, "#schedule_head").children,
   parts = getParts().map(p => mapPart(p));
 
-  return {head: {color: heading[0].children[0].style.background, name: heading[1].children[0].value, ogn:heading[1].children[0].getAttribute("originalName") }, content: parts};
+  return {head: {color: heading[0].children[0].children[0].style.background,
+                 name: heading[0].children[1].children[0].value,
+                 ogn: heading[0].children[1].children[0].getAttribute("originalName"),
+                 needsCheck: heading[1].children[0].checked },
+          content: parts};
 }
 function mapPart(p){
   let obj = {};
