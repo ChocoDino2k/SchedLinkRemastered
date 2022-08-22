@@ -27,6 +27,8 @@ function createElement(type){
           func = arguments[i][1];
           elm.addEventListener("keyup", func.bind(event, this, elm));
           break;
+        case "checked":
+          elm.checked = arguments[i][1]
         default:
           elm.setAttribute(arguments[i][0], arguments[i][1]);
       }

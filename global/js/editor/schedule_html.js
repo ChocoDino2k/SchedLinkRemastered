@@ -43,7 +43,7 @@ function createScheduleHead(name = "", labelValue = false){
     createElement("div", ["class", "schedule_container edit checkbox_container"],
     ["children",
       [
-        createElement("input",["type","checkbox"],["id","needsCheck"],["value", (labelValue)? 'on' : 'off']),
+        createElement("input",["type","checkbox"],["id","needsCheck"],["checked", (labelValue)]),
         createElement("label",["for","needsCheck"],["text","Students should be present"])
       ]
     ])
