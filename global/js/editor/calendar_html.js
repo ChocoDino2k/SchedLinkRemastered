@@ -39,7 +39,7 @@ function replaceDays(){
     setBackground(day, child);
 
     child.onclick = function(){
-      let ref = dropdownRef[0].children[1].children[0].innerHTML;
+      let ref = dropdownRef[0].children[1].children[0].textContent;
       if(ref === day.userData.active && day.userData.previous !== null){
         day.userData.active = day.userData.previous;
         day.userData.previous = ref;
@@ -90,7 +90,7 @@ function needsTextColorSwitch(r, g, b) {
     [r, g, b] = ([r, g, b]).map(c => { c /= 255; if (c <= 0.03928) {return c / 12.92;} else { return Math.pow(((c + 0.055 )/ 1.055), 2.4) } } );
     return !(0.2126 * r + 0.7152 * g + 0.0722 * b > Math.sqrt(1.05 * 0.3) - 0.05);
 }
-function swapSections(){
+function swapSections(){ //switch reference between calendar editor and schedule editor
   sectionIdx ^= 1;
   mSection = findElements(document.body, false, "#menu_section").children[sectionIdx];
   eSection = findElements(document.body, false, "#edit_section").children[sectionIdx];
@@ -102,8 +102,8 @@ function createScheduleOptions(){
   textCont,
   color,
   text,
-  sortedKeys = mergeSort(Object.getOwnPropertyNames(JSON_sched)
-    .map(n => { return  {name: n, value: JSON_sched[n][0].position} } ));
+  sortedKeys = insertionSort(Object.getOwnPropertyNames(JSON_sched)
+    .map(n => { return  {name: n, value: JSON_sched[n][0].position} } )); //should only be slightly out of order
 
   for(let key of sortedKeys ){
     container = createElement("div", ["class", "schedule_container"]);
@@ -123,52 +123,17 @@ function createScheduleOptions(){
 }
 
 
-function merge(left, right){
-  let i = j = 0,
-  merged = [];
-  while(i < left.length && j < right.length){
-
-    if(left[i].value <= right[j].value){
-      merged.push(left[i]);
-      i++;
-    }else{
-      merged.push(right[j]);
-      j++;
-    }
-
-  }
-
-  while( i < left.length){
-    merged.push(left[i]);
-    i++;
-  }
-  while( j < right.length){
-    merged.push(right[j]);
-    j++;
-  }
-  return merged;
-}
-
-
-function mergeSort(arr){
-
-if(arr.length > 1){
-  let mid = Math.trunc((arr.length -1)/2),
-  left = [],
-  right = [];
-
-  for(let i=0; i < arr.length; i++){
-    if(i <= mid){
-      left.push(arr[i]);
-    }else{
-      right.push(arr[i]);
+function insertionSort(arr) {
+  let temp;
+  let j;
+  for (let i = 1; i < arr.length; i++) {
+    j = i;
+    while (j > 0 && arr[j].value < arr[j - 1].value) {
+      temp = arr[j];
+      arr[j] = arr[j - 1];
+      arr[j - 1] = temp;
+      j--;
     }
   }
-    return merge(mergeSort(left), mergeSort(right));
-  }else{
-    return arr;
-  }
-
-
-
+  return arr;
 }

@@ -1,0 +1,2 @@
+DirectoryIndex index.php
+php_flag log_errors off

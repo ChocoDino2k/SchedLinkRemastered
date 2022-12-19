@@ -10,12 +10,12 @@ const DAYS_OF_WEEK = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday
 const DAYS_OF_WEEK_ABR = ['Sun','Mon','Tues','Wed','Thur','Fri','Sat'];
 const DAYS_OF_WEEK_LETTERS = ['U','M','T','W','R','F','S'];
 
-function Day(year, month, day){
+function Day(year, month, day){ //represents a day of the year
   this.year = year;
   this.month = month;
   this.day = day;
   this.date = new Date(year, month-1, day);
-  this.userData = undefined;
+  this.userData = undefined; //holds information about schedule
 }
 
 Day.prototype = {
@@ -33,7 +33,7 @@ Day.prototype = {
   }
 };
 
-function Month(year, month){
+function Month(year, month){ //represents a month of the year
   this.month = month;
   this.year = year;
   this.daysInMonth = (new Date(year, month,0)).getDate();
@@ -43,7 +43,7 @@ function Month(year, month){
   }
 }
 
-function Year(year){
+function Year(year){ // represents a year
   this.year = year;
   this.months = [];
   for(let i =1; i < 13; i++){
@@ -51,26 +51,26 @@ function Year(year){
   }
 }
 
-function Calendar(loopYear = false){
-  this.now = new Date();
+function Calendar(loopYear = false){ // represents a calendar year
+  this.now = new Date(); //current user date
   this.currentYear = this.now.getFullYear();
   this.currentMonth = this.now.getMonth() +1;
-  this.years =[];
-  this.loopCurrentYear = loopYear;
+  this.years =[]; //list of currentYear -1, currentYear, currentYear +1
+  this.loopCurrentYear = loopYear; //current year to display
   for(let i = -1; i < 2; i++){
     this.years.push(new Year(this.currentYear +i));
   }
 }
 
 Calendar.prototype = {
-  getFullMonth: function(m = this.currentMonth){
+  getFullMonth: function(m = this.currentMonth){ //returns month of 42 days (7 days by 6 weeks) (past month, current month, next month)
     let arr = [],
     month = m || this.currentMonth,
     numPrev = this.years[1].months[month-1].days[0].getDayOfWeek();
 
     for(let i =0; i < 42; i++){
-      if(i < numPrev){
-        if(month == 1){
+      if(i < numPrev){ //number of days in previous month that overlapp here
+        if(month == 1){ //Check if January
           arr.push(this.years[(this.loopCurrentYear)? 1 : 0].months[11].days[31 - numPrev +i]);
         }else{
           arr.push(this.years[1].months[month-2].days[this.years[1].months[month-2].daysInMonth - numPrev + i]);
@@ -78,7 +78,7 @@ Calendar.prototype = {
       }else if(i < numPrev + this.years[1].months[month-1].daysInMonth){
           arr.push(this.years[1].months[month-1].days[i - numPrev]);
       }else{
-        if(month == 12){
+        if(month == 12){ //check if December
           arr.push(this.years[(this.loopCurrentYear)? 1 : 2].months[0].days[i - (numPrev + this.years[1].months[month-1].daysInMonth)]);
         }else{
           arr.push(this.years[1].months[month].days[i - (numPrev + this.years[1].months[month-1].daysInMonth)]);

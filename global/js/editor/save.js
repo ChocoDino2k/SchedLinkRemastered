@@ -83,7 +83,7 @@ async function saveSchedule(){
   let s, replace, arr;
   try{
     s = parseSchedule(),
-    replace = (s.head.ogn != s.head.name) && s.head.ogn != "",
+    replace = (s.head.ogn != s.head.name) && s.head.ogn !== "",
     arr = [];
 
     if(s.head.name == "" || checkEmpty(s.content)){
@@ -91,14 +91,14 @@ async function saveSchedule(){
       return;
     }
 
-    s.content.splice(0,0,{color: s.head.color, needsCheck: s.head.needsCheck, position: Object.getOwnPropertyNames(JSON_sched).length -1});
+    s.content.splice(0,0,{color: s.head.color, position: Object.getOwnPropertyNames(JSON_sched).length -1});
     swapSections();
 
 
-    if(s.head.ogn != "" || replace){
+    if(s.head.ogn !== "" || replace) {
 
       if(s.head.color == JSON_sched[s.head.ogn][0].color || checkColorAvaiablility(s.head.color)){
-        s.content[0].position = JSON_sched[s.head.name][0].position;
+        s.content[0].position = JSON_sched[s.head.ogn][0].position;
         if(replace){
           JSON_sched.renameProperty(s.head.ogn, s.head.name);
         }
@@ -114,17 +114,21 @@ async function saveSchedule(){
 
     reloadDrop();
     reloadCalendar(replace, s.head.ogn, s.head.name);
+    if (replace) {
+        await postData("json/schedule-calendar.js", "calendar", JSON_calendar);
+    }
     useableColors = setAvailableColors();
-
-    swapSections();
+    
     let p = await postData("json/schedules.js","sched", JSON_sched);
     setPopdown(p);
     if(p == "success"){
+      swapSections();
       swapShown();
     }
 
   }catch(e){
     setPopdown("failed");
+    console.log(e);
     return;
   }
   return;
@@ -153,7 +157,7 @@ async function removeSchedule(){
       swapSections();
       reloadDrop();
       reloadCalendar(true, sched, "Unscheduled");
-      await postData("json/filler.js", "calendar", JSON_calendar);
+      await postData("json/schedule-calendar.js", "calendar", JSON_calendar);
       swapSections();
       let p = await postData("json/schedules.js","sched", JSON_sched);
       setPopdown(p);

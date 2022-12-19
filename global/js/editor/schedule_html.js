@@ -150,7 +150,7 @@ function clearSchedule(){
 function edit(isNew = true){
   swapShown();
   clearSchedule();
-  let scheduleName = ((isNew)? "" : dropdownRef[0].children[1].children[0].innerHTML),
+  let scheduleName = ((isNew)? "" : dropdownRef[0].children[1].children[0].textContent),
       scheduleCheck = (isNew)? false : JSON_sched[scheduleName][0].needsCheck;
   fillSchedule(scheduleName, scheduleCheck);
 }

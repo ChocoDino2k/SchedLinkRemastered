@@ -1,6 +1,6 @@
-var calendar;
+var calendar; //global calendar to interact with
 
-function setUserData(allYears){
+function setUserData(allYears){ //updates days with schedules
   let start = (allYears)? 0 : (calendar.currentMonth == 1)? 2: 0,
   end = (allYears)? 3 : start+1;
   for(let y =start; y < end; y++){
@@ -15,7 +15,7 @@ function setUserData(allYears){
   }
 }
 
-function expandJSONCal(idx, year){
+function expandJSONCal(idx, year){ //initialize year with default schedule
   JSON_calendar[year]= {};
   for(let i =0; i < 12; i++){
     JSON_calendar[year][i] = [];
@@ -25,7 +25,7 @@ function expandJSONCal(idx, year){
   }
 }
 
-function replaceDays(){
+function replaceDays(){ //updates HTML month view
   let days = calendar.getFullMonth(),
   i =0,
   head = cSec.children[0].children[1].children[0],
@@ -35,21 +35,10 @@ function replaceDays(){
   for(let day of days){
     child = groups[i%7].children[1].children[Math.trunc(i/7)];
     child.innerHTML = day.day;
-    child.setAttribute("tooltip-show", day.userData.active);
+    child.setAttribute("tooltip-show", day.userData.active); //TODO hover shows schedule without having to click
     setBackground(day, child);
 
     child.onclick = function(){
-      // let ref = dropdownRef[0].children[1].children[0].innerHTML;
-      // if(ref === day.userData.active && day.userData.previous !== null){
-      //   day.userData.active = day.userData.previous;
-      //   day.userData.previous = ref;
-      // }else{
-      //   day.userData.previous = day.userData.active;
-      //   day.userData.active = ref;
-      // }
-      // JSON_calendar[day.year][day.month-1][day.day-1] = day.userData.active;
-      // setBackground(day, this);
-      // clearSchedule();
       sSec.classList.toggle("hidden");
 
       fillSchedule(day.userData.active);
@@ -75,11 +64,6 @@ function setBackground(day, elm){
   rgb = colorRGB(background);
 
   elm.style.color = "var(--container-text-color)";
-  // if(needsTextColorSwitch(rgb[0], rgb[1], rgb[2])){
-  //   elm.style.color = "rgb(255,255,255)";
-  // }else{
-  //   elm.style.color = "rgb(0,0,0)";
-  // }
 }
 function colorRGB(c){
   let clr = c.substring(c.indexOf("(")+1, c.indexOf(")")).split(","),
@@ -94,38 +78,9 @@ function needsTextColorSwitch(r, g, b) {
     [r, g, b] = ([r, g, b]).map(c => { c /= 255; if (c <= 0.03928) {return c / 12.92;} else { return Math.pow(((c + 0.055 )/ 1.055), 2.4) } } );
     return !(0.2126 * r + 0.7152 * g + 0.0722 * b > Math.sqrt(1.05 * 0.3) - 0.05);
 }
-// function swapSections(){
-//   sectionIdx ^= 1;
-//   mSection = findElements(document.body, false, "#menu_section").children[sectionIdx];
-//   sec = findElements(document.body, false, "#edit_section").children[sectionIdx];
-// }
-// function createScheduleOptions(){
-//   let arr = [];
-//   let container,
-//   colCont,
-//   textCont,
-//   color,
-//   text,
-//   sortedKeys = mergeSort(Object.getOwnPropertyNames(JSON_sched)
-//     .map(n => { return  {name: n, value: JSON_sched[n][0].position} } ));
-//
-//   for(let key of sortedKeys ){
-//     container = createElement("div", ["class", "schedule_container"]);
-//     colCont = createElement("div", ["class","schedule_color_container"]);
-//     textCont = createElement("div", ["class","schedule_text_container"]);
-//     color = createElement("span", ["style"," background:" + JSON_sched[key.name][0].color]);
-//     text = createElement("p", ["text" , key.name]);
-//
-//     textCont.appendChild(text);
-//     colCont.appendChild(color);
-//     container.appendChild(colCont);
-//     container.appendChild(textCont);
-//     arr.push(container);
-//   }
-//
-//   return arr;
-// }
 
+//idk why this is here
+/**
 function merge(left, right){
   let i = j = 0,
   merged = [];
@@ -175,11 +130,14 @@ if(arr.length > 1){
 
 
 }
+*/
 
 
-
-
-function createScheduleHead(name = "Unscheduled"){
+/**
+ * 
+ * The following displays the schedule when a user clicks on the day
+ */
+function createScheduleHead(name = "Unscheduled"){ //
   let container = createElement("div", ["class","schedule_container"],
   ["children",
     [
