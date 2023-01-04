@@ -24,7 +24,8 @@ function checkMiss($last, $current) {
 
   //iterate between the last checked date + 1 until the current date for schedules that needed user to check schedlink
   while(sprintf("%04d-%02d-%02d", $checkYear, $checkMonth, $checkDay) != $current) {
-    if($scheduleArray[$calendarArray[$checkYear][$checkMonth-1][$checkDay-1]]["metadata"]["needsCheck"]) {
+    if($scheduleArray[$calendarArray[$checkYear][$checkMonth-1][$checkDay-1]] != undefined &&
+        $scheduleArray[$calendarArray[$checkYear][$checkMonth-1][$checkDay-1]]["metadata"]["needsCheck"]) {
       return TRUE;
     }
     $checkDay++;

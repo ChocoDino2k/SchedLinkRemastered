@@ -47,9 +47,9 @@ function createPeriodHeading(name = ""){
  */
 function createPeriodTime(period = {startTimeDigits: "", endTimeDigits: ""}){
   return createElement("div", ["class", "period_time"], ["children",[
-  createElement("p", ["text",  period.startTimeDigits]),
+  createElement("p", ["text",  to12HTime(period.startTimeDigits)]),
   createElement("p", ["text", "-"] ),
-  createElement("p", ["text",  period.endTimeDigits])
+  createElement("p", ["text",  to12HTime(period.endTimeDigits)])
   ] ]
   );
 }
@@ -173,3 +173,20 @@ function getBackground(color, inMonth) {
     color:var(--container-text-color)";
 }
 
+/**
+ * Converts 24 hour to 12 hour time
+ * @param {String} time time in HH:MM form 
+ * @returns String time in HH:MM form
+ */
+function to12HTime(time) {
+  time = time.split(":");
+  time[0] = padDigit(parseInt(time[0]));
+  return time.join(":");
+}
+function padDigit(number) {
+  if (number < 10) {
+      return `0${number}`
+  } else {
+      return number + '';
+  }
+}
