@@ -64,10 +64,6 @@ $conn -> close();
             <h1>About Us</h1>
             <div id = "creator-info">
               <div class="creator-block row">
-                <h2>Active Developers</h2>
-                <a href = "https://www.linkedin.com/in/logan-cover-366545209" target="_blank"><p>Logan Cover</p></a>
-              </div>
-              <div class="creator-block row">
                 <h2>Creators</h2>
                 <p>Matthew Ghera</p>
                 <p>Dane Trainor</p>

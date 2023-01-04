@@ -22,14 +22,29 @@ input[type = "text"]:focus{
 }
 /* Dropdown
 ________________________________________________________________________________ */
-.dropdown_wrapper{
-  margin:auto;
+#dropdown_container {
+  position: relative;
+  margin: auto;
+  cursor: pointer;
 }
-.dropdown_wrapper thead{
+#dropdown_display_item_bounding {
+  width: 7rem;
   background: var(--container-background-color);
+  overflow-x: hidden;
+  outline: 1px solid black;
 }
-.dropdown_wrapper tbody{
+#dropdown_display_item {
+  width: max-content;
+  min-width: 100%;
+}
+#dropdown_item_list {
+  position: absolute;
+  width: max-content;
+  min-width: 7rem;
+  max-height: 50vh;
   background: var(--secondary-background-color);
+  overflow-y: scroll;
+  outline: 1px solid black;
 }
 .schedule_container{
   grid-template-columns: auto 1fr;
@@ -39,10 +54,10 @@ ________________________________________________________________________________
   line-height: 0;
 }
 .schedule_container.edit{
-  background: #fff;
+  background: var(--container-background-color);
 }
 .schedule_container:hover{
-  background: #fff;
+  background: var(--container-background-color);
 }
 .schedule_container > div{
   width:100%;

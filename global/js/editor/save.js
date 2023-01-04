@@ -1,195 +1,160 @@
-Object.defineProperty(Object.prototype, 'renameProperty',{
-  enumerable: false,
-  configurable: false,
-  value: function (oldName, newName) {
-       // Do nothing if the names are the same
-       if (oldName === newName) {
-           return this;
-       }
-      // Check for the old property name to avoid a ReferenceError in strict mode.
-      if (this.hasOwnProperty(oldName)) {
-          this[newName] = this[oldName];
-          delete this[oldName];
-      }
-      return this;
-  }
-}
-
-);
-
-
-// Object.prototype.renameProperty = function (oldName, newName) {
-//      // Do nothing if the names are the same
-//      if (oldName === newName) {
-//          return this;
-//      }
-//     // Check for the old property name to avoid a ReferenceError in strict mode.
-//     if (this.hasOwnProperty(oldName)) {
-//         this[newName] = this[oldName];
-//         delete this[oldName];
-//     }
-//     return this;
-// };
-
+/**
+ * creates and displays a popdown that displays the saving status
+ * text - promise text status
+ */
 function setPopdown(text){
-  let h = findElements(document.body, false, "#popdown");
-
-  if(h == null){
-    let cont = createElement("div", ["id","popdown"], ["children",
-      [
-        createElement("div", ["class","pop_text_container"], ["children", [createElement("p", ["text",text])]])
-      ]
-    ], ["style", " position: absolute; top:0; left: 50%; transform: translate(-50%, 3vh); padding: 0.25rem 0.5rem; width: 50%; max-width: 10rem; min-width:fit-content; box-shadow:rgb(0 0 0) 0px 2px 12px 0px"]);
-    document.body.appendChild(cont);
-    h = cont;
-  }else{
-    document.body.replaceChild(h.cloneNode(true), h);
-    h = findElements(document.body, false, "#popdown");
-    h.children[0].children[0].innerHTML = text;
-    h.classList = "";
-  }
-  switch (text) {
-    case "success":
-      h.classList = "success";
-      break;
-    case "saving":
-      h.classList = "saving";
-      break;
-    default:
-      h.classList = "failed";
-  }
-
-  return;
-}
-
-async function postData(filename, varname, data){
-    let myval = "var JSON_" + varname.toLowerCase() + " = " + JSON.stringify(data, null, 2);
-    return await $.ajax({
-  url: "update.php",
-  data: {"variable": myval, "filen": filename},
-  type: "POST",
-  });
-
-}
-async function saveCalendar(){
-  setPopdown("saving");
-  let p = await postData("json/schedule-calendar.js", "calendar", JSON_calendar);
-  setPopdown(p);
-  return;
-}
-
-async function saveSchedule(){
-  setPopdown("saving");
-  let s, replace, arr;
-  try{
-    s = parseSchedule(),
-    replace = (s.head.ogn != s.head.name) && s.head.ogn !== "",
-    arr = [];
-
-    if(s.head.name == "" || checkEmpty(s.content)){
-      setPopdown("failed");
-      return;
-    }
-
-    s.content.splice(0,0,{color: s.head.color, position: Object.getOwnPropertyNames(JSON_sched).length -1});
-    swapSections();
-
-
-    if(s.head.ogn !== "" || replace) {
-
-      if(s.head.color == JSON_sched[s.head.ogn][0].color || checkColorAvaiablility(s.head.color)){
-        s.content[0].position = JSON_sched[s.head.ogn][0].position;
-        if(replace){
-          JSON_sched.renameProperty(s.head.ogn, s.head.name);
-        }
-      }
-
-    }else if(!checkColorAvaiablility(s.head.color)){
-      setPopdown("not a viable color");
-      return;
-    }
-
-
-    JSON_sched[s.head.name] = s.content;
-
-    reloadDrop();
-    reloadCalendar(replace, s.head.ogn, s.head.name);
-    if (replace) {
-        await postData("json/schedule-calendar.js", "calendar", JSON_calendar);
-    }
-    useableColors = setAvailableColors();
-    
-    let p = await postData("json/schedules.js","sched", JSON_sched);
-    setPopdown(p);
-    if(p == "success"){
-      swapSections();
-      swapShown();
-    }
-
-  }catch(e){
-    setPopdown("failed");
-    console.log(e);
-    return;
-  }
-  return;
-}
-function checkEmpty(parts){
-  for(let part of parts){
-    if(part.name == "" || part.ST == "" || part.ET == ""){
-      return true;
-    }
-    if(part.hasSub){
-      for(let sub in part.sub){
-        if(sub == "" || checkEmpty(part.sub[sub])){
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
-async function removeSchedule(){
-  setPopdown("saving");
-  try{
-    let sched = findElements(document.body, false, "#schedule_head").children[0].children[1].children[0].getAttribute("originalName");
-    if(JSON_sched[sched] != undefined && sched != "Unscheduled"){
-      delete JSON_sched[sched];
-      swapSections();
-      reloadDrop();
-      reloadCalendar(true, sched, "Unscheduled");
-      await postData("json/schedule-calendar.js", "calendar", JSON_calendar);
-      swapSections();
-      let p = await postData("json/schedules.js","sched", JSON_sched);
-      setPopdown(p);
-      if(p == "success"){
-        swapShown();
-      }else{
-        setPopdown("could not delete");
-      }
+    let popdown = findElements(document.body, false, "#popdown");
+  
+    if(popdown == null){
+      let container = createElement("div", ["id","popdown"], ["children",
+        [
+          createElement("div", ["class","pop_text_container"], ["children", [createElement("p", ["text",text])]])
+        ]
+      ], ["style", " position: absolute; top:0; left: 50%; transform: translate(-50%, 3vh); padding: 0.25rem 0.5rem; width: 50%; max-width: 10rem; min-width:fit-content; box-shadow:rgb(0 0 0) 0px 2px 12px 0px"]);
+      document.body.appendChild(container);
+      popdown = container;
     }else{
-      setPopdown("could not delete");
+      document.body.replaceChild(popdown.cloneNode(true), popdown);
+      popdown = findElements(document.body, false, "#popdown");
+      popdown.children[0].children[0].innerHTML = text;
+      popdown.classList = "";
     }
-  }catch(e){
-    setTimeout(setPopdown, 10, "could not delete");
+    switch (text) {
+      case "success":
+        popdown.classList = "success";
+        break;
+      case "saving":
+        popdown.classList = "saving";
+        break;
+      default:
+        popdown.classList = "failed";
+    }
   }
 
+/**
+ * save JSON_calendar to schedule-calendar.js
+ */
+const saveCalendar = async function () {
+    setPopdown("saving");
+
+    /**
+     * TODO: implement functionality to decrease chance of uploading stale data
+     * Current assumption is one person at a time is editing the schedules
+     * solution? pull latest version and update changes as needed??
+     */
+
+    let payload = "var JSON_calendar = " + JSON.stringify(JSON_calendar, null, 1);
+    let status = await $.ajax({
+        url: "update.php",
+        data: {"variable": payload, "filen": "json/schedule-calendar.js"},
+        type: "POST",
+    });
+    setPopdown(status);
+    return status;
 }
 
-function reloadDrop(){
-  let drop = mSection.children[0].children[0];
-  replaceDropdownContent(drop, createScheduleOptions());
+const saveSchedule = async function () {
+    setPopdown("saving");
+    let status = "failure";
+    try {
+        let scheduleBody = parseSchedulePeriods();
+        let scheduleHead = parseScheduleHeading();
+        let newSchedule = (scheduleHead.id === "");
+        const id = (newSchedule)? createUUID() : scheduleHead.id;
+        //check if chosen a color
+        if (scheduleHead.color == "transparent") {
+            throw new Error("Please choose a color", {cause : "collision"});
+        }
+        //check if the chosen color is available
+        Object.entries(JSON_sched).forEach( ([key, value]) => {
+            if (key != id && value.metadata.color == scheduleHead.color) {
+                throw new Error(`Color is used by ${value.metadata.name}`, {cause : "collision"});
+            }
+        });
+
+
+        delete scheduleHead.id;
+        JSON_sched[id] = {metadata: scheduleHead, periods: scheduleBody};
+
+        let payload = "var JSON_sched = " + JSON.stringify(JSON_sched, null, 1);
+        let status = await $.ajax({
+            url: "update.php",
+            data: {"variable": payload, "filen": "json/schedules.js"},
+            type: "POST",
+        });
+        //update dropdown
+        if (newSchedule) {
+            appendDropdownItem(findElements(menuSection, false, "#dropdown_container"), 
+                createElement("div", ["class", "schedule_container"], ["scheduleref", id], ["children", [
+                    createElement("div", ["class","schedule_color_container"], ["children", 
+                        createElement("span", ["style"," background:" + JSON_sched[id].metadata.color])
+                    ]),
+                    createElement("div", ["class","schedule_text_container"], ["children", 
+                        createElement("p", ["text" , JSON_sched[id].metadata.name])
+                    ])
+                ]
+                ]));
+        } else {
+            updateDropdown(findElements(menuSection, false, "#dropdown_container"));
+        }
+    } catch (e) {
+        if (e.cause == "collision" || e.cause == "parse") {
+            window.alert(e.message);
+        }
+        console.error(e);
+        setPopdown("failure");
+        return;
+        //throw new Error(e);
+    }
+
+    setPopdown("success");
+    setCurrentMonthDisplay();
+    showCalendarEditor();
 }
-function reloadCalendar(nameChange = false, ogn = null, name = null){
-  if(nameChange){
-    for(let year in JSON_calendar){
-      for(let m in JSON_calendar[year]){
-        for(let i=0; i < JSON_calendar[year][m].length; i++){
-          if(JSON_calendar[year][m][i] == ogn)
-            JSON_calendar[year][m][i] = name;
+
+const removeSchedule = async function () {
+    let copy = JSON_sched[currentSchedule];
+    let copyId = currentSchedule;
+    if (copyId == "000") {
+        window.alert("Forbidden Deletion");
+        setPopdown("failure");
+        return;
+    }
+    delete JSON_sched[currentSchedule];
+    try {
+        //update file
+        let payload = "var JSON_sched = " + JSON.stringify(JSON_sched, null, 1);
+        let status = await $.ajax({
+            url: "update.php",
+            data: {"variable": payload, "filen": "json/schedules.js"},
+            type: "POST",
+        });
+        updateDropdown(findElements(menuSection, false, "#dropdown_container"));
+        setCurrentMonthDisplay();
+    } catch (e) {
+        console.error(e);
+        JSON_sched[copyId] = copy;
+        currentSchedule = copyId;
+        setPopdown("failure");
+        return;
+    }
+
+    setPopdown("success");
+    showCalendarEditor();
+}
+
+function checkEmpty(parts){
+    for(let part of parts){
+      if(part.name == "" || part.ST == "" || part.ET == ""){
+        return true;
+      }
+      if(part.hasSub){
+        for(let sub in part.sub){
+          if(sub == "" || checkEmpty(part.sub[sub])){
+            return true;
+          }
         }
       }
     }
-    setUserData(true);
+    return false;
   }
-  replaceDays();
-}

@@ -51,6 +51,12 @@ function Year(year){ // represents a year
   }
 }
 
+Year.prototype = {
+  getNumberDaysPerMonth: function() {
+    return numberDaysInMonths = this.months.map( month => month.daysInMonth );
+  }
+}
+
 function Calendar(loopYear = false){ // represents a calendar year
   this.now = new Date(); //current user date
   this.currentYear = this.now.getFullYear();
@@ -118,6 +124,18 @@ Calendar.prototype = {
       }
     }
     return false;
+  },
+  /**
+   * returns the Year object associated to the year parameter. Null if not in proper range
+   * year - numerical year value to find
+   */
+  getYear : function (year) {
+    for (let i = 0; i  < 3; i++) {
+      if (this.years[i].year == year) {
+        return this.years[i];
+      }
+    }
+    return null;
   }
 
 }

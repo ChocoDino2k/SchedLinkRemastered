@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-
+<!-- Landscape -> 1300 x 700
+Portrait -> 360 x 640 -->
 <?php
 // header('Cache-Control: no-cache, no-store, must-revalidate');
 // header('Pragma: no-cache');

@@ -18,7 +18,7 @@ function LinkedList(head = null) {
 
 LinkedList.prototype = {
   append : function(node) {
-if(node != null || node != undefined) {
+if(node != null && node != undefined) {
     if(this.head == null) {
       this.head = node;
       this.tail = node;
@@ -44,21 +44,19 @@ if(node != null || node != undefined) {
 }
 
 class Node {
-  constructor(name, id, std, st, etd, et, isChild = true, sub = null, idx = -1, dot = null) {
+  constructor(periodObj, isChild, dot) {
     this.next = null;
     this.previous = null;
 
-    this.name = name;
-    this.ID = id;
-    this.startTimeDigits = std;
-    this.startTime = st;
-    this.endTimeDigits = etd;
-    this.endTime = et;
+    this.name = periodObj.name;
+    this.startTimeDigits = periodObj.startTimeDigits;
+    this.startTime = periodObj.startTime;
+    this.endTimeDigits = periodObj.endTimeDigits;
+    this.endTime = periodObj.endTime;
     this.isChild = isChild;
-    this.intraschedule = sub;
-    this.intraindex = idx;
+    this.intraschedule = periodObj.intraschedule;
+    this.intraindex = periodObj.intraindex;
     this.dot = dot;
-
   }
 }
 
@@ -83,28 +81,53 @@ var updateClockFrame = 0; //used for animation frame tracking
 
 var secOffset = -1; //seconds offset (always set to -1)
 var minOffset = 0; //minute offset (testing variable)
-var hourOffset = -168; //hour offset (testing variable)
+var hourOffset = 0; //hour offset (testing variable)
 
 var now = newDateAdjusted(); //user's current time
 var curTotalSec = 0; //user's current time in seconds
 const pageLoadDate = now.toISOString().split('T')[0]; //date the user loaded the page
-const schedname = (JSON_calendar[now.getFullYear()] == undefined)? "Unscheduled" : JSON_calendar[now.getFullYear()][now.getMonth()][now.getDate() - 1]; //name of the day's schedule
-const schedule = (JSON_sched[schedname] == undefined)? JSON_sched["Unscheduled"] : JSON_sched[schedname]; //schedule the timer follows
+const schedname = (JSON_calendar[now.getFullYear()] === undefined)? "000" : JSON_calendar[now.getFullYear()][now.getMonth()][now.getDate() - 1]; //name of the day's schedule
+const schedule = (JSON_sched[schedname] === undefined)? JSON_sched["000"] : JSON_sched[schedname]; //schedule the timer follows
 var schedule_links = new LinkedList(); //schedule converted into a doubly linked list
 var display_node; //node in linked list that is actively being displayed
 var parent_node; //parent of the display node, tracks the gallery dots
+
+/*
+function init() {
+  if (schedule === undefined) {return;} //do later
+  for (let period of schedule.periods) {
+    schedule_links.append(
+      new Node(period, false, createElement('button', ["class", "gallery-dot"]))
+    );
+  if (now < period.endTime && now > period.startTime) {
+    display_node = schedule_links.getLast();
+  }
+  if (period.intraschedule != null) {
+    for (let key in period.intraschedule) {
+      let sub_links = [];
+      let i = 0;
+      for (let sub_period of period.intraschedule[key]) {
+        sub_links.push(new Node(sub_period, true, null));
+        if (sub_links.length == 1) {sub_links[i].previous = schedule_links.tail.previous; continue;}
+        sub_links[i - 1].next = sub_links[i];
+        sub_links[i].previous = sub_links[i - 1];
+      }
+    }
+    
+  }
+  }
+}
+*/
 
 
 /**
 * initializes schedule and timer
 **/
 function init() {
-  for(let period of schedule) {
+  for(let period of schedule.periods) {
     if(period.startTime == null) continue; //ignore initial heading information
 
-    schedule_links.append(new Node(period.name, period.ID, period.startTimeDigits,
-      period.startTime, period.endTimeDigits, period.endTime, false, {},
-      period.intraindex, createElement('button', ["class", "gallery-dot"])));
+    schedule_links.append(new Node(period, false, createElement('button', ["class", "gallery-dot"])));
 
       if(period.intraschedule != null) {
         let sub_links, obj;
@@ -112,8 +135,7 @@ function init() {
           sub_links = new LinkedList();
           for(let subP of period.intraschedule[key]) {
             sub_links.append(new Node(
-              subP.name, subP.ID, subP.startTimeDigits, subP.startTime,
-              subP.endTimeDigits, subP.endTime
+              period, true, createElement('button', ["class", "gallery-dot"])
             ));
           }
           schedule_links.tail.intraschedule[key] = sub_links;
@@ -312,7 +334,7 @@ function checkSubPrompt(period) {
 
 /**
 * creates html buttons for each sub period choice
-* @param {Node} period period to generate buttons for
+* @param {Node} period perniod to generate buttons for
 **/
 function createSubChoices(period) {
   let div = createElement("div",["class","row"], ["id","sub_choose"]),

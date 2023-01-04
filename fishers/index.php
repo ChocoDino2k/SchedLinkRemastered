@@ -25,7 +25,7 @@ $conn->close();
 
     <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
     
-    <script src="/global/js/home/clockv2.js?v=10" charset="utf-8"></script>
+    <script src="/global/js/home/clockv3.js?v=10" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/global/css/global.css?v=10">
     <link rel="stylesheet" href="/global/css/home.css?v=10">
@@ -60,8 +60,12 @@ $conn->close();
   </body>
 
   <script type="text/javascript">
+  var periodBox, countdown, subBox;
   document.onreadystatechange = () => {
       if(document.readyState == "complete") {
+        periodBox = findElements(document.body, false, "#period__box");
+        countdown = findElements(document.body, false, "#countdown");
+        subBox = findElements(document.body, false , "#sub_choose");
         init();
         findElements(document.body, false, "#nav-tabs__home").classList.toggle("selected");
         <?php include_once($r . "/global/themes/theme_js/" . $currentTheme . ".js"); ?>

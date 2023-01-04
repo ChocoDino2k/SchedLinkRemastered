@@ -57,7 +57,7 @@ $conn->close();
             </div>
           </div>
         </section>
-        <section id = "schedule_section">
+        <section id = "schedule_section" class = "hidden">
           <div id="schedule_container">
             <div class="schedule_head">
 
@@ -77,36 +77,32 @@ $conn->close();
       <script src="/global/js/calendar/calendar.js?v=9" charset="utf-8"></script>
       <script src="/global/js/calendar/calendar_html.js?v=9" charset="utf-8"></script>
       <script type="text/javascript">
-      var cSec,sSec;
+      var calendarSection, scheduleSection, calendar;
+      calendar = new Calendar(false);
       document.onreadystatechange = () => {
         if (document.readyState === 'complete') {
           findElements(document.body, false, "#nav-tabs__cal").classList.toggle("selected");
 
-          cSec = findElements(document.body, false, "#calendar_container");
-          sSec = findElements(document.body, false, "#schedule_section");
-          sSec.classList.toggle("hidden");
-          sSec.onclick = (e) =>{
-            // console.log(e.target.id);
-            // if(e.target.id == "schedule_container" || e.target.id == "schedule_section")
-            sSec.classList.toggle("hidden");
+          calendarSection = findElements(document.body, false, "#calendar_container");
+          scheduleSection = findElements(document.body, false, "#schedule_section");
+          scheduleSection.classList = "hidden";
+          scheduleSection.onclick = (e) =>{
+            scheduleSection.classList = "hidden";
           }
-          calendar = new Calendar(false);
 
+          //set days of the week along the calendar
+          let weekDayNames = findElements(calendarSection, true, ".weekday");
           DAYS_OF_WEEK_ABR.forEach((item, i) => {
-            cSec.children[1].children[i].children[0].innerHTML = item;
+            weekDayNames[i].innerHTML = item;
           });
-          for(let btn of findElements(cSec, true, '.calendar_head_btn')){
-            btn.onclick = function(){
-              if(calendar.updateMonth(parseInt(btn.value))){
-                setUserData(false);
-              }
-              replaceDays();
+          setCurrentMonthDisplay(); //show current month
+          //set arrow buttons to update calendar display
+          for(let btn of findElements(calendarSection, true, '.calendar_head_btn')){
+            btn.onclick = function() {
+              calendar.updateMonth(parseInt(btn.value))
+              setCurrentMonthDisplay();
             }
           }
-
-
-          setUserData(true);
-          replaceDays();
 
           <?php include_once($r . "/global/themes/theme_js/" . $currentTheme . ".js"); ?>
         }

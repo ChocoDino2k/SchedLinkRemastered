@@ -45,7 +45,28 @@
           <div id = "schedule_options" class="menu_options hidden">
             <div class="options_container">
 <div id = "color_picker" style = "font-size:0">
-  <div class="color" style="background: #ff0000"></div><div class="color" style="background: #d92626"></div><div class="color" style="background: #b34d4d"></div><div class="color" style="background: #800000"></div><div class="color" style="background: #6c1313"></div><div class="color" style="background: #592626"></div><div class="color" style="background: #ff8c00"></div><div class="color" style="background: #d98826"></div><div class="color" style="background: #b3854d"></div><div class="color" style="background: #804600"></div><div class="color" style="background: #6c4413"></div><div class="color" style="background: #594226"></div><div class="color" style="background: #e5ff00"></div><div class="color" style="background: #c7d926"></div><div class="color" style="background: #a8b34d"></div><div class="color" style="background: #738000"></div><div class="color" style="background: #636c13"></div><div class="color" style="background: #545926"></div><div class="color" style="background: #59ff00"></div><div class="color" style="background: #65d926"></div><div class="color" style="background: #70b34d"></div><div class="color" style="background: #2d8000"></div><div class="color" style="background: #326c13"></div><div class="color" style="background: #385926"></div><div class="color" style="background: #00ff33"></div><div class="color" style="background: #26d94a"></div><div class="color" style="background: #4db361"></div><div class="color" style="background: #00801a"></div><div class="color" style="background: #136c25"></div><div class="color" style="background: #265930"></div><div class="color" style="background: #00ffbf"></div><div class="color" style="background: #26d9ac"></div><div class="color" style="background: #4db399"></div><div class="color" style="background: #008060"></div><div class="color" style="background: #136c56"></div><div class="color" style="background: #26594d"></div><div class="color" style="background: #00b3ff"></div><div class="color" style="background: #26a3d9"></div><div class="color" style="background: #4d94b3"></div><div class="color" style="background: #005980"></div><div class="color" style="background: #13526c"></div><div class="color" style="background: #264a59"></div><div class="color" style="background: #0026ff"></div><div class="color" style="background: #2641d9"></div><div class="color" style="background: #4d5cb3"></div><div class="color" style="background: #001380"></div><div class="color" style="background: #13216c"></div><div class="color" style="background: #262e59"></div><div class="color" style="background: #6600ff"></div><div class="color" style="background: #6e26d9"></div><div class="color" style="background: #754db3"></div><div class="color" style="background: #330080"></div><div class="color" style="background: #37136c"></div><div class="color" style="background: #3b2659"></div><div class="color" style="background: #f200ff"></div><div class="color" style="background: #d026d9"></div><div class="color" style="background: #ad4db3"></div><div class="color" style="background: #790080"></div><div class="color" style="background: #68136c"></div><div class="color" style="background: #572659"></div><div class="color" style="background: #ff0080"></div><div class="color" style="background: #d92680"></div><div class="color" style="background: #b34d80"></div><div class="color" style="background: #800040"></div><div class="color" style="background: #6c1340"></div><div class="color" style="background: #592640"></div><div class="color" style="background: #ffffff"></div><div class="color" style="background: #cccccc"></div><div class="color" style="background: #999999"></div><div class="color" style="background: #666666"></div><div class="color" style="background: #333333"></div><div class="color" style="background: #000000"></div></div>
+  <div class="color" style="background: #ff0000"></div>
+  <div class="color" style="background: #d92626"></div>
+  <div class="color" style="background: #b34d4d"></div>
+  <div class="color" style="background: #800000"></div>
+  <div class="color" style="background: #6c1313"></div>
+  <div class="color" style="background: #592626"></div>
+  <div class="color" style="background: #ff8c00"></div>
+  <div class="color" style="background: #d98826"></div>
+  <div class="color" style="background: #b3854d"></div>
+  <div class="color" style="background: #804600"></div>
+  <div class="color" style="background: #6c4413"></div>
+  <div class="color" style="background: #594226"></div>
+  <div class="color" style="background: #e5ff00"></div>
+  <div class="color" style="background: #c7d926"></div>
+  <div class="color" style="background: #a8b34d"></div>
+  <div class="color" style="background: #738000"></div>
+  <div class="color" style="background: #636c13"></div>
+  <div class="color" style="background: #545926"></div><div class="color" style="background: #59ff00"></div><div class="color" style="background: #65d926"></div><div class="color" style="background: #70b34d"></div><div class="color" style="background: #2d8000"></div><div class="color" style="background: #326c13"></div><div class="color" style="background: #385926"></div><div class="color" style="background: #00ff33"></div><div class="color" style="background: #26d94a"></div><div class="color" style="background: #4db361"></div><div class="color" style="background: #00801a"></div><div class="color" style="background: #136c25"></div><div class="color" style="background: #265930"></div><div class="color" style="background: #00ffbf"></div><div class="color" style="background: #26d9ac"></div><div class="color" style="background: #4db399"></div><div class="color" style="background: #008060"></div><div class="color" style="background: #136c56"></div><div class="color" style="background: #26594d"></div><div class="color" style="background: #00b3ff"></div><div class="color" style="background: #26a3d9"></div><div class="color" style="background: #4d94b3"></div><div class="color" style="background: #005980"></div><div class="color" style="background: #13526c"></div><div class="color" style="background: #264a59"></div><div class="color" style="background: #0026ff"></div><div class="color" style="background: #2641d9"></div><div class="color" style="background: #4d5cb3"></div><div class="color" style="background: #001380"></div><div class="color" style="background: #13216c"></div><div class="color" style="background: #262e59"></div><div class="color" style="background: #6600ff"></div><div class="color" style="background: #6e26d9"></div><div class="color" style="background: #754db3"></div><div class="color" style="background: #330080"></div><div class="color" style="background: #37136c"></div><div class="color" style="background: #3b2659"></div><div class="color" style="background: #f200ff"></div><div class="color" style="background: #d026d9"></div><div class="color" style="background: #ad4db3"></div><div class="color" style="background: #790080"></div><div class="color" style="background: #68136c"></div><div class="color" style="background: #572659"></div><div class="color" style="background: #ff0080"></div><div class="color" style="background: #d92680"></div><div class="color" style="background: #b34d80"></div><div class="color" style="background: #800040"></div><div class="color" style="background: #6c1340"></div><div class="color" style="background: #592640"></div><div class="color" style="background: #ffffff"></div><div class="color" style="background: #cccccc"></div><div class="color" style="background: #999999"></div>
+  <div class="color" style="background: #666666"></div>
+  <div class="color" style="background: #333333"></div>
+  <div class="color" style="background: #000000"></div>
+</div>
             </div>
             <div class="options_container">
               <button type="button" name="button">Cancel</button>
@@ -100,29 +121,49 @@
 <script src="/global/js/editor/save.js?v=6" charset="utf-8"></script>
 
 <script type="text/javascript">
-let mSection, eSection, sectionIdx;
+var menuSection, editSection, calendarHTML, scheduleHTML, currentSchedule;
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
-    calendar = new Calendar(false);
-    sectionIdx = 1;
-    swapSections();
+    menuSection = findElements(document.body, false, "#menu_section");
+    editSection = findElements(document.body, false, "#edit_section");
+    calendarHTML = findElements(document.body, false, "#calendar_container");
+    scheduleHTML = findElements(document.body, false, "#schedule_container");
+    //set days of the week along the calendar
+    let weekDayNames = findElements(calendarHTML, true, ".weekday");
+    DAYS_OF_WEEK_ABR.forEach((item, i) => {
+      weekDayNames[i].innerHTML = item;
+    });
+    calendar = new Calendar(false); //calendar object that stores schedule data
+    setCurrentMonthDisplay(); //show current month
+    //set arrow buttons to update calendar display
+    for(let btn of findElements(calendarHTML, true, '.calendar_head_btn')){
+      btn.onclick = function() {
+        calendar.updateMonth(parseInt(btn.value))
+        setCurrentMonthDisplay();
+      }
+    }
 
-
+    //set onclick actions of calendar menu options
     let k=0;
-    for(let btn of findElements(mSection, true, "button")){
-      if(k == 0){
-        btn.onclick = function(){edit(true)};
-      }else if(k == 1){
-        btn.onclick = function(){edit(false)};
-      }else if(k ==2){
-        btn.onclick = function(){saveCalendar()};
+    for(let btn of findElements(menuSection.children[0], true, "button")){
+      switch(k) {
+        case 0:
+          btn.onclick = function(){showScheduleEditor(); displaySchedule(true)}; //create a new schedule
+          break;
+        case 1:
+          btn.onclick = function(){showScheduleEditor(); displaySchedule()}; //edit current schedule
+          break;
+        case 2:
+          btn.onclick = function(){saveCalendar()}; //save calendar
+          break;
       }
       k++;
     }
 
-    for(let btn of findElements(mSection.parentNode.children[1], true, "button")){
+    //set onclick actions of schedule menu options
+    for(let btn of findElements(menuSection.children[1], true, "button")){
       if(k == 3){
-        btn.onclick = function(){swapShown();}
+        btn.onclick = function(){showCalendarEditor();}
       }else if(k == 4){
         btn.onclick = function(){removeSchedule();}
       }else if(k == 5){
@@ -131,32 +172,17 @@ document.onreadystatechange = () => {
       k++;
     }
 
-    mSection.children[0].appendChild(
-      createDropDown(createScheduleOptions())
+    //Create schedule dropdown HTML and append to screen
+    menuSection.children[0].children[0].appendChild(
+      createScheduleDropdown()
     );
-    for(let btn of findElements(eSection, true, '.calendar_head_btn')){
-      btn.onclick = function(){
-        if(calendar.updateMonth(parseInt(btn.value))){
-          setUserData(false);
-        }
-        replaceDays();
+
+    //
+    for(let color of findElements(menuSection, false, "#color_picker").children){
+      color.onclick = function(){
+        setScheduleColor(this.style.background);
       }
     }
-    DAYS_OF_WEEK_ABR.forEach((item, i) => {
-      eSection.children[1].children[i].children[0].innerHTML = item;
-    });
-
-    setUserData(true);
-    replaceDays();
-
-
-    for(let c of findElements(document.body, false, "#color_picker").children){
-      c.onclick = function(){
-        swapColors(this);
-      }
-    }
-
-
   }
 }
 </script>

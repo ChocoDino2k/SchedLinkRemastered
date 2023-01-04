@@ -33,19 +33,6 @@
 
 
 body {
-background: url("/global/themes/theme_accessories/vaporwave_background.gif") repeat-y center center fixed rgb(0,0,0);
+background: url("/global/themes/theme_accessories/vaporwave_background.png") repeat-y center center fixed rgb(0,0,0);
 background-size: cover;
 }
-/* body::after {
-  content: "";
-  position: absolute;
-  width: 200%;
-height: 200%;
-top: 0;
-left: -50%;
-z-index: -1;
-  background: url("/global/themes/theme_accessories/vaporwave_background.gif") repeat-y center center fixed rgb(0,0,0);
-  background-size: cover;
-  transform: rotate(180deg);
-  /* height: 100vh; */
-} */
