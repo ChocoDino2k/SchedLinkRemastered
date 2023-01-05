@@ -272,13 +272,14 @@ function isEmpty(object) { for(let i in object) { return false; } return true; }
  */
 function to12HTime(time) {
     time = time.split(":");
-    time[0] = padDigit(parseInt(time[0]));
+    let digit = parseInt(time[0]);
+    time[0] = (digit > 12)? padDigit(digit % 12) : padDigit( digit );
     return time.join(":");
 }
 function padDigit(number) {
     if (number < 10) {
         return `0${number}`
     } else {
-        return number + '';
+        return number;
     }
 }

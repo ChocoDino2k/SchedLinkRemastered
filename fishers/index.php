@@ -23,9 +23,9 @@ $conn->close();
     <script src="json/schedules.js?v=<?php echo filemtime("json/schedules.js");?>" charset="utf-8"></script>
     <script src="json/schedule-calendar.js?v=<?php echo filemtime("json/schedule-calendar.js"); ?>" charset="utf-8"></script>
 
-    <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
+    <script src="/global/js/DOM.js?v=12" charset="utf-8"></script>
     
-    <script src="/global/js/home/clockv3.js?v=10" charset="utf-8"></script>
+    <script src="/global/js/home/clockv3.js?v=12" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/global/css/global.css?v=10">
     <link rel="stylesheet" href="/global/css/home.css?v=10">
