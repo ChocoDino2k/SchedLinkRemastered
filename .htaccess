@@ -1,17 +1,17 @@
+
+RewriteEngine on
 Directoryindex index.html
 RewriteOptions inherit
 
-RewriteEngine on
 ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
 ErrorDocument 500 /500.html
-RewriteCond %{HTTP_HOST} ^schedlink\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.schedlink\.com$
-RewriteRule ^/?$ "https\:\/\/schedlink\.com\/fishers" [R=301,L]
-
-RewriteCond %{HTTP_HOST} ^.*$
-RewriteRule ^FHS/?$ "https\:\/\/schedlink\.com\/fishers" [R=301,L]
 
 # Uncomment the next two lines to have syntax errors in the home page cause /500-home.html to be shown instead. ~Skylar
 # RewriteCond %{HTTP_HOST} ^.*$
 # RewriteRule ^fishers/$ "https\:\/\/schedlink\.com\/fishers\/loadHomeWithErrorHandler.php" [P]
+RewriteCond %{HTTP_HOST} ^schedlink\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.schedlink\.com$
+RewriteRule ^/?$ "https\:\/\/www\.fhs\-news\.org\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^/?$ "https\:\/\/www\.fhs\-news\.org\/" [R=301,L]

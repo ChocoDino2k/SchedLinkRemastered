@@ -173,3 +173,21 @@ function getBackground(color, inMonth) {
     color:var(--container-text-color)";
 }
 
+/**
+ * Converts 24 hour to 12 hour time
+ * @param {String} time time in HH:MM form 
+ * @returns String time in HH:MM form
+ */
+function to12HTime(time) {
+    time = time.split(":");
+    let digit = parseInt(time[0]);
+    time[0] = (digit > 12)? padDigit(digit % 12) : padDigit( digit );
+    return time.join(":");
+}
+function padDigit(number) {
+  if (number < 10) {
+      return `0${number}`
+  } else {
+      return number + '';
+  }
+}

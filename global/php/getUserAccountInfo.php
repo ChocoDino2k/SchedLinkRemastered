@@ -38,7 +38,8 @@ if (count($_COOKIE) > 0) {
   exit;
 }
 
-$conn = mysqli_connect('localhost', 'schedasr_admin', 'bananaman10?', 'schedasr_userbase');
+//removed bc log-in information
+$conn = mysqli_connect('', '', '', '');
 if($conn -> connect_error) {
   http_response_code(500);
   exit;

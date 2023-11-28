@@ -73,9 +73,9 @@ $conn->close();
       ?>
     </div>
       </body>
-      <script src="/global/js/DOM.js?v=9" charset="utf-8"></script>
-      <script src="/global/js/calendar/calendar.js?v=9" charset="utf-8"></script>
-      <script src="/global/js/calendar/calendar_html.js?v=9" charset="utf-8"></script>
+      <script src="/global/js/DOM.js?v=11" charset="utf-8"></script>
+      <script src="/global/js/calendar/calendar.js?v=11" charset="utf-8"></script>
+      <script src="/global/js/calendar/calendar_html.js?v=11" charset="utf-8"></script>
       <script type="text/javascript">
       var calendarSection, scheduleSection, calendar;
       calendar = new Calendar(false);

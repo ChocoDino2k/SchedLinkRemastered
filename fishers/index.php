@@ -25,7 +25,7 @@ $conn->close();
 
     <script src="/global/js/DOM.js?v=10" charset="utf-8"></script>
     
-    <script src="/global/js/home/clockv3.js?v=10" charset="utf-8"></script>
+    <script src="/global/js/home/clockv3.js?v=13" charset="utf-8"></script>
 
     <link rel="stylesheet" href="/global/css/global.css?v=10">
     <link rel="stylesheet" href="/global/css/home.css?v=10">
