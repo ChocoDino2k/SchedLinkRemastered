@@ -85,6 +85,9 @@ function init() {
         updateScheduleDisplay(false);
         updateTimer(getTimeRemaining(), false, schedule.periods[index_obj.main_index]);
         periodBox.children[2].children[index_obj.main_index].classList = "gallery-dot active";
+        if (!isEmpty(schedule.periods[index_obj.main_index].intraschedule)) {
+            displaySubPeriodOptions(schedule.periods[index_obj.main_index]);
+        }
     }
     //start loop
     tick();
